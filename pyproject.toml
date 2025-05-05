@@ -1,0 +1,14 @@
+[project]
+name = "hardpycover"
+version = "0.1.0"
+description = "Hardcover API wrapper for Python"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "sgqlc>=16.4",
+]
+keywords = ["hardcover", "api", "wrapper"]
+
+maintainers = [
+  {name = "Jay Cruz", email = "jccruz009@yahoo.com"}
+]

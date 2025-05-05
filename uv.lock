@@ -1,0 +1,35 @@
+version = 1
+revision = 2
+requires-python = ">=3.12"
+
+[[package]]
+name = "graphql-core"
+version = "3.2.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c4/16/7574029da84834349b60ed71614d66ca3afe46e9bf9c7b9562102acb7d4f/graphql_core-3.2.6.tar.gz", hash = "sha256:c08eec22f9e40f0bd61d805907e3b3b1b9a320bc606e23dc145eebca07c8fbab", size = 505353, upload-time = "2025-01-26T16:36:27.374Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ae/4f/7297663840621022bc73c22d7d9d80dbc78b4db6297f764b545cd5dd462d/graphql_core-3.2.6-py3-none-any.whl", hash = "sha256:78b016718c161a6fb20a7d97bbf107f331cd1afe53e45566c59f776ed7f0b45f", size = 203416, upload-time = "2025-01-26T16:36:24.868Z" },
+]
+
+[[package]]
+name = "hardpycover"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "sgqlc" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "sgqlc", specifier = ">=16.4" }]
+
+[[package]]
+name = "sgqlc"
+version = "16.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "graphql-core" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/14/ab/a37f739b4cadd77ac9603cb473db545462062784cbbb2f2d2c45309eb986/sgqlc-16.4.tar.gz", hash = "sha256:a1a32db1c573edae229dbb61f6ae0a546aecceaaed2bac0652992a73e8c95017", size = 242759, upload-time = "2024-09-13T16:52:27.595Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/aa/b7/82120310147682c2980f245d8d691cc5f3b87772013ff09bd0a917ce0df9/sgqlc-16.4-py3-none-any.whl", hash = "sha256:91f9e7e624c76613288b917f583c6b19c8d908a213199f1cb6e918e8f3901246", size = 82204, upload-time = "2024-09-13T16:52:21.302Z" },
+]
