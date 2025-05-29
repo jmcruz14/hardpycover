@@ -3,12 +3,18 @@ name = "hardpycover"
 version = "0.1.0"
 description = "Hardcover API wrapper for Python"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
-    "sgqlc>=16.4",
+    "pydantic>=2.11.4",
+    "python-dotenv>=1.1.0",
 ]
 keywords = ["hardcover", "api", "wrapper"]
 
 maintainers = [
   {name = "Jay Cruz", email = "jccruz009@yahoo.com"}
+]
+
+[project.optional-dependencies]
+with_sgql = [
+	"sgqlc"
 ]
