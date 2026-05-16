@@ -17,8 +17,7 @@ def create_query(
     selected_fields: Optional[List[Union[str, Dict[str, List]]]] = None,
     arguments: Optional[Dict[str, Any]] = None,
 ) -> str:
-    """
-    Generates a standard, modular (single-table) GraphQL query syntax.
+    """Generates a standard, modular (single-table) GraphQL query syntax.
 
     Args:
         cls: Pydantic BaseModel object

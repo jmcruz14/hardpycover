@@ -13,3 +13,16 @@ class Link(BaseModel):
 class Identifiers(BaseModel):
     goodreads: Optional[List[str]] = None
     openlibrary: Optional[List[str]] = None
+
+class MatchedTokens(BaseModel):
+    matched_tokens: Optional[List[str]] = None
+    snippet: Optional[str] = None
+
+class TextMatchInfo(BaseModel):
+    best_field_score: Optional[str] = None # String representation of an int value
+    best_field_weight: Optional[int] = None
+    fields_matched: Optional[int] = None
+    num_tokens_dropped: Optional[int] = None
+    score: Optional[str] = None
+    tokens_matched: Optional[int] = None
+    typo_prefix_score: Optional[int] = None
