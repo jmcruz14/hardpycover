@@ -7,7 +7,7 @@ from urllib3.exceptions import HTTPError
 
 __all__ = ('HardcoverEndpoint', 'endpoint_url')
 
-endpoint_url = "https://api.hardcover.app/v1/graphql"
+endpoint_url = os.environ['API_URL']
 
 class BaseEndpoint:
   def __call__(self):
@@ -22,8 +22,7 @@ class HardcoverEndpoint(BaseEndpoint):
     self,
     base_headers: dict = None,
     method: str = 'POST',
-    # url: str = os.environ['API_URL'] or "https://api.hardcover.app/v1/graphql",
-    url: str = "https://api.hardcover.app/v1/graphql",
+    url: str = endpoint_url,
     timeout: int = 30,
     urlopen = None,
   ):
@@ -121,6 +120,22 @@ class HardcoverEndpoint(BaseEndpoint):
     )
 
   def _log_json_error(self, body, exc):
+    '''
+      Log a :exc:`json.JSONDecodeError`, converting to
+      GraphQL's ``{"data": null, "errors": [{"message": str(exc)...}]}``
+
+      This is a line-by-line copy of the code found in the `sglqc <https://github.com/profusion/sgqlc/blob/master/sgqlc/endpoint/base.py>`_ repository.
+
+      :param body: the string with JSON document.
+      :type body: str
+
+      :param exc: the :exc:`json.JSONDecodeError`
+      :type exc: :exc:`json.JSONDecodeError`
+
+      :return: GraphQL-compliant dict with keys ``data`` and ``errors``.
+      :rtype: dict
+
+    '''
     return {
       'data': None,
       'errors': [
