@@ -19,7 +19,7 @@ class UserBook(BaseModel):
   likes_count: Optional[int] = None
   merged_at: Optional[datetime] = None
   media_url: Optional[str] = None
-  object_type: Optional[Literal['UserBook']]
+  object_type: Optional['UserBook'] = None
   original_book_id: Optional[int] = None
   original_edition_id: Optional[int] = None
   owned: Optional[bool] = None
@@ -37,3 +37,4 @@ class UserBook(BaseModel):
   sponsored_review: Optional[bool] = None
   url: Optional[str] = None
   updated_at: Optional[datetime] = None
+  user_id: Optional[int] = None

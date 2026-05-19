@@ -24,7 +24,7 @@ class Book(BaseModel):
   subtitle: Optional[str] = None
   state: Optional[Literal['error', 'pending', 'normalized', 'duplicate']] = None # This is a Literal but we need to confirm w/c values
   slug: Optional[str] = None
-  ratings_distribution: Optional[List[RatingsDistribution]]
+  ratings_distribution: Optional[List[RatingsDistribution]] = None
   ratings_count: Optional[int] = None
   rating: Optional[int | float] = None
   prompts_count: Optional[int] = None

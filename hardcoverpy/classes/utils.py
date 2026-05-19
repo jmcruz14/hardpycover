@@ -2,6 +2,14 @@ from typing import Optional, Literal, List
 from datetime import datetime, date
 from pydantic import BaseModel, ConfigDict
 
+class CachedImage(BaseModel):
+    id: int
+    url: str
+    color: str
+    width: int
+    height: int
+    color_name: str
+
 class LinkType(BaseModel):
     key: str
 
