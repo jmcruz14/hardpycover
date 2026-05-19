@@ -1,28 +1,34 @@
 from .core.base import GraphQLClient
 from .core.http import endpoint_url
 from .core.query import create_query
-from .classes import User, UserBook, Search
-from .utils import clean_api_key
-from .filter import get_critical_book_fields
+from .classes import User, UserBook, Search, Publisher, Author
+from .utils import _clean_api_key
+from .filter import _get_critical_book_fields
 
 from typing import Dict, Any, List, Optional
 from pydantic import ValidationError
 
-from pprint import pprint
+QUERY_LIMIT = 50 # Hardcoded limit
+
+# TODO: standardize exception handling
 
 class Hardcover:
   def __init__(self, api_key: str):
     headers = {
       'Content-Type': 'application/json',
-      'Authorization': clean_api_key(api_key) # confirm if this is okay
+      'Authorization': _clean_api_key(api_key)
     }
     self.client = GraphQLClient(endpoint_url, headers)
 
-  def get_user(self, fields: Optional[List[str]] = None) -> Dict[str, Any]:
+  def user_profile(self, fields: Optional[List[str]] = None) -> Dict[str, Any]:
     """Get your user information.
     
     Args:
-      fields (list(str)): List of acceptable fields based on the User class"""
+      fields (list(str)): List of acceptable fields based on the User class
+    
+    Returns:
+      user (dict): User information
+    """
     
     try:
       table_name = "me"
@@ -46,48 +52,98 @@ class Hardcover:
     except ValueError as e:
       print(e)
   
-  # NOTE: rewrite query process for further customization
-  def get_owned_books(
+  def owned_books(
       self, 
-      user_id: int, 
-      fields: Optional[List[str]] = None,
+      user_id: int,
       limit: int = 10
     ) -> Dict[str, Any]:
     """
-      Get owned books based on user_id
+      Get owned books (`UserBooks` where the status is not "Want to Read") based on user_id
 
       Args:
         user_id (int): associated user_id
 
+      Returns:
+        owned_books (list(dict)): list of owned books
     """
     table_name = "user_books"
+    critical_user_books_fields = ["id",
+        "user_id",
+        "created_at",
+        {
+            "book": ["id", "title", "subtitle", "rating", "release_year"]
+        }
+    ]
+    arguments = {
+        'where': {
+          'user_id': { '_eq': user_id},
+          'user_book_status': { 'status': {'_neq': 'Want to Read'}}
+        },
+        'limit': limit,
+      }
     query = create_query(
       UserBook, 
       table_name, 
-      selected_fields=fields,
-      arguments = {
-        'where': {
-          'user_id': { '_eq': user_id}
-        },
-        'limit': limit
-      }
+      selected_fields=critical_user_books_fields,
+      arguments=arguments
     )
 
     result = self.client.execute(query)
-    output = result[table_name][0]
-
+    output = result[table_name]
     try:
-      UserBook.model_validate(output)
-      return output
+      for book in output:
+        UserBook.model_validate(book)
     except ValidationError as e:
       print(e)
   
-  # TODO: prioritize this
-  def search_authors(self, search: str):
-    # most popular? sort by? owned
-    pass
+    return output
+  
+  def authors(
+    self, 
+    author_name: str,
+    per_page: int = 10,
+    skip: int = 0
+  ):
+    if per_page > QUERY_LIMIT:
+      print("Query request exceeds limit, setting to limit...")
+      per_page = 50
+    conditionals = {
+      "state": {"_neq": "duplicate"}
+    }
+    if author_name:
+      conditionals["name"] = {"_like": author_name}
+      # conditionals["name"] = {"_eq": author_name}
 
-  def search_books(self, search: str, per_page: int = 25, detailed = False):
+    arguments = {
+      "where": {**conditionals},
+      "limit": per_page,
+    }
+    if skip:
+      arguments["offset"] = skip
+
+    try:
+      table_name = "authors"
+      query = create_query(Author, table_name, arguments=arguments)
+      result = self.client.execute(query)
+      
+      if result is False:
+        raise ValueError
+
+      return result["authors"]
+    except ValidationError as e:
+      print(e)
+      return None
+    except ValueError as e:
+      print(e)
+      return None
+
+  def books(
+    self, 
+    search: str, 
+    per_page: int = 25,
+    skip: int = 0,
+    detailed = False
+  ):
     """Search books from database.
 
     Args:
@@ -97,13 +153,20 @@ class Hardcover:
       books (dict): List of books
     """
 
+    if per_page > QUERY_LIMIT:
+      print("Query request exceeds limit, setting to limit...")
+      per_page = 50
+
+    arguments = {
+      "query": search,
+      "per_page": per_page
+    }
+    if skip:
+      arguments["offset"] = skip
+
     try:
       table_name = "search"
-      query = create_query(Search, table_name, arguments={
-        "query": search,
-        "per_page": per_page
-      })
-
+      query = create_query(Search, table_name, arguments=arguments)
       result = self.client.execute(query)
       if result is False:
         raise ValueError
@@ -116,7 +179,7 @@ class Hardcover:
 
       result = result["search"]["results"]["hits"]
       if len(result) > 0:
-        result = list(map(get_critical_book_fields, result))
+        result = list(map(_get_critical_book_fields, result))
         return result
       
       return None
@@ -124,7 +187,32 @@ class Hardcover:
       print(e)
     except ValueError as e:
       print(e)
-    
+  
+  def publishers(self, publisher_name: str = None, per_page: int = 25, page: int = 0):
+    table_name = "publishers" 
+    if per_page > QUERY_LIMIT:
+      print("Query request exceeds limit, setting to limit...")
+      per_page = 50
+
+    conditionals = {
+      "state": {"_neq": "duplicate"}
+    }
+    if publisher_name:
+      conditionals["name"] = { "_eq": publisher_name}
+
+    arguments = {
+      "limit": per_page,
+      "where": {**conditionals}
+    }
+    if page:
+      arguments["offset"] = page
+
+    query = create_query(Publisher, table_name, arguments=arguments)
+
+    result = self.client.execute(query)
+    return result
+
+  # NOTE: potentially useful api functions below
   def get_reading_list(self):
     pass
 

@@ -1,4 +1,4 @@
-def get_critical_book_fields(
+def _get_critical_book_fields(
   entry: list[dict],
   essential_fields: list = [
     "author_names",
