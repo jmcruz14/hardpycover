@@ -1,6 +1,6 @@
-from typing import Optional, Literal
+from typing import Optional
 from datetime import datetime, date
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 from .books import Book
 

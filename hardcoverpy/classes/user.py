@@ -1,6 +1,6 @@
 from typing import Optional, Literal, List
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 from .utils import CachedImage
 
 # NOTE: expand the User class accordingly

@@ -1,5 +1,5 @@
 from .books import Book
-from .utils import TextMatchInfo, MatchedTokens
+from .utils import TextMatchInfo
 from typing import Optional
 from pydantic import BaseModel
 

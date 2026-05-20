@@ -1,6 +1,6 @@
 from typing import Optional, Literal, List
 from datetime import datetime, date
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 class RatingsDistribution(BaseModel):
   count: int

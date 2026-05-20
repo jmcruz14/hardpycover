@@ -1,6 +1,6 @@
-from typing import Optional, Literal, Dict, List
-from datetime import datetime, date
-from pydantic import BaseModel, ConfigDict
+from typing import Optional, Dict, List
+from datetime import date
+from pydantic import BaseModel
 
 from .image import Image
 from .utils import Identifiers, Link

@@ -1,6 +1,5 @@
-from typing import Optional, Literal, List
-from datetime import datetime, date
-from pydantic import BaseModel, ConfigDict
+from typing import Optional, List
+from pydantic import BaseModel
 
 class Image(BaseModel):
   color: Optional[str] = None
