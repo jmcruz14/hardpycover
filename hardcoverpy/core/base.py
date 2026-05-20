@@ -1,12 +1,9 @@
-import os
 import json
 import urllib
 from urllib.request import urlopen
-from urllib.error import HTTPError, URLError
-from typing import Dict, Any, Optional, Union
-from .exceptions import GraphQLError, InvalidTokenError, RestrictedAccessError
-
-from .http import HardcoverEndpoint
+from urllib.error import HTTPError
+from typing import Dict, Optional
+from .exceptions import GraphQLError
 
 __all__ = ('GraphQLClient')
 
@@ -58,7 +55,7 @@ class GraphQLClient:
     except HTTPError as e:
       # Return custom exception based on HTTP error code
       code = e.code
-      body = e.read().decode('utf-8') if e.fp else 'No error details'
+      # body = e.read().decode('utf-8') if e.fp else 'No error details'
       if code == 401:
         print(f"HTTP {code}: Bearer token invalid/expired.")
         return False

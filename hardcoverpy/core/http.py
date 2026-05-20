@@ -6,8 +6,7 @@ import urllib3
 from urllib3.exceptions import HTTPError
 
 __all__ = ('HardcoverEndpoint', 'endpoint_url')
-
-endpoint_url = os.environ['API_URL']
+endpoint_url = "https://api.hardcover.app/v1/graphql"
 
 class BaseEndpoint:
   def __call__(self):
