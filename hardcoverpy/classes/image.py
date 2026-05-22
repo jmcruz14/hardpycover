@@ -11,3 +11,6 @@ class Image(BaseModel):
   ratio: Optional[int] = None
   url: Optional[str] = None
   width: Optional[int] = None
+
+class CachedImage(Image):
+  pass

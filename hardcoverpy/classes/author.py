@@ -2,7 +2,7 @@ from typing import Optional, Dict, List
 from datetime import date
 from pydantic import BaseModel
 
-from .image import Image
+from .image import Image, CachedImage
 from .utils import Identifiers, Link
 
 class Author(BaseModel):
@@ -12,7 +12,7 @@ class Author(BaseModel):
   books_count: Optional[int] = None
   born_date: Optional[date] = None
   born_year: Optional[int] = None
-  cached_image: Optional[Dict[str, Image]] = None
+  cached_image: Optional[CachedImage] = None
   canonical_id: Optional[int] = None
   death_date: Optional[date] = None
   death_year: Optional[int] = None

@@ -31,7 +31,7 @@ dev = [
 
 [tool.ruff.lint]
 select = ["E", "F"]
-ignore = ["F401", "E501"]
+ignore = ["E501"]
 
 [tool.uv.build-backend]
 module-name = "hardcoverpy"

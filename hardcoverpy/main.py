@@ -55,10 +55,12 @@ class Hardcover:
   def owned_books(
       self, 
       user_id: int,
-      limit: int = 10
+      limit: int = 25,
+      page: int = 1
+      # NOTE: add field for status
     ) -> Dict[str, Any]:
     """
-      Get owned books (`UserBooks` where the status is not "Want to Read") based on user_id
+      Get owned books based on user_id
 
       Args:
         user_id (int): associated user_id
@@ -67,24 +69,44 @@ class Hardcover:
         owned_books (list(dict)): list of owned books
     """
     table_name = "user_books"
-    critical_user_books_fields = ["id",
-        "user_id",
-        "created_at",
-        {
-            "book": ["id", "title", "subtitle", "rating", "release_year"]
-        }
+    selected_fields = [
+      "id",
+      "user_id",
+      "created_at",
+      {
+        "book": ["id", "title", "subtitle", "rating", "release_year"]
+      },
+      {
+        "edition": [
+          "isbn_10", 
+          "isbn_13",
+          "edition_format", 
+          "edition_information",
+          {
+            "language": ["code2", "language"]
+          }
+        ]
+      }
     ]
     arguments = {
         'where': {
           'user_id': { '_eq': user_id},
+          # 'owned': { '_eq': 'true' } # NOTE: using this condition does not return anything if testing with my account
           'user_book_status': { 'status': {'_neq': 'Want to Read'}}
         },
         'limit': limit,
       }
+    
+    # NOTE: maybe combine want to read and owned = true?
+    # NOTE: include book edition
+    
+    if page > 1:
+      arguments["offset"] = page * limit
+
     query = create_query(
       UserBook, 
       table_name, 
-      selected_fields=critical_user_books_fields,
+      selected_fields=selected_fields,
       arguments=arguments
     )
 
@@ -111,8 +133,7 @@ class Hardcover:
       "state": {"_neq": "duplicate"}
     }
     if author_name:
-      conditionals["name"] = {"_like": author_name}
-      # conditionals["name"] = {"_eq": author_name}
+      conditionals["name"] = {"_eq": author_name}
 
     arguments = {
       "where": {**conditionals},
@@ -142,6 +163,7 @@ class Hardcover:
     search: str, 
     per_page: int = 25,
     skip: int = 0,
+    # include_contribtions: bool = False
     detailed = False
   ):
     """Search books from database.
@@ -172,6 +194,8 @@ class Hardcover:
         raise ValueError
       
       # Trim search result query
+
+      # if include_contributions:
 
       if detailed:
         # NOTE: detailed output should be untrimmed json output
@@ -222,3 +246,6 @@ class Hardcover:
   
   # next question: how to incorporate the functionalities of all
   # available functions?
+
+# NOTE: read https://typesense.org/ as this is the basis for logic (optimized search)
+# 

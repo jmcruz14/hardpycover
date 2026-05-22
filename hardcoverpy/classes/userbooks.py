@@ -3,6 +3,7 @@ from datetime import datetime, date
 from pydantic import BaseModel
 
 from .books import Book
+from .editions import Edition
 
 class UserBook(BaseModel):
   book_id: Optional[int] = None # matches book id; separate from user_books_id (id)
@@ -10,6 +11,7 @@ class UserBook(BaseModel):
   created_at: Optional[datetime] = None
   date_added: Optional[date] = None
   edition_id: Optional[int] = None
+  edition: Optional[Edition] = None
   first_read_date: Optional[date] = None
   first_started_reading_date: Optional[date] = None
   id: Optional[int] = None

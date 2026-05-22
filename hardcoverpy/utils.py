@@ -1,4 +1,4 @@
-def clean_api_key(api_key: str):
+def _clean_api_key(api_key: str):
   if 'Bearer' in api_key:
       key = f'{api_key}'
   else:

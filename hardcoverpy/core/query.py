@@ -32,7 +32,7 @@ def create_query(
         selected_fields = list(cls.model_fields.keys())
     
     # Validate and format fields
-    fields_str = format_fields(cls, selected_fields)
+    fields_str = format_fields(cls, selected_fields, AUTO_SELECT_DEPTH)
 
     # Format arguments if provided
     args_str = ""

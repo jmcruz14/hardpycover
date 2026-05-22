@@ -1,13 +1,16 @@
 from typing import Optional, List
 from pydantic import BaseModel
 
-class CachedImage(BaseModel):
+class Image(BaseModel):
     id: int
     url: str
     color: str
     width: int
     height: int
     color_name: str
+
+class CachedImage(Image):
+    pass
 
 class LinkType(BaseModel):
     key: str
