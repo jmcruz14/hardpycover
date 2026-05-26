@@ -21,3 +21,7 @@ class User(BaseModel):
   object_type: Optional[Literal['User']] = None
   username: Optional[str] = None
   updated_at: Optional[datetime] = None
+
+class UserStatus(BaseModel):
+  id: Optional[int] = None
+  status: Optional[Literal["created", "activated", "banned"]] = None

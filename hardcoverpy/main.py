@@ -1,11 +1,13 @@
-from .core.base import GraphQLClient
+from .core import GraphQLClient
 from .core.http import endpoint_url
 from .core.query import create_query
-from .classes import User, UserBook, Search, Publisher, Author
+from .classes import User, UserBook, UserBooksAggregate, Search, Publisher, Author
 from .utils import _clean_api_key
 from .filter import _get_critical_book_fields
 
-from typing import Dict, Any, List, Optional
+
+from .stats import _build_time_filter, _select_stat_fields, _flatten_result
+
 from pydantic import ValidationError
 
 QUERY_LIMIT = 50 # Hardcoded limit
@@ -51,7 +53,48 @@ class Hardcover:
       print(e)
     except ValueError as e:
       print(e)
-  
+
+  def user_stats(
+      self, 
+      user_id: int,
+      stats: list[str] = [], 
+      start_date: str = None,
+      end_date: str = None
+    ) -> Dict[str, Any]:
+    """
+      Retrieve user stats based on user_id
+
+      Args:
+        user_id (int): user_id of selected user
+        stats (list[str]): "listed"
+    """
+    
+    table_name = "user_books_aggregate"
+    try:
+      time_filter = _build_time_filter(start_date=start_date, end_date=end_date)
+      selected_fields = _select_stat_fields(stats)
+
+      query = create_query(
+        UserBooksAggregate,
+        table_name,
+        "UserStats",
+        selected_fields=selected_fields,
+        arguments={
+          "where": {"user_id": {"_eq": user_id}, **time_filter}
+        }
+      )
+      result = self.client.execute(query)
+      result = _flatten_result(result)
+      return result
+    
+    except ValidationError as e:
+        print(e)
+        return None
+    except ValueError as e:
+        print(e)
+        return None
+
+
   def owned_books(
       self, 
       user_id: int,
