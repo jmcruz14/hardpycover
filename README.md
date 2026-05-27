@@ -47,8 +47,9 @@ hc.user_profile(['id', 'bio', 'created_at', 'username'])
 For more use cases, read the available methods found at [main.py](/hardcoverpy/main.py).
 
 ### Contributors
-<!-- readme: contributors -start -->
-<!-- readme: contributors -end -->
+<a href="https://github.com/jmcruz14/hardpycover/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jmcruz14/hardpycover" />
+</a>
 
 ### License
 [MIT License](/LICENSE) – Free to use, modify, and share.

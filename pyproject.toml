@@ -1,10 +1,10 @@
 [project]
 name = "hardpycover"
-version = "0.1.0"
+version = "0.1.1"
 description = "Hardcover API wrapper for Python"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "pydantic>=2.11.4",
     "python-dotenv>=1.1.0",
