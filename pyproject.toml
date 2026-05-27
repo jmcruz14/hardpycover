@@ -3,13 +3,14 @@ name = "hardpycover"
 version = "0.1.0"
 description = "Hardcover API wrapper for Python"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.11.4",
     "python-dotenv>=1.1.0",
     "urllib3>=2.4.0",
 ]
-keywords = ["hardcover", "api", "wrapper"]
+keywords = ["hardcover", "api", "wrapper", "graphql"]
 
 maintainers = [
   {name = "Jay Cruz", email = "jccruz009@yahoo.com"}

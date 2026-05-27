@@ -1,18 +1,52 @@
-### About
+## hardcoverpy
 
-This is an API wrapper for the Hardcover API made usable in Python.
+Simplified API Wrapper for Hardcover, written in Python.
 
-### Checklists
-*To be checked off before updating visibility*
+> [!WARNING] 
+> This package is currently in Alpha development, so download at your own risk.
 
-**Important**
-- [ ] Licensing file
-- [ ] Installation & about guide
-- [ ] Sufficient `pyproject.toml` file
-- [ ] Working tests
+### Installation
 
-**Semi-important**
-- [ ] GitHub workflow
+```
+pip install hardcoverpy
+```
 
-##### References
-- This project will primarily be built off of the `praw` and `prawcore` repository
+```
+uv add hardcoverpy
+```
+
+### Usage
+
+> [!NOTE] 
+> Using `hardcoverpy` requires having an API Key from Hardcover. To avail of an API Key, go to https://hardcover.app/account/api.
+
+```python3
+import os
+from hardcoverpy import Hardcover
+
+# Store your API_KEY in an .env file
+api_key = os.environ["API_KEY"]
+
+# create hardcover instance
+hc = Hardcover(api_key=api_key)
+```
+
+**Getting User Information**
+```python3
+hc.user_profile(['id', 'bio', 'created_at', 'username'])
+# > {
+# 'id': 2,
+# 'bio' 'Lorem ipsum dolores amit',
+# 'created_at': '2025-06-23T10:10:10.32341Z',
+# 'username': 'kennyrogers'
+# }
+```
+
+For more use cases, read the available methods found at [main.py](/hardcoverpy/main.py).
+
+### Contributors
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
+### License
+[MIT License](/LICENSE) – Free to use, modify, and share.
