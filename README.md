@@ -7,10 +7,12 @@ Simplified API Wrapper for Hardcover, written in Python.
 
 ### Installation
 
+**pip**
 ```
 pip install hardcoverpy
 ```
 
+**uv**
 ```
 uv add hardcoverpy
 ```
