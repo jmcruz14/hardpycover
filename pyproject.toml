@@ -35,5 +35,5 @@ select = ["E", "F"]
 ignore = ["E501"]
 
 [tool.uv.build-backend]
-module-name = "hardcoverpy"
+module-name = "hardpycover"
 module-root = ""
