@@ -2,7 +2,7 @@ from typing import Optional, Dict, List
 from datetime import date
 from pydantic import BaseModel
 
-from .image import Image, CachedImage
+from .image import CachedImage
 from .utils import Identifiers, Link
 
 class Author(BaseModel):

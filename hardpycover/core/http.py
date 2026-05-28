@@ -12,6 +12,7 @@ class BaseEndpoint:
   def __call__(self):
     raise NotImplementedError()
 
+# NOTE: currently not in use
 class HardcoverEndpoint(BaseEndpoint):
   '''
     GraphQL access done over HTTP using urllib3. (This is a modified version of the `sgqlc` )
@@ -52,7 +53,7 @@ class HardcoverEndpoint(BaseEndpoint):
       query = bytes(query).decode('utf-8')
     
     headers = self.base_headers.copy()
-    if 'content-type' not in headers:
+    if 'content-type' or 'Content-Type' not in headers:
       content_type = {'content-type': 'application/json'}
       headers.update(content_type)
     if 'Accept' not in headers:

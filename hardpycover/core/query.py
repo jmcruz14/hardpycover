@@ -8,8 +8,12 @@ AUTO_SELECT_DEPTH = 3 # Max allowable by Hardcover
 # class Operation:
 # 	def __init__(self, typ=None, name=None, **args):
 #     if typ is None:
-    
 
+# class Hardquery:
+#     def __init__(self, type=None, name=None, **args):
+
+
+# NOTE: create_query is just __to_graphql__ as its own method
 def create_query(
     cls: Type[BaseModel], 
     table_name: str,
@@ -52,7 +56,7 @@ def create_query(
 def format_fields(
     cls: Type[BaseModel], 
     selected_fields: List[Union[str, Dict]], 
-    indent_level: int = 2) -> str:
+    indent_level: int = 2) -> List[Union[str, Dict[str, List]]]:
     """
     Formats selected fields including nested objects.
     
@@ -67,7 +71,8 @@ def format_fields(
     valid_fields = set(cls.model_fields.keys())
     formatted_fields = []
     indent = "  " * indent_level
-    
+
+    # NOTE: This is not the most performant way of approaching the code.
     for field in selected_fields:
       if isinstance(field, str):
         # Simple field
@@ -76,7 +81,6 @@ def format_fields(
         formatted_fields.append(f"{indent}{field}")
       
       elif isinstance(field, dict):
-        print('Nested field:', field)
         # Nested field
         for field_name, nested_fields in field.items():
           if field_name not in valid_fields:

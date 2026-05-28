@@ -1,4 +1,4 @@
-## hardcoverpy
+## hardpycover
 
 Simplified API Wrapper for Hardcover, written in Python.
 
@@ -9,22 +9,22 @@ Simplified API Wrapper for Hardcover, written in Python.
 
 **pip**
 ```
-pip install hardcoverpy
+pip install hardpycover
 ```
 
 **uv**
 ```
-uv add hardcoverpy
+uv add hardpycover
 ```
 
 ### Usage
 
 > [!NOTE] 
-> Using `hardcoverpy` requires having an API Key from Hardcover. To avail of an API Key, go to https://hardcover.app/account/api.
+> Using `hardpycover` requires having an API Key from Hardcover. To avail of an API Key, go to https://hardcover.app/account/api.
 
 ```python3
 import os
-from hardcoverpy import Hardcover
+from hardpycover import Hardcover
 
 # Store your API_KEY in an .env file
 api_key = os.environ["API_KEY"]
@@ -44,7 +44,7 @@ hc.user_profile(['id', 'bio', 'created_at', 'username'])
 # }
 ```
 
-For more use cases, read the available methods found at [main.py](/hardcoverpy/main.py).
+For more use cases, read the available methods found at [main.py](/hardpycover/main.py).
 
 ### Contributors
 <a href="https://github.com/jmcruz14/hardpycover/graphs/contributors">

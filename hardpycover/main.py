@@ -5,9 +5,11 @@ from .classes import User, UserBook, UserBooksAggregate, Search, Publisher, Auth
 from .utils import _clean_api_key
 from .filter import _get_critical_book_fields
 
+from pprint import pprint
 
 from .stats import _build_time_filter, _select_stat_fields, _flatten_result
 
+from typing import Dict, Any, List, Optional, Literal
 from pydantic import ValidationError
 
 QUERY_LIMIT = 50 # Hardcoded limit
@@ -47,12 +49,18 @@ class Hardcover:
       # Validate before serialization
       User.model_validate(output)
       u = User(**output)
-      return u.model_dump(by_alias=True)
+      return u.model_dump(mode="json", by_alias=True, exclude_none=True)
     
     except ValidationError as e:
       print(e)
     except ValueError as e:
       print(e)
+  
+
+  # Hardcover(api_key).user_stats(user_id=1234) -> ???
+
+  # hardcover = Hardcover(api_key)
+  # stats = hardcover.user_stats(1234)
 
   def user_stats(
       self, 
@@ -74,6 +82,8 @@ class Hardcover:
       time_filter = _build_time_filter(start_date=start_date, end_date=end_date)
       selected_fields = _select_stat_fields(stats)
 
+      # NOTE: the create_query currently has a logic error related to the mapping of fields
+      # Revisit this issue at a later poin
       query = create_query(
         UserBooksAggregate,
         table_name,
@@ -84,6 +94,7 @@ class Hardcover:
         }
       )
       result = self.client.execute(query)
+      # pprint(result)
       result = _flatten_result(result)
       return result
     
@@ -204,7 +215,7 @@ class Hardcover:
   def books(
     self, 
     search: str, 
-    per_page: int = 25,
+    limit: int = 25,
     skip: int = 0,
     # include_contribtions: bool = False
     detailed = False
@@ -212,19 +223,21 @@ class Hardcover:
     """Search books from database.
 
     Args:
-      query (str): Query string to be used for search.
+      search (str): Query string to be used for search.
+      limit (int): Number of results
+      skip: (int): Skip n results
 
     Returns:
       books (dict): List of books
     """
 
-    if per_page > QUERY_LIMIT:
+    if limit > QUERY_LIMIT:
       print("Query request exceeds limit, setting to limit...")
-      per_page = 50
+      limit = 50
 
     arguments = {
       "query": search,
-      "per_page": per_page
+      "per_page": limit
     }
     if skip:
       arguments["offset"] = skip
@@ -292,3 +305,5 @@ class Hardcover:
 
 # NOTE: read https://typesense.org/ as this is the basis for logic (optimized search)
 # 
+
+# NOTE: explore the implementation of the other method for accessing the hardcover endpoint -> via http.py -> urllib3
