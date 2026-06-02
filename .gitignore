@@ -9,6 +9,9 @@ wheels/
 # VSCode
 .vscode/
 
+# Building
+.pypirc
+
 # Linting
 
 .ruff_cache/
