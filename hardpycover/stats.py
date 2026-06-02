@@ -105,9 +105,7 @@ def _select_stat_fields(
   for key, (agg_func, field) in _stats.items():
     grouped_stats[agg_func].append(field)
 
-  return [
-    {"aggregate": [{agg_func: fields} for agg_func, fields in grouped_stats.items()]}
-  ]
+  return  {"aggregate": [{agg_func: fields} for agg_func, fields in grouped_stats.items()]}
     
 def _flatten_result(raw: dict, stats: Optional[List[str]] = []) -> dict:
   if not stats:

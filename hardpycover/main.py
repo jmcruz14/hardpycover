@@ -1,12 +1,20 @@
-from .core import GraphQLClient
-from .core.http import endpoint_url
-from .core.query import create_query
+from .core import Client
+
 from .classes import User, UserBook, UserBooksAggregate, Search, Publisher, Author
 from .utils import _clean_api_key
 from .filter import _get_critical_book_fields
 
-from pprint import pprint
+from sgqlc.operation import Operation, GraphQLErrors
+from sgqlc.types import Type, Field
 
+from .schema import (
+  query_root as Query,
+  mutation_root as Mutation
+)
+from .schema import (
+  user_books_select_column,
+  editions_select_column
+)
 from .stats import _build_time_filter, _select_stat_fields, _flatten_result
 
 from typing import Dict, Any, List, Optional, Literal
@@ -16,207 +24,196 @@ QUERY_LIMIT = 50 # Hardcoded limit
 
 # TODO: standardize exception handling
 
-class Hardcover:
-  def __init__(self, api_key: str):
-    headers = {
-      'Content-Type': 'application/json',
-      'Authorization': _clean_api_key(api_key)
-    }
-    self.client = GraphQLClient(endpoint_url, headers)
+# NOTE: we declare hardcover as a subclass of Client
+# instead of directly calling the client
+# so that the package is highly modular
 
-  def user_profile(self, fields: Optional[List[str]] = None) -> Dict[str, Any]:
-    """Get your user information.
-    
+# Hardcover(BEARER_TOKEN)
+class Hardcover(Client):
+  def __init__(self, *args, **kwargs):
+    self.query_limit = 50 # Hardcoded limit
+    # Instantiate Client class
+    super().__init__(*args, **kwargs)
+
+  def user_profile(
+    self,
+    fields: Optional[List[str]] = None
+  ):
+    """Returns user profile.
+
     Args:
-      fields (list(str)): List of acceptable fields based on the User class
+      fields (list(str)): List of acceptable fields based on `User` class in API.
     
     Returns:
       user (dict): User information
     """
-    
+    DEFAULT_USER_FIELDS = (
+      'id', 'username', 'email', 'bio',
+      'created_at', 'updated_at', 'last_activity_at', 'last_sign_in_at',
+      'books_count', 'followers_count', 'followed_users_count',
+      'image_id', 'birthdate', 'object_type', 'cached_image')
+
     try:
-      table_name = "me"
-      query = create_query(User, table_name, selected_fields=fields)
-
-      # validation layer
-      result = self.client.execute(query)
-
-      if result is False:
-        raise ValueError
-
-      output = result[table_name][0]
-
-      # Validate before serialization
-      User.model_validate(output)
-      u = User(**output)
-      return u.model_dump(mode="json", by_alias=True, exclude_none=True)
-    
-    except ValidationError as e:
-      print(e)
-    except ValueError as e:
-      print(e)
-  
-
-  # Hardcover(api_key).user_stats(user_id=1234) -> ???
-
-  # hardcover = Hardcover(api_key)
-  # stats = hardcover.user_stats(1234)
+      op = Operation(Query)
+      me = op.me()
+      if fields:
+        me.__fields__(*fields)
+      else:
+        me.__fields__(*DEFAULT_USER_FIELDS)
+      raw = self.client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      
+      u = raw["data"]["me"][0]
+      User.model_validate(u)
+      output = User(**u)
+      return output.model_dump(mode="json", by_alias=True, exclude_none=True)
+    except GraphQLErrors as ex:
+      print("GraphQLError: %s" % ex.errors)
+      return None
+    except Exception as e:
+      print("Error: %s" % e)
+      return None
 
   def user_stats(
-      self, 
-      user_id: int,
-      stats: list[str] = [], 
-      start_date: str = None,
-      end_date: str = None
-    ) -> Dict[str, Any]:
+    self, 
+    user_id: int,
+    stats: list[str] = [], 
+    start_date: str = None,
+    end_date: str = None
+  ):
     """
       Retrieve user stats based on user_id
 
       Args:
-        user_id (int): user_id of selected user
-        stats (list[str]): "listed"
+        user_id (int): hardcover user id
+        stats (list(str)): selected key stats for querying
+        start_date (str): datetime expressed as a string
+        end_date (str): datetime expressed as a string
+      
+      Returns:
+
     """
-    
-    table_name = "user_books_aggregate"
+
+    op = Operation(Query)
     try:
+      if not user_id:
+        raise ValueError("Please input a User ID.")
+
       time_filter = _build_time_filter(start_date=start_date, end_date=end_date)
-      selected_fields = _select_stat_fields(stats)
+      where = {"user_id": {"_eq": user_id}, **time_filter}
+      uba = op.user_books_aggregate(where=where)
+      agg = uba.aggregate
+      results = _select_stat_fields(stats)
+      if len(results['aggregate']) > 0:
+        for item in results.get('aggregate'):
+          for agg_func, field in item.items():
+            getattr(agg, agg_func).__fields__(*field)
+        
+      raw = self.client(op)
+      data = raw["data"]
+      res = _flatten_result(data)
+      return res
 
-      # NOTE: the create_query currently has a logic error related to the mapping of fields
-      # Revisit this issue at a later poin
-      query = create_query(
-        UserBooksAggregate,
-        table_name,
-        "UserStats",
-        selected_fields=selected_fields,
-        arguments={
-          "where": {"user_id": {"_eq": user_id}, **time_filter}
-        }
-      )
-      result = self.client.execute(query)
-      # pprint(result)
-      result = _flatten_result(result)
-      return result
-    
     except ValidationError as e:
-        print(e)
-        return None
+      print(e)
+      return None
     except ValueError as e:
-        print(e)
-        return None
-
-
+      print(e)
+      return None 
+  
   def owned_books(
-      self, 
-      user_id: int,
-      limit: int = 25,
-      page: int = 1
-      # NOTE: add field for status
-    ) -> Dict[str, Any]:
+    self, 
+    user_id: int,
+    limit: int = 25,
+    offset: int = 0
+  ) -> Dict[str, Any]:
     """
       Get owned books based on user_id
 
       Args:
         user_id (int): associated user_id
+        limit (int): query limit, max = 50, default = 25
+        offset (int): query offset, default = 0
 
       Returns:
         owned_books (list(dict)): list of owned books
     """
-    table_name = "user_books"
-    selected_fields = [
-      "id",
-      "user_id",
-      "created_at",
-      {
-        "book": ["id", "title", "subtitle", "rating", "release_year"]
-      },
-      {
-        "edition": [
-          "isbn_10", 
-          "isbn_13",
-          "edition_format", 
-          "edition_information",
-          {
-            "language": ["code2", "language"]
-          }
-        ]
-      }
-    ]
-    arguments = {
-        'where': {
-          'user_id': { '_eq': user_id},
-          # 'owned': { '_eq': 'true' } # NOTE: using this condition does not return anything if testing with my account
-          'user_book_status': { 'status': {'_neq': 'Want to Read'}}
-        },
-        'limit': limit,
-      }
-    
-    # NOTE: maybe combine want to read and owned = true?
-    # NOTE: include book edition
-    
-    if page > 1:
-      arguments["offset"] = page * limit
+    if limit > self.query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
 
-    query = create_query(
-      UserBook, 
-      table_name, 
-      selected_fields=selected_fields,
-      arguments=arguments
-    )
-
-    result = self.client.execute(query)
-    output = result[table_name]
     try:
-      for book in output:
+      op = Operation(Query)
+      # user_books = op.user_books(where={'slug': {'_eq': 'owned'}}, limit=limit, distinct_on=[user_books_select_column.book_id], offset=offset)
+      user_books = op.user_books(where={'user_id': {'_eq': user_id}}, limit=limit, distinct_on=[user_books_select_column.book_id], offset=offset)
+      user_books.__fields__("id", "user_id", "created_at")
+      user_books.book.__fields__("id","title", "subtitle", "rating", "release_year")
+      user_books.edition.__fields__("isbn_10", "isbn_13", "edition_format", "edition_information")
+      user_books.edition.language.__fields__("code2", "language")
+
+      raw = self.client(op)
+      ub = raw["data"]["user_books"]
+      for book in ub:
         UserBook.model_validate(book)
-    except ValidationError as e:
-      print(e)
-  
-    return output
-  
+      return ub
+    
+    except Exception as e:
+      print("Error found %s" % e)
+
+  # Supports name search and generic author search
+  # NOTE: planned updates - flag to include author's books, id search
   def authors(
     self, 
-    author_name: str,
-    per_page: int = 10,
-    skip: int = 0
+    author_name: Optional[str] = None,
+    author_id: Optional[int] = None, # NOTE: implement patch for id search
+    limit: int = 10,
+    offset: int = 0
   ):
-    if per_page > QUERY_LIMIT:
+    if limit > self.query_limit:
       print("Query request exceeds limit, setting to limit...")
-      per_page = 50
-    conditionals = {
+      limit = 50
+
+    where = {
       "state": {"_neq": "duplicate"}
     }
+    
     if author_name:
-      conditionals["name"] = {"_eq": author_name}
-
-    arguments = {
-      "where": {**conditionals},
-      "limit": per_page,
-    }
-    if skip:
-      arguments["offset"] = skip
-
-    try:
-      table_name = "authors"
-      query = create_query(Author, table_name, arguments=arguments)
-      result = self.client.execute(query)
+      where["name"] = {"_eq": author_name}
       
+    arguments = {
+      "where": {**where},
+      "limit": limit,
+    }
+
+    if offset:
+      arguments["offset"] = offset
+
+    op = Operation(Query)
+    try:
+      authors = op.authors(where=arguments)
+      result = self.client(op)
       if result is False:
         raise ValueError
+      authors = result["data"]
+      if not authors:
+        raise ValueError
 
-      return result["authors"]
+      for a in authors["authors"]:
+        Author.model_validate(a)
+      return authors
     except ValidationError as e:
       print(e)
       return None
     except ValueError as e:
       print(e)
       return None
-
+  
   def books(
     self, 
     search: str, 
     limit: int = 25,
-    skip: int = 0,
+    offset: int = 0,
     # include_contribtions: bool = False
     detailed = False
   ):
@@ -230,80 +227,113 @@ class Hardcover:
     Returns:
       books (dict): List of books
     """
-
     if limit > QUERY_LIMIT:
       print("Query request exceeds limit, setting to limit...")
       limit = 50
 
+    # NOTE: include possible update for more customizable search params
     arguments = {
       "query": search,
+      "query_type": "book",
       "per_page": limit
     }
-    if skip:
-      arguments["offset"] = skip
+    if offset:
+      arguments["offset"] = offset
 
+    op = Operation(Query)
     try:
-      table_name = "search"
-      query = create_query(Search, table_name, arguments=arguments)
-      result = self.client.execute(query)
-      if result is False:
-        raise ValueError
-      
-      # Trim search result query
-
-      # if include_contributions:
-
-      if detailed:
-        # NOTE: detailed output should be untrimmed json output
-        pass
-
-      result = result["search"]["results"]["hits"]
-      if len(result) > 0:
-        result = list(map(_get_critical_book_fields, result))
-        return result
-      
-      return None
+      search = op.search(**arguments)
+      search.__fields__("error", "page", "per_page", "results")
+      r = self.client(op)
+      return r
     except ValidationError as e:
       print(e)
     except ValueError as e:
       print(e)
   
-  def publishers(self, publisher_name: str = None, per_page: int = 25, page: int = 0):
-    table_name = "publishers" 
-    if per_page > QUERY_LIMIT:
-      print("Query request exceeds limit, setting to limit...")
-      per_page = 50
+  def user_books_progress(
+    self,
+  ):
+    pass
+  
+  def book_editions(
+    self,
+    title: str,
+    limit: int = 25
+  ):
+    """
+      Fetches all editions of a book.
 
-    conditionals = {
+      Args:
+        title (str): book title
+      
+      Returns:
+        result (dict):
+    """
+    if limit > QUERY_LIMIT:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
+
+    op = Operation(Query)
+    where = {"title": {"_eq": title}, "state": {"_eq": "normalized"}}
+    try:
+      editions = op.editions(where=where, limit=limit)
+      editions.__fields__("id", "title", "edition_format", "pages", "release_date", "isbn_10", "isbn_13")
+      editions.publisher.__fields__("name")
+      r = self.client(op)
+      return r
+    except ValidationError as e:
+      print(e)
+    except ValueError as e:
+      print(e)
+
+  def publishers(
+    self,
+    publisher_name: str = None, 
+    limit: int = 25, 
+    offset: int = 0
+  ):
+    if limit > QUERY_LIMIT:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
+
+    where = {
       "state": {"_neq": "duplicate"}
     }
     if publisher_name:
-      conditionals["name"] = { "_eq": publisher_name}
+      where["name"] = {"_eq": publisher_name}
 
     arguments = {
-      "limit": per_page,
-      "where": {**conditionals}
+      "where": {**where},
+      "limit": limit,
     }
-    if page:
-      arguments["offset"] = page
+    if offset:
+      arguments["offset"] = offset
+    
+    op = Operation(Query)
+    publisher_fields = Publisher.model_fields.keys()
+    try:
+      op.publishers(where=where)
+      op.publishers.__fields__(*publisher_fields)
+      raw = self.client(op)
+      result = raw["data"]
+      publishers = result["publishers"]
+      if not publishers:
+        raise ValueError("No publishers data found.")
+      
+      # Run validation
+      for i, p in enumerate(publishers):
+        p = Publisher(**p)
+        p = p.model_dump(mode="json", exclude_none=True)
+        publishers[i] = p
 
-    query = create_query(Publisher, table_name, arguments=arguments)
-
-    result = self.client.execute(query)
-    return result
-
-  # NOTE: potentially useful api functions below
-  def get_reading_list(self):
-    pass
-
-  def get_book_recommendation(self):
-    pass
-
-  
-  # next question: how to incorporate the functionalities of all
-  # available functions?
+      return publishers
+    except ValidationError as e:
+      print(e)
+      return None
+    except ValueError as e:
+      print(e)
+      return None
 
 # NOTE: read https://typesense.org/ as this is the basis for logic (optimized search)
-# 
-
 # NOTE: explore the implementation of the other method for accessing the hardcover endpoint -> via http.py -> urllib3

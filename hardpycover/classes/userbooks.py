@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Literal
 from datetime import datetime, date
 from pydantic import BaseModel
 
@@ -36,7 +36,16 @@ class UserBook(BaseModel):
   review_has_spoilers: Optional[bool] = None
   rating: Optional[int | float] = None
   starred: Optional[bool] = None
+  # NOTE: 1 - Want to read; 2 - Currently Reading; 3 - Read
+  # 4 - Paused; 5 - DNF; 6 - Ignored
+  status_id: Optional[Literal[1,2,3,4,5,6]] = None
   sponsored_review: Optional[bool] = None
   url: Optional[str] = None
   updated_at: Optional[datetime] = None
   user_id: Optional[int] = None
+
+class UserBookReads(BaseModel):
+  edition: Optional[Edition] = None
+  edition_id: Optional[int] = None
+
+  pass

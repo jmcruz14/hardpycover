@@ -1,4 +1,3 @@
-from .base import GraphQLClient
-from .http import HardcoverEndpoint
+from .base import Client
 
-__all__ = ("GraphQLClient", "HardcoverEndpoint")
+__all__ = ("Client")

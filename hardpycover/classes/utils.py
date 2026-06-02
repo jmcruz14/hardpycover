@@ -21,8 +21,8 @@ class Link(BaseModel):
     title: str
 
 class Identifiers(BaseModel):
-    goodreads: Optional[List[str]] = None
-    openlibrary: Optional[List[str]] = None
+    goodreads: Optional[List[str] | str] = None
+    openlibrary: Optional[List[str] | str] = None
 
 class MatchedTokens(BaseModel):
     matched_tokens: Optional[List[str]] = None
