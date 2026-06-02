@@ -1,6 +1,6 @@
 from .main import Hardcover
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "Jay Cruz"
 
 __all__ = [
