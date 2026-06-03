@@ -1,4 +1,4 @@
-from typing import Optional, Literal
+from typing import Optional, Literal, Annotated
 from datetime import datetime, date
 from pydantic import BaseModel
 
@@ -45,7 +45,18 @@ class UserBook(BaseModel):
   user_id: Optional[int] = None
 
 class UserBookReads(BaseModel):
+  id: Optional[int] = None
   edition: Optional[Edition] = None
   edition_id: Optional[int] = None
+  started_at: Optional[date] = None
+  finished_at: Optional[date] = None
+  user_book_id: Optional[int] = None
+  progress: Annotated[Optional[int], "percent done expressed as integer"] = None
+  progress_pages: Optional[int] = None
+  progress_seconds: Optional[int] = None
 
-  pass
+class UserBookStats(BaseModel):
+  id: Optional[Literal[1,2,3,4,5,6]] = None
+  description: Optional[str] = None
+  slug: Optional[str] = None
+  status: Optional[str] = None
