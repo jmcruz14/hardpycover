@@ -27,8 +27,8 @@ class Client:
   def __call__(self, *args, **kwargs):
     return self.client(*args, **kwargs)
   
-  # def _get_request(self, *args, **kwargs):
-    # return self.client(method="GET", *args, **kwargs)
+  def _get_request(self, *args, **kwargs):
+    return self.client(method="GET", *args, **kwargs)
 
-  # def _post_request(self, *args, **kwargs):
-    # return self.client(method="POST", *args, **kwargs)
+  def _post_request(self, *args, **kwargs):
+    return self.client(method="POST", *args, **kwargs)

@@ -2,7 +2,7 @@ from typing import Optional, List, Dict, Any
 from sgqlc.operation import Operation, GraphQLErrors
 from pydantic import ValidationError
 
-from .classes import User, UserBook, UserBooksAggregate, Search, Publisher, Author
+from .classes import User, UserBook, UserBooksAggregate, Search, Publisher, Author, Me
 from .filter import _get_critical_book_fields
 from .schema import (
   user_books_select_column,
@@ -19,11 +19,14 @@ class Queries:
   def __init__(self, client, query_limit: int = 50):
     self._client = client
     self._query_limit = query_limit
+  
+  def _run_op(self):
+    return Operation(Query)
 
   def user_profile(
     self,
     fields: Optional[List[str]] = None
-  ):
+  ) -> dict:
     """Returns user profile.
 
     Args:
@@ -32,14 +35,10 @@ class Queries:
     Returns:
       user (dict): User information
     """
-    DEFAULT_USER_FIELDS = (
-      'id', 'username', 'email', 'bio',
-      'created_at', 'updated_at', 'last_activity_at', 'last_sign_in_at',
-      'books_count', 'followers_count', 'followed_users_count',
-      'image_id', 'birthdate', 'object_type', 'cached_image')
+    DEFAULT_USER_FIELDS = Me.model_fields.keys()
 
+    op = self._run_op()
     try:
-      op = Operation(Query)
       me = op.me()
       if fields:
         me.__fields__(*fields)
@@ -48,11 +47,7 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      
-      u = raw["data"]["me"][0]
-      User.model_validate(u)
-      output = User(**u)
-      return output.model_dump(mode="json", by_alias=True, exclude_none=True)
+      return raw
     except GraphQLErrors as ex:
       print("GraphQLError: %s" % ex.errors)
       return None
@@ -80,7 +75,7 @@ class Queries:
 
     """
 
-    op = Operation(Query)
+    op = self._run_op()
     try:
       if not user_id:
         raise ValueError("Please input a User ID.")
@@ -96,9 +91,14 @@ class Queries:
             getattr(agg, agg_func).__fields__(*field)
         
       raw = self._client(op)
-      data = raw["data"]
-      res = _flatten_result(data)
-      return res
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
+
+      # NOTE: flattening results temporarily on hold
+      # data = raw["data"]
+      # res = _flatten_result(data)
+      # return res
 
     except ValidationError as e:
       print(e)
@@ -128,8 +128,8 @@ class Queries:
       print("Query request exceeds limit, setting to limit...")
       limit = 50
 
+    op = self._run_op()
     try:
-      op = Operation(Query)
       # user_books = op.user_books(where={'slug': {'_eq': 'owned'}}, limit=limit, distinct_on=[user_books_select_column.book_id], offset=offset)
       user_books = op.user_books(where={'user_id': {'_eq': user_id}}, limit=limit, distinct_on=[user_books_select_column.book_id], offset=offset)
       user_books.__fields__("id", "user_id", "created_at")
@@ -138,10 +138,14 @@ class Queries:
       user_books.edition.language.__fields__("code2", "language")
 
       raw = self._client(op)
-      ub = raw["data"]["user_books"]
-      for book in ub:
-        UserBook.model_validate(book)
-      return ub
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
+
+      # ub = raw["data"]["user_books"]
+      # for book in ub:
+      #   UserBook.model_validate(book)
+      # return ub
     
     except Exception as e:
       print("Error found %s" % e)
@@ -174,19 +178,23 @@ class Queries:
     if offset:
       arguments["offset"] = offset
 
-    op = Operation(Query)
+    op = self._run_op()
     try:
       authors = op.authors(where=arguments)
-      result = self._client(op)
-      if result is False:
-        raise ValueError
-      authors = result["data"]
-      if not authors:
-        raise ValueError
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
+    
+      # if result is False:
+      #   raise ValueError
+      # authors = result["data"]
+      # if not authors:
+      #   raise ValueError
 
-      for a in authors["authors"]:
-        Author.model_validate(a)
-      return authors
+      # for a in authors["authors"]:
+      #   Author.model_validate(a)
+      # return authors
     except ValidationError as e:
       print(e)
       return None
@@ -225,21 +233,52 @@ class Queries:
     if offset:
       arguments["offset"] = offset
 
-    op = Operation(Query)
+    op = self._run_op()
     try:
       search = op.search(**arguments)
       search.__fields__("error", "page", "per_page", "results")
-      r = self._client(op)
-      return r
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
     except ValidationError as e:
       print(e)
     except ValueError as e:
       print(e)
   
+  def book_characters(
+    self,
+    book_id: Optional[int] = None,
+    limit: int = 25
+  ):
+    where = {
+      "book_id": {"_eq": book_id}
+    }
+    
+    op = self._run_op()
+    try:
+      bc = op.book_characters(where=where, limit=limit)
+      bc.__fields__("id", "character_id", "only_mentioned", "position", "spoiler")
+      bc.character.__fields__("name", "is_lgbtq", "has_disability", "gender_id", "books_count", "biography")
+      bc.book.__fields__("title", "id")
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
+    
+    except ValidationError as e:
+      print(e)
+    except ValueError as e:
+      print(e)
+
   def user_books_progress(
     self,
     limit: int = 25
   ):
+    if limit > self._query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
+
     op = Operation(Query)
     try:
       where = {"where": {"status_id": {"_eq": 2}}}
@@ -249,12 +288,13 @@ class Queries:
       ub.user_book_reads.__fields__("progress", "progress_pages")
       ub.book.__fields__("id", "title", "pages")
       raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
       return raw
     except ValidationError as e:
       print(e)
     except ValueError as e:
       print(e)
-
 
   def book_editions(
     self,
@@ -280,8 +320,10 @@ class Queries:
       editions = op.editions(where=where, limit=limit)
       editions.__fields__("id", "title", "edition_format", "pages", "release_date", "isbn_10", "isbn_13")
       editions.publisher.__fields__("name")
-      r = self._client(op)
-      return r
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -316,18 +358,21 @@ class Queries:
       op.publishers(where=where)
       op.publishers.__fields__(*publisher_fields)
       raw = self._client(op)
-      result = raw["data"]
-      publishers = result["publishers"]
-      if not publishers:
-        raise ValueError("No publishers data found.")
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      return raw
+      # result = raw["data"]
+      # publishers = result["publishers"]
+      # if not publishers:
+      #   raise ValueError("No publishers data found.")
       
-      # Run validation
-      for i, p in enumerate(publishers):
-        p = Publisher(**p)
-        p = p.model_dump(mode="json", exclude_none=True)
-        publishers[i] = p
+      # # Run validation
+      # for i, p in enumerate(publishers):
+      #   p = Publisher(**p)
+      #   p = p.model_dump(mode="json", exclude_none=True)
+      #   publishers[i] = p
 
-      return publishers
+      # return publishers
     except ValidationError as e:
       print(e)
       return None
