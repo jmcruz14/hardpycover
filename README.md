@@ -1,9 +1,16 @@
-## hardpycover
-
-Simplified API Wrapper for Hardcover, written in Python.
-
 > [!WARNING] 
 > This package is currently in Alpha development, so download at your own risk.
+
+<h1 align="left">
+  hardpycover
+</h1>
+<p align="left">
+  <b>Simplified API Wrapper for Hardcover, written in Python.</b>
+</p>
+
+![PyPI - Version](https://img.shields.io/pypi/v/hardpycover)
+
+<hr />
 
 ### Installation
 

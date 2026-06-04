@@ -12,6 +12,17 @@ dependencies = [
     "urllib3>=2.4.0",
 ]
 keywords = ["hardcover", "api", "wrapper", "graphql"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
 
 maintainers = [
   {name = "Jay Cruz", email = "jccruz009@yahoo.com"}
@@ -31,6 +42,9 @@ dev = [
     "ruff>=0.11.13",
 ]
 
+[tool.ruff]
+indent-width = 2
+
 [tool.ruff.lint]
 select = ["E", "F"]
 ignore = ["E501"]
@@ -38,3 +52,8 @@ ignore = ["E501"]
 [tool.uv.build-backend]
 module-name = "hardpycover"
 module-root = ""
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+line-ending = "auto"
