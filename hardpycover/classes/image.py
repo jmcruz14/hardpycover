@@ -1,16 +1,15 @@
-from typing import Optional, List
 from pydantic import BaseModel
 
 class Image(BaseModel):
-  color: Optional[str] = None
-  colors: Optional[List[str]] = None
-  height: Optional[int] = None
-  imageable_id: Optional[int] = None
-  id: Optional[int] = None
-  imageable_type: Optional[str] = None
-  ratio: Optional[int] = None
-  url: Optional[str] = None
-  width: Optional[int] = None
+  color: str | None = None
+  colors: list[str] | None = None
+  height: int | None = None
+  imageable_id: int | None = None
+  id: int | None = None
+  imageable_type: str | None = None
+  ratio: int | None = None
+  url: str | None = None
+  width: int | None = None
 
 class CachedImage(Image):
   pass

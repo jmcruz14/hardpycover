@@ -1,8 +1,7 @@
-from typing import Optional
 from pydantic import BaseModel
 
 class Language(BaseModel):
-  code2: Optional[str] = None
-  code3: Optional[str] = None
-  id: Optional[int] = None
-  language: Optional[str] = None
+  code2: str | None = None
+  code3: str | None = None
+  id: int | None = None
+  language: str | None = None

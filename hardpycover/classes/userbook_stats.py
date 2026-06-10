@@ -1,36 +1,35 @@
 from datetime import date
-from typing import Optional
 from pydantic import BaseModel
 
 class SumAvgStdFields(BaseModel):
-  edition_id: Optional[int | float] = None
-  finished_at_precision: Optional[int | float] = None
-  id: Optional[int | float] = None
-  progress: Optional[int | float] = None
-  progress_pages: Optional[int | float] = None
-  progress_seconds: Optional[int | float] = None
-  user_book_id: Optional[int | float] = None
- 
+  edition_id: int | float | None = None
+  finished_at_precision: int | float | None = None
+  id: int | float | None = None
+  progress: int | float | None = None
+  progress_pages: int | float | None = None
+  progress_seconds: int | float | None = None
+  user_book_id: int | float | None = None
+
 class MaxMinFields(BaseModel):
-  edition_id: Optional[int | float] = None
-  finished_at: Optional[date] = None
-  finished_at_precision: Optional[int | float] = None
-  id: Optional[int | float] = None
+  edition_id: int | float | None = None
+  finished_at: date | None = None
+  finished_at_precision: int | float | None = None
+  id: int | float | None = None
   # NOTE: paused_at tbd
-  progress: Optional[int | float] = None
-  progress_pages: Optional[int | float] = None
-  progress_seconds: Optional[int | float] = None
-  started_at: Optional[date] = None
-  user_book_id: Optional[int | float] = None
+  progress: int | float | None = None
+  progress_pages: int | float | None = None
+  progress_seconds: int | float | None = None
+  started_at: date | None = None
+  user_book_id: int | float | None = None
 
 class AggregateStats(BaseModel):
-  avg: Optional[SumAvgStdFields] = None
-  count: Optional[int] = None
-  max: Optional[MaxMinFields] = None
-  min: Optional[MaxMinFields] = None
-  stddev: Optional[SumAvgStdFields] = None
-  sum: Optional[SumAvgStdFields] = None
+  avg: SumAvgStdFields | None = None
+  count: int | None = None
+  max: MaxMinFields | None = None
+  min: MaxMinFields | None = None
+  stddev: SumAvgStdFields | None = None
+  sum: SumAvgStdFields | None = None
   # basic: max, min, stddev
 
 class UserBookReadsAggregate(BaseModel):
-  aggregate: Optional[AggregateStats] = None
+  aggregate: AggregateStats | None = None

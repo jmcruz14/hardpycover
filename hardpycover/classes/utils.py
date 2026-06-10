@@ -1,4 +1,3 @@
-from typing import Optional, List
 from pydantic import BaseModel
 
 class Image(BaseModel):
@@ -21,18 +20,18 @@ class Link(BaseModel):
     title: str
 
 class Identifiers(BaseModel):
-    goodreads: Optional[List[str] | str] = None
-    openlibrary: Optional[List[str] | str] = None
+    goodreads: list[str] | str | None = None
+    openlibrary: list[str] | str | None = None
 
 class MatchedTokens(BaseModel):
-    matched_tokens: Optional[List[str]] = None
-    snippet: Optional[str] = None
+    matched_tokens: list[str] | None = None
+    snippet: str | None = None
 
 class TextMatchInfo(BaseModel):
-    best_field_score: Optional[str] = None # String representation of an int value
-    best_field_weight: Optional[int] = None
-    fields_matched: Optional[int] = None
-    num_tokens_dropped: Optional[int] = None
-    score: Optional[str] = None
-    tokens_matched: Optional[int] = None
-    typo_prefix_score: Optional[int] = None
+    best_field_score: str | None = None # String representation of an int value
+    best_field_weight: int | None = None
+    fields_matched: int | None = None
+    num_tokens_dropped: int | None = None
+    score: str | None = None
+    tokens_matched: int | None = None
+    typo_prefix_score: int | None = None

@@ -1,15 +1,14 @@
-from typing import Optional
 from pydantic import BaseModel
 
 from .characters import Character
 from .books import Book
 
 class BookCharacter(BaseModel):
-  id: Optional[int] = None
-  book: Optional[Book] = None
-  book_id: Optional[int] = None
-  character: Optional[Character] = None
-  character_id: Optional[int] = None
-  only_mentioned: Optional[bool] = None
-  position: Optional[int] = None
-  spoiler: Optional[bool] = None
+  id: int | None = None
+  book: Book | None = None
+  book_id: int | None = None
+  character: Character | None = None
+  character_id: int | None = None
+  only_mentioned: bool | None = None
+  position: int | None = None
+  spoiler: bool | None = None

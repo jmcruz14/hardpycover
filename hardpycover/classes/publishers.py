@@ -1,14 +1,13 @@
 from datetime import datetime
-from typing import Optional
 from pydantic import BaseModel
 
 class Publisher(BaseModel):
-  id: Optional[int] = None,
-  created_at: Optional[datetime] = None
-  updated_at: Optional[datetime] = None
-  slug: Optional[str] = None
-  name: Optional[str] = None
-  editions_count: Optional[int] = None
+  id: int | None = None,
+  created_at: datetime | None = None
+  updated_at: datetime | None = None
+  slug: str | None = None
+  name: str | None = None
+  editions_count: int | None = None
 
 class ParentPublisher(Publisher):
-  parent_publisher: Optional[Publisher] = None
+  parent_publisher: Publisher | None = None

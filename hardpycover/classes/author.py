@@ -1,4 +1,3 @@
-from typing import Optional, Dict, List
 from datetime import date
 from pydantic import BaseModel
 
@@ -7,31 +6,31 @@ from .image import CachedImage
 from .utils import Identifiers, Link
 
 class Author(BaseModel):
-  alternate_names: Optional[List[str]] = None
-  alias_id: Optional[int] = None
-  books: Optional[List[str]] = None # NOTE: exclusive to search results only
-  bio: Optional[str] = None
-  books_count: Optional[int] = None
-  born_date: Optional[date] = None
-  born_year: Optional[int] = None
-  cached_image: Optional[CachedImage] = None
-  canonical_id: Optional[int] = None
-  death_date: Optional[date] = None
-  death_year: Optional[int] = None
-  gender_id: Optional[int] = None
-  id: Optional[int] = None
-  identifiers: Optional[Identifiers] = None
-  image_id: Optional[int] = None
-  is_bipoc: Optional[bool] = None
-  is_lgbtq: Optional[bool] = None
-  links: Optional[List[Link]] = None
-  location: Optional[str] = None
-  locked: Optional[bool] = None
-  name: Optional[str] = None
-  name_personal: Optional[str] = None
-  series_names: Optional[List[str]] = None # NOTE: exclusive to search results only
-  slug: Optional[str] = None
-  state: Optional[str] = None
-  title: Optional[str] = None
-  user_id: Optional[int] = None
-  users_count: Optional[int] = None
+  alternate_names: list[str] | None = None
+  alias_id: int | None = None
+  books: list[str] | None = None # NOTE: exclusive to search results only
+  bio: str | None = None
+  books_count: int | None = None
+  born_date: date | None = None
+  born_year: int | None = None
+  cached_image: CachedImage | None = None
+  canonical_id: int | None = None
+  death_date: date | None = None
+  death_year: int | None = None
+  gender_id: int | None = None
+  id: int | None = None
+  identifiers: Identifiers | None = None
+  image_id: int | None = None
+  is_bipoc: bool | None = None
+  is_lgbtq: bool | None = None
+  links: list[Link] | None = None
+  location: str | None = None
+  locked: bool | None = None
+  name: str | None = None
+  name_personal: str | None = None
+  series_names: list[str] | None = None # NOTE: exclusive to search results only
+  slug: str | None = None
+  state: str | None = None
+  title: str | None = None
+  user_id: int | None = None
+  users_count: int | None = None
