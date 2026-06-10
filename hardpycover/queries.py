@@ -2,7 +2,19 @@ from typing import Optional, List, Dict, Any
 from sgqlc.operation import Operation, GraphQLErrors
 from pydantic import ValidationError
 
-from .classes import User, UserBook, UserBooksAggregate, Search, Publisher, Author, Me
+from .classes import (
+  Author,
+  Book,
+  BookCharacter,
+  Me,
+  User,
+  UserBook,
+  UserBookReads,
+  UserBooksAggregate,
+  Edition,
+  Search,
+  Publisher,
+  )
 from .filter import _get_critical_book_fields
 from .schema import (
   user_books_select_column,
@@ -16,10 +28,11 @@ from .stats import (
 )
 
 class Queries:
-  def __init__(self, client, query_limit: int = 50):
+  def __init__(self, client, return_json, query_limit: int = 50):
     self._client = client
+    self._return_json = return_json
     self._query_limit = query_limit
-  
+
   def _run_op(self):
     return Operation(Query)
 
@@ -47,18 +60,28 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
+      res = op + raw
+      r = res.me
+
+      for u in r:
+        Me.model_validate(u.__to_json_value__())
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
     except GraphQLErrors as ex:
       print("GraphQLError: %s" % ex.errors)
       return None
     except Exception as e:
       print("Error: %s" % e)
       return None
-  
+
   def user_stats(
-    self, 
+    self,
     user_id: int,
-    stats: list[str] = [], 
+    stats: list[str] = [],
     start_date: str = None,
     end_date: str = None
   ):
@@ -70,7 +93,7 @@ class Queries:
         stats (list(str)): selected key stats for querying
         start_date (str): datetime expressed as a string
         end_date (str): datetime expressed as a string
-      
+
       Returns:
 
     """
@@ -89,26 +112,30 @@ class Queries:
         for item in results.get('aggregate'):
           for agg_func, field in item.items():
             getattr(agg, agg_func).__fields__(*field)
-        
+
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
       return raw
 
-      # NOTE: flattening results temporarily on hold
-      # data = raw["data"]
-      # res = _flatten_result(data)
-      # return res
+      res = op + raw
+
+      UserBooksAggregate.model_validate(res.user_books_aggregate.__to_json_value__(), strict=True)
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
 
     except ValidationError as e:
       print(e)
       return None
     except ValueError as e:
       print(e)
-      return None 
-    
+      return None
+
   def owned_books(
-    self, 
+    self,
     user_id: int,
     limit: int = 25,
     offset: int = 0
@@ -140,18 +167,20 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
+      res = op + raw
 
-      # ub = raw["data"]["user_books"]
-      # for book in ub:
-      #   UserBook.model_validate(book)
-      # return ub
-    
+      ub = res.user_books
+      for i in ub:
+        UserBook.model_validate(i.__to_json_value__(), strict=True)
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
     except Exception as e:
       print("Error found %s" % e)
-  
-  # Supports name search and generic author search
-  # NOTE: planned updates - flag to include author's books, id search
+
   def authors(
     self, 
     author_name: Optional[str] = None,

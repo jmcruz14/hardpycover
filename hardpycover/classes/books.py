@@ -15,7 +15,7 @@ class Book(BaseModel):
   default_cover_edition_id: Optional[int] = None
   default_audio_edition_id: Optional[int] = None
   activities_count: Optional[int] = None
-  alternative_titles: Optional[str] = None
+  alternative_titles: Optional[str | List[str]] = None
   book_category_id: Optional[int] = None
   content_warnings: Optional[List[str]] = None
   created_by_user_id: Optional[int] = None

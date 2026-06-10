@@ -56,3 +56,12 @@ module-root = ""
 quote-style = "double"
 indent-style = "tab"
 line-ending = "auto"
+
+[tool.basedpyright]
+exclude = ["hardpycover/schema.py"]
+
+reportAssignmentType = "none"
+reportAttributeAccessIssue = "none"
+reportUnknownArgumentType = "none"
+reportUnknownMemberType = "none"
+reportUnusedCallResult = "none"

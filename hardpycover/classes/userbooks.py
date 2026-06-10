@@ -5,6 +5,17 @@ from pydantic import BaseModel
 from .books import Book
 from .editions import Edition
 
+class UserBookReads(BaseModel):
+  id: Optional[int] = None
+  edition: Optional[Edition] = None
+  edition_id: Optional[int] = None
+  started_at: Optional[date] = None
+  finished_at: Optional[date] = None
+  user_book_id: Optional[int] = None
+  progress: Annotated[Optional[int], "percent done expressed as integer"] = None
+  progress_pages: Optional[int] = None
+  progress_seconds: Optional[int] = None
+
 class UserBook(BaseModel):
   book_id: Optional[int] = None # matches book id; separate from user_books_id (id)
   book: Optional[Book] = None
@@ -41,19 +52,9 @@ class UserBook(BaseModel):
   status_id: Optional[Literal[1,2,3,4,5,6]] = None
   sponsored_review: Optional[bool] = None
   url: Optional[str] = None
-  updated_at: Optional[datetime] = None
+  updated_at: Optional[datetime] = None # explore way to convert datetime into str and vv
   user_id: Optional[int] = None
-
-class UserBookReads(BaseModel):
-  id: Optional[int] = None
-  edition: Optional[Edition] = None
-  edition_id: Optional[int] = None
-  started_at: Optional[date] = None
-  finished_at: Optional[date] = None
-  user_book_id: Optional[int] = None
-  progress: Annotated[Optional[int], "percent done expressed as integer"] = None
-  progress_pages: Optional[int] = None
-  progress_seconds: Optional[int] = None
+  user_book_reads: Optional[UserBookReads] = None
 
 class UserBookStats(BaseModel):
   id: Optional[Literal[1,2,3,4,5,6]] = None

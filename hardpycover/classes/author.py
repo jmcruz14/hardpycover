@@ -2,12 +2,14 @@ from typing import Optional, Dict, List
 from datetime import date
 from pydantic import BaseModel
 
+from .books import Book
 from .image import CachedImage
 from .utils import Identifiers, Link
 
 class Author(BaseModel):
   alternate_names: Optional[List[str]] = None
   alias_id: Optional[int] = None
+  books: Optional[List[str]] = None # NOTE: exclusive to search results only
   bio: Optional[str] = None
   books_count: Optional[int] = None
   born_date: Optional[date] = None
@@ -27,6 +29,7 @@ class Author(BaseModel):
   locked: Optional[bool] = None
   name: Optional[str] = None
   name_personal: Optional[str] = None
+  series_names: Optional[List[str]] = None # NOTE: exclusive to search results only
   slug: Optional[str] = None
   state: Optional[str] = None
   title: Optional[str] = None

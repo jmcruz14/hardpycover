@@ -23,7 +23,7 @@ class Search(BaseModel):
   ids: Optional[list[int]] = None
   page: Optional[int] = None
   per_page: Optional[int] = None
-  query_type: Optional[str] = None # GraphQL returns this as "Book" by default
+  query_type: Optional[str] = None # GraphQL returns this as "Book" by default but 
   results: Optional[SearchBookResults] = None
 
 # NOTE: for query_type; "Author" is also an appropriate field
