@@ -344,7 +344,19 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
+      res = op + raw
+      m = res.me
+
+      # NOTE: the validation layer for this one is off right now
+      # TODO: update model validation for this in future update
+      for i in m:
+        Edition.model_validate(i.__to_json_value__())
+
+      if self._return_json:
+        json = m.__to_json_value__()
+        return json
+
+      return m
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -360,7 +372,7 @@ class Queries:
 
       Args:
         title (str): book title
-      
+
       Returns:
         result (dict):
     """
