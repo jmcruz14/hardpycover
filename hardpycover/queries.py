@@ -1,4 +1,5 @@
-from typing import Optional, List, Dict, Any
+import json
+from typing import Dict, Any, Literal
 from sgqlc.operation import Operation, GraphQLErrors
 from pydantic import ValidationError
 
@@ -7,6 +8,7 @@ from .classes import (
   Book,
   BookCharacter,
   Me,
+  ReadingJournal,
   User,
   UserBook,
   UserBookReads,
@@ -402,6 +404,55 @@ class Queries:
       #   publishers[i] = p
 
       # return publishers
+    except ValidationError as e:
+      print(e)
+      return None
+    except ValueError as e:
+      print(e)
+      return None
+
+  def reading_journals(
+    self,
+    user_id: int,
+    limit: int = 10,
+    offset: int = 0,
+    sort: Literal["asc", "desc"] = "desc",
+  ):
+    if limit > self._query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
+
+    where = {"user_id": {"_eq": user_id}}
+    order_by = reading_journals_order_by({"action_at": ORDER_BY(sort)})
+    arguments = {
+      "where": {**where},
+      "limit": limit,
+      "offset": offset,
+      "order_by": [order_by] # NOTE: order_by argument is expected as a list_of
+    }
+
+    op = self._run_op()
+    reading_journal_fields = ReadingJournal.model_fields.keys()
+    try:
+      rj = op.reading_journals(**arguments)
+      rj.__fields__(*reading_journal_fields)
+      rj.book.__fields__("title", "release_year")
+      rj.edition.__fields__("publisher_id", "pages", "edition_format")
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      res = op + raw
+
+      # NOTE: implement data validation
+      for i in res.reading_journals:
+        ReadingJournal.model_validate(i.__to_json_value__())
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
+
     except ValidationError as e:
       print(e)
       return None
