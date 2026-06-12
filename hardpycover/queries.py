@@ -21,6 +21,8 @@ from .filter import _get_critical_book_fields
 from .schema import (
   user_books_select_column,
   editions_select_column,
+  reading_journals_order_by,
+  order_by as ORDER_BY,
   query_root as Query
 )
 from .stats import (
@@ -40,13 +42,13 @@ class Queries:
 
   def user_profile(
     self,
-    fields: Optional[List[str]] = None
-  ) -> dict:
+    fields: list[str] | None = None
+  ) -> dict | None:
     """Returns user profile.
 
     Args:
       fields (list(str)): List of acceptable fields based on `User` class in API.
-    
+
     Returns:
       user (dict): User information
     """
@@ -118,7 +120,6 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
 
       res = op + raw
 
@@ -184,58 +185,57 @@ class Queries:
       print("Error found %s" % e)
 
   def authors(
-    self, 
-    author_name: Optional[str] = None,
-    author_id: Optional[int] = None, # NOTE: implement patch for id search
+    self,
+    search: str,
     limit: int = 10,
     offset: int = 0
   ):
+    """Search authors from database.
+
+    Args:
+      search (str): Query string to be used for search.
+      limit (int): Number of results.
+      offset (int): Skip n results.
+
+    Returns:
+      hits (list): List of matching authors.
+    """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
       limit = 50
 
-    where = {
-      "state": {"_neq": "duplicate"}
-    }
-    
-    if author_name:
-      where["name"] = {"_eq": author_name}
-      
     arguments = {
-      "where": {**where},
-      "limit": limit,
+      "query": search,
+      "query_type": "author",
+      "per_page": limit
     }
-
     if offset:
       arguments["offset"] = offset
 
     op = self._run_op()
     try:
-      authors = op.authors(where=arguments)
+      search = op.search(**arguments)
+      search.__fields__("error", "page", "per_page", "results")
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
-    
-      # if result is False:
-      #   raise ValueError
-      # authors = result["data"]
-      # if not authors:
-      #   raise ValueError
+      res = op + raw
 
-      # for a in authors["authors"]:
-      #   Author.model_validate(a)
-      # return authors
+      re = res.search.results
+      hits = re['hits']
+
+      for doc in hits:
+        Author.model_validate(doc['document'])
+
+      return hits
     except ValidationError as e:
       print(e)
-      return None
     except ValueError as e:
       print(e)
-      return None
-  
+
   def books(
-    self, 
-    search: str, 
+    self,
+    search: str,
     limit: int = 25,
     offset: int = 0,
     # include_contribtions: bool = False
@@ -271,21 +271,34 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
+      res = op + raw
+
+      re = res.search.results
+      found = re['found']
+      page = re['page']
+      hits = re['hits']
+      # NOTE:
+
+      # NOTE: if hits none -> put use case
+
+      for doc in hits:
+        Book.model_validate(doc['document'])
+
+      return hits
     except ValidationError as e:
       print(e)
     except ValueError as e:
       print(e)
-  
+
   def book_characters(
     self,
-    book_id: Optional[int] = None,
+    book_id: int | None = None,
     limit: int = 25
   ):
     where = {
       "book_id": {"_eq": book_id}
     }
-    
+
     op = self._run_op()
     try:
       bc = op.book_characters(where=where, limit=limit)
@@ -295,8 +308,18 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
-    
+      res = op + raw
+
+      bc = res.book_characters
+      for i in bc:
+        BookCharacter.model_validate(i.__to_json_value__(), strict=False)
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
+
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -354,7 +377,16 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
+      res = op + raw
+
+      for i in res.editions:
+        Edition.model_validate(i.__to_json_value__())
+
+      if self._return_json:
+        json = res.editions.__to_json_value__()
+        return json
+
+      return res
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -362,8 +394,8 @@ class Queries:
 
   def publishers(
     self,
-    publisher_name: str = None, 
-    limit: int = 25, 
+    publisher_name: str | None = None,
+    limit: int = 25,
     offset: int = 0
   ):
     if limit > self._query_limit:
@@ -382,8 +414,8 @@ class Queries:
     }
     if offset:
       arguments["offset"] = offset
-    
-    op = Operation(Query)
+
+    op = self._run_op()
     publisher_fields = Publisher.model_fields.keys()
     try:
       op.publishers(where=where)
@@ -391,19 +423,16 @@ class Queries:
       raw = self._client(op)
       if raw.get("errors"):
         raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
-      return raw
-      # result = raw["data"]
-      # publishers = result["publishers"]
-      # if not publishers:
-      #   raise ValueError("No publishers data found.")
-      
-      # # Run validation
-      # for i, p in enumerate(publishers):
-      #   p = Publisher(**p)
-      #   p = p.model_dump(mode="json", exclude_none=True)
-      #   publishers[i] = p
+      res = op + raw
 
-      # return publishers
+      for i in res.publishers:
+        Publisher.model_validate(i.__to_json_value__())
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
     except ValidationError as e:
       print(e)
       return None
