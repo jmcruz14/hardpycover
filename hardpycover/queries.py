@@ -411,6 +411,51 @@ class Queries:
     except ValueError as e:
       print(e)
 
+  def lists(
+    self,
+    list_name: str | None = None,
+    limit: int = 10,
+    offset: int = 0
+  ):
+    if limit > self._query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
+
+    arguments = {
+      "query": list_name,
+      "query_type": "List",
+      "per_page": limit
+    }
+
+    # figure out per_page issue
+    op = self._run_op()
+    try:
+      search = op.search(**arguments)
+      search.__fields__("error", "page", "per_page", "results")
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      res = op + raw
+
+      re = res.search.results
+      hits = re['hits']
+      
+      # for doc in hits:
+      #   Series.model_validate(doc['document'])
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+      else:
+        return re
+
+    except ValidationError as e:
+      print(e)
+      return None
+    except ValueError as e:
+      print(e)
+      return None
+
   def publishers(
     self,
     publisher_name: str | None = None,
@@ -513,7 +558,7 @@ class Queries:
     limit: int = 10,
     offset: int = 0
   ):
-    """Search authors from database.
+    """Search series from database.
 
     Args:
       search (str): Query string to be used for search.
@@ -521,7 +566,7 @@ class Queries:
       offset (int): Skip n results.
 
     Returns:
-      hits (list): List of matching authors.
+      hits (list): List of matching series.
     """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
@@ -546,7 +591,7 @@ class Queries:
 
       re = res.search.results
       hits = re['hits']
-
+      
       for doc in hits:
         Series.model_validate(doc['document'])
 
@@ -554,8 +599,9 @@ class Queries:
         json = res.__to_json_value__()
         return json
       else:
-        return hits
+        return re
     except ValidationError as e:
       print(e)
     except ValueError as e:
       print(e)
+  

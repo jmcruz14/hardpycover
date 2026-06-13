@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations # prevents eager loading upon import
 from pydantic import BaseModel, ValidationInfo, field_validator
 from typing import Literal
 from typing_extensions import TypedDict
