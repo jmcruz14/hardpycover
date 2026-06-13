@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3b] - 6/13/2026
+
+### Added
+
+- `Notifications`, `BookSeries`, `Series` classes and sub-models
+- `queries.series()` method
+- `__str__`/`__repr__` to `Hardcover` class
+- More type annotations
+
+### Changed
+
+- Ruffed code
+- `extend-exclude` configurations in pyproject.toml
+
+### Removed
+
+- Unused `utils.py` code
+
 ## [0.1.3] - 6/5/2026
 
 ### Added
