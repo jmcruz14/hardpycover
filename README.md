@@ -9,6 +9,7 @@
 </p>
 
 ![PyPI - Version](https://img.shields.io/pypi/v/hardpycover)
+![Python Versions](https://img.shields.io/pypi/pyversions/hardpycover?style=flat-square)
 
 <hr />
 
