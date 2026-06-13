@@ -1,10 +1,4 @@
-import json
-import urllib
-from urllib.request import urlopen
-from urllib.error import HTTPError
-from typing import Dict, Optional
-from .exceptions import GraphQLError
-
+from collections.abc import Callable
 from sgqlc.endpoint.requests import RequestsEndpoint
 
 # NOTE: sgqlc rewrite requires incorporating types and operations
@@ -13,22 +7,22 @@ from sgqlc.endpoint.requests import RequestsEndpoint
 class Client:
   def __init__(
     self,
-    token,
-    url = "https://api.hardcover.app/v1/graphql",
+    token: str,
+    url="https://api.hardcover.app/v1/graphql",
   ):
-    header = {
-      "authorization": ("Bearer %s" % token)
-    }
-    self.client = RequestsEndpoint(url, base_headers=header, timeout=30)
-  
-  def __str__(self):
-    return str(self.client)
+    header = {"authorization": ("Bearer %s" % token)}
+    self._url: str = url
+    self._token: str = token
+    self.client: Callable = RequestsEndpoint(url, base_headers=header, timeout=30)
 
-  def __call__(self, *args, **kwargs):
+  # def __str__(self):
+  #   return str(self.client)
+
+  def __call__(self, *args, **kwargs) -> RequestsEndpoint:
     return self.client(*args, **kwargs)
-  
-  def _get_request(self, *args, **kwargs):
+
+  def get_request(self, *args, **kwargs) -> RequestsEndpoint:
     return self.client(method="GET", *args, **kwargs)
 
-  def _post_request(self, *args, **kwargs):
+  def post_request(self, *args, **kwargs) -> RequestsEndpoint:
     return self.client(method="POST", *args, **kwargs)

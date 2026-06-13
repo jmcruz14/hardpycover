@@ -14,6 +14,7 @@ from .classes import (
   UserBookReads,
   UserBooksAggregate,
   Edition,
+  Series,
   Search,
   Publisher,
   )
@@ -28,8 +29,11 @@ from .schema import (
 from .stats import (
   _build_time_filter,
   _select_stat_fields,
-  _flatten_result
+  # _flatten_result
 )
+
+# NOTE: explore further orchestration
+# from queries.authors import Authors as AQ (or just stop to prevent overutilization)
 
 class Queries:
   def __init__(self, client, return_json, query_limit: int = 50):
@@ -73,8 +77,8 @@ class Queries:
       if self._return_json:
         json = res.__to_json_value__()
         return json
-
-      return res
+      else:
+        return res
     except GraphQLErrors as ex:
       print("GraphQLError: %s" % ex.errors)
       return None
@@ -127,16 +131,15 @@ class Queries:
       if self._return_json:
         json = res.__to_json_value__()
         return json
-
-      return res
-
+      else:
+        return res
     except ValidationError as e:
       print(e)
       return None
     except ValueError as e:
       print(e)
       return None
-
+  
   def owned_books(
     self,
     user_id: int,
@@ -179,8 +182,8 @@ class Queries:
       if self._return_json:
         json = res.__to_json_value__()
         return json
-
-      return res
+      else:
+        return res
     except Exception as e:
       print("Error found %s" % e)
 
@@ -227,7 +230,11 @@ class Queries:
       for doc in hits:
         Author.model_validate(doc['document'])
 
-      return hits
+      if self._return_json:
+        json = hits.__to_json_value__()
+        return json
+      else:
+        return hits
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -317,8 +324,8 @@ class Queries:
       if self._return_json:
         json = res.__to_json_value__()
         return json
-
-      return res
+      else:
+        return res
 
     except ValidationError as e:
       print(e)
@@ -355,8 +362,8 @@ class Queries:
       if self._return_json:
         json = m.__to_json_value__()
         return json
-
-      return m
+      else:
+        return m
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -397,8 +404,8 @@ class Queries:
       if self._return_json:
         json = res.editions.__to_json_value__()
         return json
-
-      return res
+      else:
+        return res
     except ValidationError as e:
       print(e)
     except ValueError as e:
@@ -443,8 +450,8 @@ class Queries:
       if self._return_json:
         json = res.__to_json_value__()
         return json
-
-      return res
+      else:
+        return res
     except ValidationError as e:
       print(e)
       return None
@@ -491,12 +498,64 @@ class Queries:
       if self._return_json:
         json = res.__to_json_value__()
         return json
-
-      return res
-
+      else:
+        return res
     except ValidationError as e:
       print(e)
       return None
     except ValueError as e:
       print(e)
       return None
+
+  def series(
+    self,
+    search: str,
+    limit: int = 10,
+    offset: int = 0
+  ):
+    """Search authors from database.
+
+    Args:
+      search (str): Query string to be used for search.
+      limit (int): Number of results.
+      offset (int): Skip n results.
+
+    Returns:
+      hits (list): List of matching authors.
+    """
+    if limit > self._query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = 50
+
+    arguments = {
+      "query": search,
+      "query_type": "series",
+      "per_page": limit
+    }
+    if offset:
+      arguments["offset"] = offset
+
+    op = self._run_op()
+    try:
+      search = op.search(**arguments)
+      search.__fields__("error", "page", "per_page", "results")
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      res = op + raw
+
+      re = res.search.results
+      hits = re['hits']
+
+      for doc in hits:
+        Series.model_validate(doc['document'])
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+      else:
+        return hits
+    except ValidationError as e:
+      print(e)
+    except ValueError as e:
+      print(e)

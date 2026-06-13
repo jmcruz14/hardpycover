@@ -1,6 +1,6 @@
 [project]
 name = "hardpycover"
-version = "0.1.3"
+version = "0.1.3b"
 description = "Hardcover API wrapper for Python"
 readme = "README.md"
 license = "MIT"
@@ -43,6 +43,8 @@ dev = [
 
 [tool.ruff]
 indent-width = 2
+extend-exclude = ["hardpycover/schema.py"]
+src = ["hardpycover"]
 
 [tool.ruff.lint]
 select = ["E", "F"]
@@ -54,7 +56,7 @@ module-root = ""
 
 [tool.ruff.format]
 quote-style = "double"
-indent-style = "tab"
+indent-style = "space"
 line-ending = "auto"
 
 [tool.basedpyright]

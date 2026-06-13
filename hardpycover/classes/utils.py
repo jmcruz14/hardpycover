@@ -1,7 +1,7 @@
 from pydantic import BaseModel
+from typing_extensions import TypedDict
 
-
-class Image(BaseModel):
+class Image(TypedDict):
 	id: int
 	url: str
 	color: str
@@ -14,7 +14,7 @@ class CachedImage(Image):
 	pass
 
 
-class LinkType(BaseModel):
+class LinkType(TypedDict):
 	key: str
 
 
