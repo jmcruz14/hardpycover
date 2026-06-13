@@ -58,6 +58,8 @@ module-root = ""
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 72
 
 [tool.basedpyright]
 ignore = ["hardpycover/schema.py"]
