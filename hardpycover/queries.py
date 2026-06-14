@@ -159,7 +159,7 @@ class Queries:
     """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     op = self._run_op()
     try:
@@ -205,7 +205,7 @@ class Queries:
     """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     arguments = {
       "query": search,
@@ -260,7 +260,7 @@ class Queries:
     """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     # NOTE: include possible update for more customizable search params
     arguments = {
@@ -306,6 +306,8 @@ class Queries:
       "book_id": {"_eq": book_id}
     }
 
+    # NOTE: add query_limit error here
+
     op = self._run_op()
     try:
       bc = op.book_characters(where=where, limit=limit)
@@ -338,7 +340,7 @@ class Queries:
   ):
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     op = Operation(Query)
     try:
@@ -385,7 +387,7 @@ class Queries:
     """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     op = Operation(Query)
     where = {"title": {"_eq": title}, "state": {"_eq": "normalized"}}
@@ -419,7 +421,7 @@ class Queries:
   ):
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     arguments = {
       "query": list_name,
@@ -464,7 +466,7 @@ class Queries:
   ):
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     where = {
       "state": {"_neq": "duplicate"}
@@ -482,7 +484,7 @@ class Queries:
     op = self._run_op()
     publisher_fields = Publisher.model_fields.keys()
     try:
-      op.publishers(where=where)
+      op.publishers(**arguments)
       op.publishers.__fields__(*publisher_fields)
       raw = self._client(op)
       if raw.get("errors"):
@@ -513,7 +515,7 @@ class Queries:
   ):
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     where = {"user_id": {"_eq": user_id}}
     order_by = reading_journals_order_by({"action_at": ORDER_BY(sort)})
@@ -570,7 +572,7 @@ class Queries:
     """
     if limit > self._query_limit:
       print("Query request exceeds limit, setting to limit...")
-      limit = 50
+      limit = self._query_limit
 
     arguments = {
       "query": search,

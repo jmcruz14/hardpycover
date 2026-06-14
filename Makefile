@@ -7,3 +7,6 @@ start-venv:
 
 debug: start-venv
 	uv run main.py
+
+run-test:
+	uv run pytest --cov=hardpycover . -vvv

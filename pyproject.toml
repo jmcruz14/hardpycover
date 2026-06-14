@@ -7,8 +7,12 @@ license = "MIT"
 requires-python = ">=3.10"
 dependencies = [
     "pydantic>=2.11.4",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "pytest-mock>=3.15.1",
     "python-dotenv>=1.1.0",
-    "sgqlc>=16.4"
+    "requests>=2.34.2",
+    "sgqlc>=16.4",
 ]
 keywords = ["hardcover", "api", "wrapper", "graphql"]
 classifiers = [
@@ -71,3 +75,9 @@ reportUnknownArgumentType = "none"
 reportUnknownMemberType = "none"
 reportUnusedCallResult = "none"
 reportMissingTypeStubs = "none"
+
+[tool.pytest.ini_options]
+addopts = "-s"
+
+[tool.coverage.report]
+skip_empty = true

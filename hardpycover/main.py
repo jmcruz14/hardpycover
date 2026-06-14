@@ -31,7 +31,7 @@ class Hardcover(Client):
       self.__class__.__name__,
       self._token,
       self._url,
-      self._query_limit,
+      self._query_limit
     )
 
   def __repr__(self):
