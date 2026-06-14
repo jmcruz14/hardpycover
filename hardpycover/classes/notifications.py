@@ -2,6 +2,10 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing_extensions import TypedDict
 
+class NotificationChannels(TypedDict):
+  channel: str
+  id: int
+
 class NotifierUser(TypedDict):
   name: str
   username: str

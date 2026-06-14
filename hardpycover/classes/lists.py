@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import Annotated, Literal
-from typing_extensions import TypedDict
 from datetime import datetime
 
 class Lists(BaseModel):
