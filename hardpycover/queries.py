@@ -27,9 +27,9 @@ from .schema import (
   query_root as Query
 )
 from .stats import (
-  _build_time_filter,
-  _select_stat_fields,
-  # _flatten_result
+  build_time_filter,
+  select_stat_fields,
+  # flatten_result
 )
 
 # NOTE: explore further orchestration
@@ -111,11 +111,11 @@ class Queries:
       if not user_id:
         raise ValueError("Please input a User ID.")
 
-      time_filter = _build_time_filter(start_date=start_date, end_date=end_date)
+      time_filter = build_time_filter(start_date=start_date, end_date=end_date)
       where = {"user_id": {"_eq": user_id}, **time_filter}
       uba = op.user_books_aggregate(where=where)
       agg = uba.aggregate
-      results = _select_stat_fields(stats)
+      results = select_stat_fields(stats)
       if len(results['aggregate']) > 0:
         for item in results.get('aggregate'):
           for agg_func, field in item.items():
@@ -139,7 +139,7 @@ class Queries:
     except ValueError as e:
       print(e)
       return None
-  
+
   def owned_books(
     self,
     user_id: int,
@@ -441,7 +441,7 @@ class Queries:
 
       re = res.search.results
       hits = re['hits']
-      
+
       # for doc in hits:
       #   Series.model_validate(doc['document'])
 
@@ -593,7 +593,7 @@ class Queries:
 
       re = res.search.results
       hits = re['hits']
-      
+
       for doc in hits:
         Series.model_validate(doc['document'])
 
@@ -606,4 +606,4 @@ class Queries:
       print(e)
     except ValueError as e:
       print(e)
-  
+

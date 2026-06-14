@@ -19,7 +19,7 @@ STAT_MAP = {
   "sum_likes": ("sum", "likes_count")
 }
 
-def _build_time_filter(
+def build_time_filter(
   period: Literal["all_time", "year", "month"] = "all_time",
   start_date: str = None,
   end_date: str = None,
@@ -41,7 +41,7 @@ def _build_time_filter(
     v_month = int(v.group("m"))
     v_day = int(v.group("d"))
     end_date = datetime.date(v_year, v_month, v_day)
-  
+
   date_condition = {
     "_lte": end_date
   }
@@ -51,7 +51,7 @@ def _build_time_filter(
     d = _re_parse.match(start_date)
     if not d:
       raise ValueError(f"Start date not in ISO 8601 format YYYY-MM-DD: {start_date}")
-    
+
 
     date_condition.update({"_gte": start_date})
 
@@ -75,10 +75,10 @@ def _build_time_filter(
 
   raise ValueError(f"Invalid period '{period}'. Use 'all_time', 'monthly', or 'weekly'.")
 
-def _select_stat_fields(
+def select_stat_fields(
   stats: Optional[List[str]] = []
 ) -> List:
-  
+
   try:
     STAT_MAP_KEYS = set(STAT_MAP.keys())
     stats_set = set(stats)
@@ -99,15 +99,15 @@ def _select_stat_fields(
   except Exception as e:
     print(f"Error found: {e}")
     return None
-  
+
   # ... convert stat_map
   grouped_stats = defaultdict(list)
   for key, (agg_func, field) in _stats.items():
     grouped_stats[agg_func].append(field)
 
   return  {"aggregate": [{agg_func: fields} for agg_func, fields in grouped_stats.items()]}
-    
-def _flatten_result(raw: dict, stats: Optional[List[str]] = []) -> dict:
+
+def flatten_result(raw: dict, stats: Optional[List[str]] = []) -> dict:
   if not stats:
     stats = list(STAT_MAP.keys())
   stats_set: set = set(stats)
