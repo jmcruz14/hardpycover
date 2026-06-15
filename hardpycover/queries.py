@@ -1,9 +1,10 @@
 import json
-from typing import Dict, Any, Literal
+from typing import Dict, Any, Literal, get_type_hints
 from sgqlc.operation import Operation, GraphQLErrors
 from pydantic import ValidationError
 
 from .classes import (
+  Activities,
   Author,
   Book,
   BookCharacter,
@@ -17,6 +18,7 @@ from .classes import (
   Series,
   Search,
   Publisher,
+  PrivacySetting
   )
 from .schema import (
   user_books_select_column,
@@ -183,6 +185,50 @@ class Queries:
     except ValueError as e:
       print(e)
 
+  def user_activities(
+    self,
+    user_id: int,
+    limit: int = 25,
+    offset: int = 0
+  ):
+    if limit > self._query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = self._query_limit
+
+    # NOTE: not excluding privacy_setting makes the query too long
+    fields = (x for x in Activities.model_fields.keys() if x != "privacy_setting")
+    privacy_setting_fields = get_type_hints(PrivacySetting).keys()
+
+    op = self._run_op()
+    try:
+      where = {"user_id": {"_eq": user_id}}
+      arguments = {
+        "where": {**where},
+        "limit": limit,
+        "offset": offset
+      }
+      activities = op.activities(**arguments)
+      activities.__fields__(*fields)
+      activities.privacy_setting.__fields__(*privacy_setting_fields)
+      raw = self._client(op)
+      res = op + raw
+
+      activities = res.activities
+      for a in activities:
+        Activities.model_validate(a.__to_json_value__())
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+
+      return res
+    except ValidationError as e:
+      print(e)
+      return None
+    except ValueError as e:
+      print(e)
+      return None
+
   def owned_books(
     self,
     user_id: int,
@@ -264,6 +310,37 @@ class Queries:
       else:
         return res
 
+    except ValidationError as e:
+      print(e)
+    except ValueError as e:
+      print(e)
+
+  # TODO: create method for list activity, prompt activity, goal activity
+  def book_activity(
+    self,
+    book_id: int,
+    limit: int = 10,
+    offset: int = 0
+  ):
+    if limit > self._query_limit:
+      print("Query request exceeds limit, setting to limit...")
+      limit = self._query_limit
+
+    where = {"book_id": {"_eq": book_id}, "event": {"_eq": "UserBookActivity"}}
+    arguments = {
+      "where": {**where},
+      "limit": limit,
+      "offset": offset
+    }
+
+    op = self._run_op()
+    try:
+      book_activity = op.activities(**arguments)
+      book_activity.__fields__("book_id", "data", "event", "likes_count")
+      raw = self._client(op)
+      res = op + raw
+
+      return res
     except ValidationError as e:
       print(e)
     except ValueError as e:
