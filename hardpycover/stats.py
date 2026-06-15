@@ -3,9 +3,6 @@ import re
 from collections import defaultdict
 from datetime import datetime, date
 from typing import Literal, Optional, List
-from calendar import monthrange
-
-from pprint import pprint
 
 
 STAT_MAP = {
@@ -16,7 +13,7 @@ STAT_MAP = {
   "avg_read_count": ("avg", "read_count"),
   "avg_review_length": ("avg", "review_length"),
   "sum_review_length": ("sum", "review_length"),
-  "sum_likes": ("sum", "likes_count")
+  "sum_likes": ("sum", "likes_count"),
 }
 
 def build_time_filter(
@@ -24,11 +21,11 @@ def build_time_filter(
   start_date: str = None,
   end_date: str = None,
   month: str = None,
-  year: str = None
+  year: str = None,
   # start_date
   # end_date
-  ) -> dict:
-  _re_parse = re.compile(r'^(?P<Y>\d{4})-?(?P<m>\d{2})-?(?P<d>\d{2})$')
+) -> dict:
+  _re_parse = re.compile(r"^(?P<Y>\d{4})-?(?P<m>\d{2})-?(?P<d>\d{2})$")
 
   if end_date is None:
     today: date = date.today()
@@ -56,24 +53,24 @@ def build_time_filter(
     date_condition.update({"_gte": start_date})
 
   if period == "all_time":
-    return {
-      "date_added": date_condition
-    }
+    return {"date_added": date_condition}
 
   # NOTE: add use cases for year and month
   # if period == "monthly":
-    # if not start_date:
-    #   raise ValueError("No start date declared.")
-    # if not end_date:
-    #   end = today
+  # if not start_date:
+  #   raise ValueError("No start date declared.")
+  # if not end_date:
+  #   end = today
 
-    # return {
-    #   "date"
-    # }
-    # # NOTE: implement monthly logic wherein range must be defined with a start_date
-    # pass
+  # return {
+  #   "date"
+  # }
+  # # NOTE: implement monthly logic wherein range must be defined with a start_date
+  # pass
 
-  raise ValueError(f"Invalid period '{period}'. Use 'all_time', 'monthly', or 'weekly'.")
+  raise ValueError(
+    f"Invalid period '{period}'. Use 'all_time', 'monthly', or 'weekly'."
+  )
 
 def select_stat_fields(
   stats: Optional[List[str]] = []
@@ -86,7 +83,7 @@ def select_stat_fields(
     if not stats_set:
       _stats = STAT_MAP
     else:
-      _stats = {k:v for k, v in STAT_MAP.items() if k in stats_set}
+      _stats = {k: v for k, v in STAT_MAP.items() if k in stats_set}
 
     # NOTE: probably the funniest way to check if there's an odd one out in the stats_set haha
     if len(stats_set.difference(STAT_MAP_KEYS)) > 0:
@@ -99,6 +96,7 @@ def select_stat_fields(
   except Exception as e:
     print(f"Error found: {e}")
     return None
+
 
   # ... convert stat_map
   grouped_stats = defaultdict(list)
