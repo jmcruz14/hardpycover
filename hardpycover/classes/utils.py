@@ -17,6 +17,9 @@ class CachedImage(Image):
 class LinkType(TypedDict):
 	key: str
 
+class PrivacySetting(TypedDict):
+	id: int
+	setting: str
 
 class Link(BaseModel):
 	url: str
