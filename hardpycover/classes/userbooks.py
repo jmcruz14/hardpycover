@@ -46,7 +46,10 @@ class UserBook(BaseModel):
 	recommended_by: str | None = None
 	referrer_user_id: int | None = None
 	review: str | None = None
+	review_raw: str | None = None
 	review_has_spoilers: bool | None = None
+	review_migrated: bool | None = None
+	review_length: int | None = None
 	rating: int | float | None = None
 	starred: bool | None = None
 	# NOTE: 1 - Want to read; 2 - Currently Reading; 3 - Read
