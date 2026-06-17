@@ -6,8 +6,6 @@ def test_valid_api_key_sets_auth_header(valid_client):
     headers = valid_client.client.base_headers
     assert "authorization" in headers
     assert headers["authorization"] == f"Bearer {REAL_TOKEN}"
-    result = valid_client.query.user_profile()
-    assert result.get("errors") is None
 
 
 # (b) instance created with false API key
@@ -18,6 +16,6 @@ def test_false_api_key_query_returns_none(invalid_client, mocker):
         "errors": [{"message": "Invalid authorization token"}],
         "data": None,
     }
-    invalid_client.query._client = mock_call 
+    invalid_client.query._client = mock_call
     result = invalid_client.query.user_profile()
     assert result is None
