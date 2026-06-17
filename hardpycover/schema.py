@@ -1,7 +1,7 @@
 import sgqlc.types
 
 
-hardcover_schema = sgqlc.types.Schema()
+schema = sgqlc.types.Schema()
 
 
 
@@ -16,533 +16,538 @@ Int = sgqlc.types.Int
 
 String = sgqlc.types.String
 
+class TrendingDuration(sgqlc.types.Enum):
+    __schema__ = schema
+    __choices__ = ('all', 'month', 'one_year', 'three_month', 'week')
+
+
 class activities_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'created_at', 'data', 'event', 'id', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting_id', 'uid', 'user_id')
 
 
 class authors_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('alias_id', 'alternate_names', 'bio', 'books_count', 'born_date', 'born_year', 'cached_image', 'canonical_id', 'death_date', 'death_year', 'gender_id', 'id', 'identifiers', 'image_id', 'is_bipoc', 'is_lgbtq', 'links', 'location', 'locked', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
 
 
 class bigint(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class book_categories_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('id', 'name')
 
 
 class book_characters_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'character_id', 'id', 'only_mentioned', 'position', 'spoiler')
 
 
 class book_collections_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'child_book_id', 'id', 'position')
 
 
 class book_mappings_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('attempts', 'book_id', 'created_at', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded', 'loaded_at', 'normalized_at', 'original_book_id', 'platform_id', 'state', 'updated_at', 'verified', 'verified_at')
 
 
 class book_series_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'compilation', 'created_at', 'details', 'featured', 'id', 'position', 'series_id', 'updated_at')
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_avg_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('compilation', 'featured')
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('compilation', 'featured')
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_corr_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_covar_samp_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_max_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_min_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_stddev_samp_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_sum_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_series_select_column_book_series_aggregate_bool_exp_var_samp_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('position',)
 
 
 class book_statuses_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('id', 'name')
 
 
 class bookles_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'created_at', 'date', 'id')
 
 
 class books_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('activities_count', 'alternative_titles', 'audio_seconds', 'book_category_id', 'book_status_id', 'cached_contributors', 'cached_featured_series', 'cached_header_image', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'description', 'editions_count', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image_id', 'import_platform_id', 'is_partial_book', 'journals_count', 'links', 'lists_count', 'literary_type_id', 'locked', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'ratings_distribution', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
 
 
 class books_select_column_books_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('compilation', 'is_partial_book', 'locked')
 
 
 class books_select_column_books_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('compilation', 'is_partial_book', 'locked')
 
 
 class characters_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('biography', 'books_count', 'cached_tags', 'canonical_books_count', 'canonical_id', 'created_at', 'gender_id', 'has_disability', 'id', 'image_id', 'is_lgbtq', 'is_poc', 'locked', 'name', 'object_type', 'openlibrary_url', 'slug', 'state', 'updated_at', 'user_id')
 
 
 class citext(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class collection_import_results_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('author', 'book_id', 'collection_import_id', 'contents', 'error', 'external_id', 'id', 'report', 'state', 'title')
 
 
 class collection_imports_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'override_date_read', 'override_ratings', 'override_shelves', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user_id')
 
 
 class contributions_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('author_id', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
 
 
 class countries_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('code2', 'code3', 'created_at', 'id', 'intermediate_region', 'intermediate_region_code', 'iso_3166', 'name', 'phone_code', 'region', 'region_code', 'sub_region', 'sub_region_code', 'updated_at')
 
 
 class cursor_ordering(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('ASC', 'DESC')
 
 
 class date(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class editions_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('alternative_titles', 'asin', 'audio_seconds', 'book_id', 'cached_contributors', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image_id', 'isbn_10', 'isbn_10_valid', 'isbn_13', 'isbn_13_valid', 'isbns_match', 'language_id', 'lists_count', 'locked', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher_id', 'rating', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
 
 
 class flag_statuses_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('id', 'status')
 
 
 class float8(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class followed_lists_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'id', 'list_id', 'user_id')
 
 
 class followed_prompts_constraint(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('followed_prompts_pkey', 'question_features_id_key', 'question_features_userId_questionId_key')
 
 
 class followed_prompts_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'id', 'order', 'prompt_id', 'user_id')
 
 
 class followed_prompts_update_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('order',)
 
 
 class followed_user_books_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
 
 
 class followed_users_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'followed_user_id', 'id', 'user_id')
 
 
 class following_user_books_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
 
 
 class follows_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'followable_id', 'followable_type', 'id', 'updated_at', 'user_id')
 
 
 class goals_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('archived', 'completed_at', 'conditions', 'description', 'end_date', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user_id')
 
 
 class images_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('color', 'colors', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
 
 
 class json(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class jsonb(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class languages_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('code2', 'code3', 'id', 'language')
 
 
 class likes_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'id', 'likeable_id', 'likeable_type', 'user_id')
 
 
 class links_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'id', 'linkable_id', 'linkable_type', 'social_type', 'updated_at', 'url', 'username')
 
 
 class list_books_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'id', 'imported', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at')
 
 
 class list_books_select_column_list_books_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('imported',)
 
 
 class list_books_select_column_list_books_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('imported',)
 
 
 class lists_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('books_count', 'created_at', 'default_view', 'description', 'featured', 'featured_profile', 'followers_count', 'id', 'imported', 'likes_count', 'name', 'object_type', 'privacy_setting_id', 'public', 'ranked', 'slug', 'updated_at', 'url', 'user_id')
 
 
 class lists_select_column_lists_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('featured', 'featured_profile', 'imported', 'public', 'ranked')
 
 
 class lists_select_column_lists_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('featured', 'featured_profile', 'imported', 'public', 'ranked')
 
 
 class notification_channels_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('channel', 'id')
 
 
 class notification_deliveries_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('channel_id', 'id', 'notification_id', 'read', 'read_at', 'sent_at', 'user_id')
 
 
 class notification_deliveries_select_column_notification_deliveries_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('read',)
 
 
 class notification_deliveries_select_column_notification_deliveries_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('read',)
 
 
 class notification_settings_constraint(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('notification_settings_pkey',)
 
 
 class notification_settings_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('channel_ids', 'id', 'notification_type_id', 'user_id')
 
 
 class notification_settings_update_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('channel_ids',)
 
 
 class notification_types_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('active', 'default_channel_ids', 'default_priority', 'description', 'id', 'name', 'uid')
 
 
 class notifications_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'description', 'id', 'link', 'link_text', 'notification_type_id', 'notifier_user_id', 'priority', 'title', 'uid')
 
 
 class numeric(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class order_by(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('asc', 'asc_nulls_first', 'asc_nulls_last', 'desc', 'desc_nulls_first', 'desc_nulls_last')
 
 
 class platforms_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('id', 'name', 'url')
 
 
 class privacy_settings_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('id', 'setting')
 
 
 class prompt_answers_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt_id', 'user_id')
 
 
 class prompt_books_summary_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('answers_count', 'book_id', 'prompt_id')
 
 
 class prompts_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('answers_count', 'books_count', 'created_at', 'description', 'featured', 'id', 'privacy_setting_id', 'question', 'slug', 'user_id', 'users_count')
 
 
 class publishers_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('canonical_id', 'created_at', 'editions_count', 'id', 'locked', 'name', 'object_type', 'parent_id', 'slug', 'state', 'updated_at', 'user_id')
 
 
 class reading_formats_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('format', 'id')
 
 
 class reading_journals_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('action_at', 'book_id', 'created_at', 'edition_id', 'entry', 'event', 'id', 'likes_count', 'metadata', 'object_type', 'privacy_setting_id', 'updated_at', 'user_id')
 
 
 class reading_journals_summary_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'journals_count', 'last_updated_at', 'user_id')
 
 
 class series_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('author_id', 'books_count', 'canonical_id', 'description', 'id', 'identifiers', 'is_completed', 'locked', 'name', 'object_type', 'primary_books_count', 'slug', 'state', 'user_id')
 
 
 class smallint(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class tag_categories_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('category', 'created_at', 'id', 'slug')
 
 
 class taggable_counts_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('count', 'created_at', 'hardcover_tagged', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
 
 
 class taggings_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'id', 'spoiler', 'tag_id', 'taggable_id', 'taggable_type', 'user_id')
 
 
 class taggings_select_column_taggings_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('spoiler',)
 
 
 class taggings_select_column_taggings_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('spoiler',)
 
 
 class tags_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('count', 'id', 'slug', 'tag', 'tag_category_id')
 
 
 class timestamp(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class timestamptz(sgqlc.types.Scalar):
-    __schema__ = hardcover_schema
+    __schema__ = schema
 
 
 class user_blocks_constraint(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('index_user_blocks_on_user_id_and_blocked_user_id', 'user_blocks_pkey')
 
 
 class user_blocks_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('blocked_user_id', 'created_at', 'id', 'user_id')
 
 
 class user_blocks_update_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('_PLACEHOLDER',)
 
 
 class user_book_reads_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book_id')
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_avg_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_corr_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_covar_samp_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_max_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_min_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_stddev_samp_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_sum_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_reads_select_column_user_book_reads_aggregate_bool_exp_var_samp_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('progress',)
 
 
 class user_book_statuses_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('description', 'id', 'slug', 'status')
 
 
 class user_books_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'first_read_date', 'first_started_reading_date', 'has_review', 'id', 'imported', 'last_read_date', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned', 'owned_copies', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review', 'review_has_spoilers', 'review_length', 'review_migrated', 'review_raw', 'review_slate', 'reviewed_at', 'sponsored_review', 'starred', 'status_id', 'updated_at', 'url', 'user_id')
 
 
 class user_books_select_column_user_books_aggregate_bool_exp_bool_and_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('has_review', 'imported', 'owned', 'review_has_spoilers', 'review_migrated', 'sponsored_review', 'starred')
 
 
 class user_books_select_column_user_books_aggregate_bool_exp_bool_or_arguments_columns(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('has_review', 'imported', 'owned', 'review_has_spoilers', 'review_migrated', 'sponsored_review', 'starred')
 
 
 class user_flags_constraint(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('user_flags_id_key', 'user_flags_pkey')
 
 
 class user_flags_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
 
 
 class user_flags_update_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('_PLACEHOLDER',)
 
 
 class user_referrals_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('created_at', 'id', 'referrer_id', 'state', 'updated_at', 'user_id')
 
 
 class user_statuses_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('id', 'status')
 
 
 class users_aggregate_by_created_at_date_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('count', 'created_at')
 
 
 class users_select_column(sgqlc.types.Enum):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __choices__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'admin', 'bio', 'birthdate', 'books_count', 'cached_cover', 'cached_genres', 'cached_image', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_users_count', 'followers_count', 'id', 'image_id', 'last_activity_at', 'last_sign_in_at', 'librarian_roles', 'link', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'object_type', 'onboarded', 'payment_system_id', 'pro', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'remember_created_at', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'timezone', 'unconfirmed_email', 'updated_at', 'username')
 
 
@@ -551,7 +556,7 @@ class users_select_column(sgqlc.types.Enum):
 # Input Objects
 ########################################################################
 class AuthorInputType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'bio', 'born_date', 'born_year', 'curation_status', 'death_date', 'death_year', 'gender_id', 'id', 'image_id', 'is_bipoc', 'is_lgbtq', 'location', 'locked', 'name', 'name_personal', 'slug')
     alias_id = sgqlc.types.Field(Int, graphql_name='alias_id')
     bio = sgqlc.types.Field(String, graphql_name='bio')
@@ -573,7 +578,7 @@ class AuthorInputType(sgqlc.types.Input):
 
 
 class BasicTag(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('category', 'spoiler', 'tag')
     category = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='category')
     spoiler = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='spoiler')
@@ -581,7 +586,7 @@ class BasicTag(sgqlc.types.Input):
 
 
 class BookDtoInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('asin', 'audio_seconds', 'contributions', 'country_id', 'edition_format', 'edition_information', 'image_id', 'isbn_10', 'isbn_13', 'language_id', 'page_count', 'publisher_id', 'reading_format_id', 'release_date', 'subtitle', 'title')
     asin = sgqlc.types.Field(String, graphql_name='asin')
     audio_seconds = sgqlc.types.Field(Int, graphql_name='audio_seconds')
@@ -602,7 +607,7 @@ class BookDtoInput(sgqlc.types.Input):
 
 
 class BookDtoType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_category_id', 'characters', 'collection_book_ids', 'compilation', 'content_warnings', 'description', 'genres', 'headline', 'is_partial_book', 'librarian_tags', 'literary_type_id', 'moods', 'parent_book_id', 'release_date', 'series', 'title')
     book_category_id = sgqlc.types.Field(Int, graphql_name='book_category_id')
     characters = sgqlc.types.Field(sgqlc.types.list_of('CharacterDtoInput'), graphql_name='characters')
@@ -623,7 +628,7 @@ class BookDtoType(sgqlc.types.Input):
 
 
 class BookInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_status_id', 'canonical_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'dto', 'locked', 'slug')
     book_status_id = sgqlc.types.Field(Int, graphql_name='book_status_id')
     canonical_id = sgqlc.types.Field(Int, graphql_name='canonical_id')
@@ -638,7 +643,7 @@ class BookInput(sgqlc.types.Input):
 
 
 class BookMappingInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'external_id', 'platform_id')
     edition_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='edition_id')
     external_id = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='external_id')
@@ -646,7 +651,7 @@ class BookMappingInput(sgqlc.types.Input):
 
 
 class BookSeriesDtoInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('collection_book_ids', 'compilation', 'details', 'featured', 'name', 'position', 'series_id')
     collection_book_ids = sgqlc.types.Field(sgqlc.types.list_of(Int), graphql_name='collection_book_ids')
     compilation = sgqlc.types.Field(Boolean, graphql_name='compilation')
@@ -658,7 +663,7 @@ class BookSeriesDtoInput(sgqlc.types.Input):
 
 
 class Boolean_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(Boolean, graphql_name='_eq')
     _gt = sgqlc.types.Field(Boolean, graphql_name='_gt')
@@ -672,7 +677,7 @@ class Boolean_comparison_exp(sgqlc.types.Input):
 
 
 class CharacterDtoInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('character_id', 'only_mentioned', 'position', 'spoiler')
     character_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='character_id')
     only_mentioned = sgqlc.types.Field(Boolean, graphql_name='only_mentioned')
@@ -681,7 +686,7 @@ class CharacterDtoInput(sgqlc.types.Input):
 
 
 class CharacterInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('biography', 'curation_status', 'gender_id', 'has_disability', 'image_id', 'is_lgbtq', 'is_poc', 'locked', 'name', 'slug', 'state')
     biography = sgqlc.types.Field(String, graphql_name='biography')
     curation_status = sgqlc.types.Field(String, graphql_name='curation_status')
@@ -697,7 +702,7 @@ class CharacterInput(sgqlc.types.Input):
 
 
 class CollectionImportInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('contents_key', 'override_date_read', 'override_ratings', 'override_shelves', 'platform_id', 'tag_resolution', 'user_id')
     contents_key = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='contents_key')
     override_date_read = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='override_date_read')
@@ -709,14 +714,14 @@ class CollectionImportInput(sgqlc.types.Input):
 
 
 class ContributionInputType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contribution')
     author_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='author_id')
     contribution = sgqlc.types.Field(String, graphql_name='contribution')
 
 
 class CreateBookFromPlatformInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'external_id', 'platform_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     external_id = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='external_id')
@@ -724,7 +729,7 @@ class CreateBookFromPlatformInput(sgqlc.types.Input):
 
 
 class CreatePromptInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'privacy_setting_id', 'question')
     description = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='description')
     privacy_setting_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='privacy_setting_id')
@@ -732,7 +737,7 @@ class CreatePromptInput(sgqlc.types.Input):
 
 
 class DatesReadInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action', 'edition_id', 'finished_at', 'finished_at_precision', 'id', 'progress_pages', 'progress_seconds', 'started_at')
     action = sgqlc.types.Field(String, graphql_name='action')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -745,7 +750,7 @@ class DatesReadInput(sgqlc.types.Input):
 
 
 class DtoTag(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('spoiler', 'tag', 'tag_slug')
     spoiler = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='spoiler')
     tag = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='tag')
@@ -753,7 +758,7 @@ class DtoTag(sgqlc.types.Input):
 
 
 class EditionInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'curation_status', 'dto', 'locked', 'state')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     curation_status = sgqlc.types.Field(String, graphql_name='curation_status')
@@ -763,7 +768,7 @@ class EditionInput(sgqlc.types.Input):
 
 
 class GoalConditionInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_bipoc', 'author_gender_ids', 'author_lgbtqia', 'book_category_ids', 'reading_format_id')
     author_bipoc = sgqlc.types.Field(Int, graphql_name='authorBipoc')
     author_gender_ids = sgqlc.types.Field(sgqlc.types.list_of(Int), graphql_name='authorGenderIds')
@@ -773,7 +778,7 @@ class GoalConditionInput(sgqlc.types.Input):
 
 
 class GoalInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('archived', 'conditions', 'description', 'end_date', 'goal', 'metric', 'privacy_setting_id', 'start_date')
     archived = sgqlc.types.Field(Boolean, graphql_name='archived')
     conditions = sgqlc.types.Field(sgqlc.types.non_null(GoalConditionInput), graphql_name='conditions')
@@ -786,7 +791,7 @@ class GoalInput(sgqlc.types.Input):
 
 
 class ImageInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('imageable_id', 'imageable_type', 'url')
     imageable_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='imageable_id')
     imageable_type = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='imageable_type')
@@ -794,7 +799,7 @@ class ImageInput(sgqlc.types.Input):
 
 
 class Int_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(Int, graphql_name='_eq')
     _gt = sgqlc.types.Field(Int, graphql_name='_gt')
@@ -808,13 +813,13 @@ class Int_comparison_exp(sgqlc.types.Input):
 
 
 class LinkInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('url',)
     url = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='url')
 
 
 class ListBookInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'list_id', 'position')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -823,7 +828,7 @@ class ListBookInput(sgqlc.types.Input):
 
 
 class ListInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('default_view', 'description', 'featured_profile', 'name', 'privacy_setting_id', 'ranked', 'url')
     default_view = sgqlc.types.Field(String, graphql_name='default_view')
     description = sgqlc.types.Field(String, graphql_name='description')
@@ -835,7 +840,7 @@ class ListInput(sgqlc.types.Input):
 
 
 class PromptAnswerCreateInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'description', 'prompt_id')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
     description = sgqlc.types.Field(String, graphql_name='description')
@@ -843,7 +848,7 @@ class PromptAnswerCreateInput(sgqlc.types.Input):
 
 
 class PublisherInputType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('canonical_id', 'curation_status', 'locked', 'name', 'parent_id', 'slug', 'state')
     canonical_id = sgqlc.types.Field(Int, graphql_name='canonical_id')
     curation_status = sgqlc.types.Field(String, graphql_name='curation_status')
@@ -855,7 +860,7 @@ class PublisherInputType(sgqlc.types.Input):
 
 
 class ReadingJournalCreateType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'book_id', 'edition_id', 'entry', 'event', 'metadata', 'privacy_setting_id', 'tags')
     action_at = sgqlc.types.Field(date, graphql_name='action_at')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
@@ -868,7 +873,7 @@ class ReadingJournalCreateType(sgqlc.types.Input):
 
 
 class ReadingJournalUpdateType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'edition_id', 'entry', 'event', 'metadata', 'privacy_setting_id', 'tags')
     action_at = sgqlc.types.Field(date, graphql_name='action_at')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -880,7 +885,7 @@ class ReadingJournalUpdateType(sgqlc.types.Input):
 
 
 class ReportInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('details', 'metadata', 'reportable_id', 'reportable_type', 'service_name')
     details = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='details')
     metadata = sgqlc.types.Field(jsonb, graphql_name='metadata')
@@ -889,19 +894,26 @@ class ReportInput(sgqlc.types.Input):
     service_name = sgqlc.types.Field(String, graphql_name='service_name')
 
 
+class SeriesIdentifiersInput(sgqlc.types.Input):
+    __schema__ = schema
+    __field_names__ = ('goodreads',)
+    goodreads = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(String)), graphql_name='goodreads')
+
+
 class SeriesInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('name',)
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
 
 
 class SeriesInputType(sgqlc.types.Input):
-    __schema__ = hardcover_schema
-    __field_names__ = ('author_id', 'curation_status', 'description', 'id', 'is_completed', 'locked', 'name', 'slug', 'state')
+    __schema__ = schema
+    __field_names__ = ('author_id', 'curation_status', 'description', 'id', 'identifiers', 'is_completed', 'locked', 'name', 'slug', 'state')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
     curation_status = sgqlc.types.Field(String, graphql_name='curation_status')
     description = sgqlc.types.Field(String, graphql_name='description')
     id = sgqlc.types.Field(Int, graphql_name='id')
+    identifiers = sgqlc.types.Field(SeriesIdentifiersInput, graphql_name='identifiers')
     is_completed = sgqlc.types.Field(Boolean, graphql_name='is_completed')
     locked = sgqlc.types.Field(Boolean, graphql_name='locked')
     name = sgqlc.types.Field(String, graphql_name='name')
@@ -910,7 +922,7 @@ class SeriesInputType(sgqlc.types.Input):
 
 
 class String_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_ilike', '_in', '_iregex', '_is_null', '_like', '_lt', '_lte', '_neq', '_nilike', '_nin', '_niregex', '_nlike', '_nregex', '_nsimilar', '_regex', '_similar')
     _eq = sgqlc.types.Field(String, graphql_name='_eq')
     _gt = sgqlc.types.Field(String, graphql_name='_gt')
@@ -934,7 +946,7 @@ class String_comparison_exp(sgqlc.types.Input):
 
 
 class TagsDtoInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('content_warning', 'genre', 'mood')
     content_warning = sgqlc.types.Field(sgqlc.types.list_of(DtoTag), graphql_name='ContentWarning')
     genre = sgqlc.types.Field(sgqlc.types.list_of(DtoTag), graphql_name='Genre')
@@ -942,7 +954,7 @@ class TagsDtoInput(sgqlc.types.Input):
 
 
 class UpdatePromptInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'id', 'privacy_setting_id', 'question')
     description = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='description')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
@@ -951,7 +963,7 @@ class UpdatePromptInput(sgqlc.types.Input):
 
 
 class UserBookCreateInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'date_added', 'edition_id', 'finished_at_precision', 'first_started_reading_date', 'last_read_date', 'media_url', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review_has_spoilers', 'review_slate', 'reviewed_at', 'sponsored_review', 'status_id', 'url', 'user_date', 'user_start_date')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
     date_added = sgqlc.types.Field(date, graphql_name='date_added')
@@ -978,7 +990,7 @@ class UserBookCreateInput(sgqlc.types.Input):
 
 
 class UserBookUpdateInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('date_added', 'edition_id', 'finished_at_precision', 'first_started_reading_date', 'last_read_date', 'media_url', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review_has_spoilers', 'review_slate', 'reviewed_at', 'sponsored_review', 'status_id', 'url', 'user_date', 'user_start_date')
     date_added = sgqlc.types.Field(date, graphql_name='date_added')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -1004,7 +1016,7 @@ class UserBookUpdateInput(sgqlc.types.Input):
 
 
 class UserJoinInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('email', 'password', 'referrer_id', 'referrer_url')
     email = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='email')
     password = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='password')
@@ -1013,14 +1025,14 @@ class UserJoinInput(sgqlc.types.Input):
 
 
 class UserLoginInput(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('email', 'password')
     email = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='email')
     password = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='password')
 
 
 class activities_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('activities_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -1036,7 +1048,7 @@ class activities_aggregate_order_by(sgqlc.types.Input):
 
 
 class activities_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1047,7 +1059,7 @@ class activities_avg_order_by(sgqlc.types.Input):
 
 
 class activities_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'created_at', 'data', 'event', 'followers', 'id', 'likes', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting', 'privacy_setting_id', 'uid', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('activities_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('activities_bool_exp', graphql_name='_not')
@@ -1071,7 +1083,7 @@ class activities_bool_exp(sgqlc.types.Input):
 
 
 class activities_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'event', 'id', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting_id', 'uid', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -1086,7 +1098,7 @@ class activities_max_order_by(sgqlc.types.Input):
 
 
 class activities_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'event', 'id', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting_id', 'uid', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -1101,7 +1113,7 @@ class activities_min_order_by(sgqlc.types.Input):
 
 
 class activities_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'data', 'event', 'followers_aggregate', 'id', 'likes_aggregate', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting', 'privacy_setting_id', 'uid', 'user', 'user_id')
     book = sgqlc.types.Field('books_order_by', graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1122,7 +1134,7 @@ class activities_order_by(sgqlc.types.Input):
 
 
 class activities_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1133,7 +1145,7 @@ class activities_stddev_order_by(sgqlc.types.Input):
 
 
 class activities_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1144,7 +1156,7 @@ class activities_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class activities_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1155,14 +1167,14 @@ class activities_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class activities_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('activities_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class activities_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'data', 'event', 'id', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting_id', 'uid', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -1178,7 +1190,7 @@ class activities_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class activities_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1189,7 +1201,7 @@ class activities_sum_order_by(sgqlc.types.Input):
 
 
 class activities_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1200,7 +1212,7 @@ class activities_var_pop_order_by(sgqlc.types.Input):
 
 
 class activities_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1211,7 +1223,7 @@ class activities_var_samp_order_by(sgqlc.types.Input):
 
 
 class activities_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'likes_count', 'original_book_id', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -1222,7 +1234,7 @@ class activities_variance_order_by(sgqlc.types.Input):
 
 
 class authors_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('authors_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -1238,7 +1250,7 @@ class authors_aggregate_order_by(sgqlc.types.Input):
 
 
 class authors_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1253,7 +1265,7 @@ class authors_avg_order_by(sgqlc.types.Input):
 
 
 class authors_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'alias', 'alias_id', 'alternate_names', 'bio', 'books_count', 'born_date', 'born_year', 'cached_image', 'canonical', 'canonical_id', 'contributions', 'contributions_aggregate', 'creator', 'death_date', 'death_year', 'gender_id', 'id', 'identifiers', 'image', 'image_id', 'is_bipoc', 'is_lgbtq', 'links', 'location', 'locked', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('authors_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('authors_bool_exp', graphql_name='_not')
@@ -1294,7 +1306,7 @@ class authors_bool_exp(sgqlc.types.Input):
 
 
 class authors_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'bio', 'books_count', 'born_date', 'born_year', 'canonical_id', 'death_date', 'death_year', 'gender_id', 'id', 'image_id', 'location', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     bio = sgqlc.types.Field(order_by, graphql_name='bio')
@@ -1319,7 +1331,7 @@ class authors_max_order_by(sgqlc.types.Input):
 
 
 class authors_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'bio', 'books_count', 'born_date', 'born_year', 'canonical_id', 'death_date', 'death_year', 'gender_id', 'id', 'image_id', 'location', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     bio = sgqlc.types.Field(order_by, graphql_name='bio')
@@ -1344,7 +1356,7 @@ class authors_min_order_by(sgqlc.types.Input):
 
 
 class authors_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_aggregate', 'alias_id', 'alternate_names', 'bio', 'books_count', 'born_date', 'born_year', 'cached_image', 'canonical', 'canonical_id', 'contributions_aggregate', 'creator', 'death_date', 'death_year', 'gender_id', 'id', 'identifiers', 'image', 'image_id', 'is_bipoc', 'is_lgbtq', 'links', 'location', 'locked', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
     alias_aggregate = sgqlc.types.Field(authors_aggregate_order_by, graphql_name='alias_aggregate')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
@@ -1381,7 +1393,7 @@ class authors_order_by(sgqlc.types.Input):
 
 
 class authors_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1396,7 +1408,7 @@ class authors_stddev_order_by(sgqlc.types.Input):
 
 
 class authors_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1411,7 +1423,7 @@ class authors_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class authors_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1426,14 +1438,14 @@ class authors_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class authors_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('authors_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class authors_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'alternate_names', 'bio', 'books_count', 'born_date', 'born_year', 'cached_image', 'canonical_id', 'death_date', 'death_year', 'gender_id', 'id', 'identifiers', 'image_id', 'is_bipoc', 'is_lgbtq', 'links', 'location', 'locked', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(Int, graphql_name='alias_id')
     alternate_names = sgqlc.types.Field(jsonb, graphql_name='alternate_names')
@@ -1465,7 +1477,7 @@ class authors_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class authors_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1480,7 +1492,7 @@ class authors_sum_order_by(sgqlc.types.Input):
 
 
 class authors_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1495,7 +1507,7 @@ class authors_var_pop_order_by(sgqlc.types.Input):
 
 
 class authors_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1510,7 +1522,7 @@ class authors_var_samp_order_by(sgqlc.types.Input):
 
 
 class authors_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias_id', 'books_count', 'born_year', 'canonical_id', 'death_year', 'gender_id', 'id', 'image_id', 'user_id', 'users_count')
     alias_id = sgqlc.types.Field(order_by, graphql_name='alias_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -1525,7 +1537,7 @@ class authors_variance_order_by(sgqlc.types.Input):
 
 
 class bigint_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(bigint, graphql_name='_eq')
     _gt = sgqlc.types.Field(bigint, graphql_name='_gt')
@@ -1539,7 +1551,7 @@ class bigint_comparison_exp(sgqlc.types.Input):
 
 
 class book_categories_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'id', 'name')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('book_categories_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('book_categories_bool_exp', graphql_name='_not')
@@ -1549,28 +1561,28 @@ class book_categories_bool_exp(sgqlc.types.Input):
 
 
 class book_categories_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'name')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     name = sgqlc.types.Field(order_by, graphql_name='name')
 
 
 class book_categories_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('book_categories_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class book_categories_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'name')
     id = sgqlc.types.Field(bigint, graphql_name='id')
     name = sgqlc.types.Field(String, graphql_name='name')
 
 
 class book_characters_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('book_characters_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -1586,7 +1598,7 @@ class book_characters_aggregate_order_by(sgqlc.types.Input):
 
 
 class book_characters_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1595,7 +1607,7 @@ class book_characters_avg_order_by(sgqlc.types.Input):
 
 
 class book_characters_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'character', 'character_id', 'id', 'only_mentioned', 'position', 'spoiler')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('book_characters_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('book_characters_bool_exp', graphql_name='_not')
@@ -1611,7 +1623,7 @@ class book_characters_bool_exp(sgqlc.types.Input):
 
 
 class book_characters_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1620,7 +1632,7 @@ class book_characters_max_order_by(sgqlc.types.Input):
 
 
 class book_characters_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1629,7 +1641,7 @@ class book_characters_min_order_by(sgqlc.types.Input):
 
 
 class book_characters_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'character', 'character_id', 'id', 'only_mentioned', 'position', 'spoiler')
     book = sgqlc.types.Field('books_order_by', graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1642,7 +1654,7 @@ class book_characters_order_by(sgqlc.types.Input):
 
 
 class book_characters_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1651,7 +1663,7 @@ class book_characters_stddev_order_by(sgqlc.types.Input):
 
 
 class book_characters_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1660,7 +1672,7 @@ class book_characters_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class book_characters_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1669,14 +1681,14 @@ class book_characters_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class book_characters_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('book_characters_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class book_characters_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'only_mentioned', 'position', 'spoiler')
     book_id = sgqlc.types.Field(bigint, graphql_name='book_id')
     character_id = sgqlc.types.Field(bigint, graphql_name='character_id')
@@ -1687,7 +1699,7 @@ class book_characters_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class book_characters_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1696,7 +1708,7 @@ class book_characters_sum_order_by(sgqlc.types.Input):
 
 
 class book_characters_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1705,7 +1717,7 @@ class book_characters_var_pop_order_by(sgqlc.types.Input):
 
 
 class book_characters_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1714,7 +1726,7 @@ class book_characters_var_samp_order_by(sgqlc.types.Input):
 
 
 class book_characters_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'character_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     character_id = sgqlc.types.Field(order_by, graphql_name='character_id')
@@ -1723,7 +1735,7 @@ class book_characters_variance_order_by(sgqlc.types.Input):
 
 
 class book_collections_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book_id', 'child_book_id', 'id', 'position')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('book_collections_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('book_collections_bool_exp', graphql_name='_not')
@@ -1735,7 +1747,7 @@ class book_collections_bool_exp(sgqlc.types.Input):
 
 
 class book_collections_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'child_book_id', 'id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     child_book_id = sgqlc.types.Field(order_by, graphql_name='child_book_id')
@@ -1744,14 +1756,14 @@ class book_collections_order_by(sgqlc.types.Input):
 
 
 class book_collections_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('book_collections_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class book_collections_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'child_book_id', 'id', 'position')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     child_book_id = sgqlc.types.Field(Int, graphql_name='child_book_id')
@@ -1760,7 +1772,7 @@ class book_collections_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class book_mappings_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('book_mappings_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -1776,7 +1788,7 @@ class book_mappings_aggregate_order_by(sgqlc.types.Input):
 
 
 class book_mappings_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1788,7 +1800,7 @@ class book_mappings_avg_order_by(sgqlc.types.Input):
 
 
 class book_mappings_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'attempts', 'book', 'book_id', 'created_at', 'edition', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded', 'loaded_at', 'normalized_at', 'original_book_id', 'platform', 'platform_id', 'state', 'updated_at', 'verified', 'verified_at')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('book_mappings_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('book_mappings_bool_exp', graphql_name='_not')
@@ -1815,7 +1827,7 @@ class book_mappings_bool_exp(sgqlc.types.Input):
 
 
 class book_mappings_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'created_at', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded_at', 'normalized_at', 'original_book_id', 'platform_id', 'state', 'updated_at', 'verified_at')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1834,7 +1846,7 @@ class book_mappings_max_order_by(sgqlc.types.Input):
 
 
 class book_mappings_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'created_at', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded_at', 'normalized_at', 'original_book_id', 'platform_id', 'state', 'updated_at', 'verified_at')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1853,7 +1865,7 @@ class book_mappings_min_order_by(sgqlc.types.Input):
 
 
 class book_mappings_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book', 'book_id', 'created_at', 'edition', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded', 'loaded_at', 'normalized_at', 'original_book_id', 'platform', 'platform_id', 'state', 'updated_at', 'verified', 'verified_at')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book = sgqlc.types.Field('books_order_by', graphql_name='book')
@@ -1877,7 +1889,7 @@ class book_mappings_order_by(sgqlc.types.Input):
 
 
 class book_mappings_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1889,7 +1901,7 @@ class book_mappings_stddev_order_by(sgqlc.types.Input):
 
 
 class book_mappings_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1901,7 +1913,7 @@ class book_mappings_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class book_mappings_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1913,14 +1925,14 @@ class book_mappings_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class book_mappings_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('book_mappings_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class book_mappings_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'created_at', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded', 'loaded_at', 'normalized_at', 'original_book_id', 'platform_id', 'state', 'updated_at', 'verified', 'verified_at')
     attempts = sgqlc.types.Field(Int, graphql_name='attempts')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -1941,7 +1953,7 @@ class book_mappings_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class book_mappings_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1953,7 +1965,7 @@ class book_mappings_sum_order_by(sgqlc.types.Input):
 
 
 class book_mappings_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1965,7 +1977,7 @@ class book_mappings_var_pop_order_by(sgqlc.types.Input):
 
 
 class book_mappings_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1977,7 +1989,7 @@ class book_mappings_var_samp_order_by(sgqlc.types.Input):
 
 
 class book_mappings_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book_id', 'edition_id', 'external_data_id', 'id', 'original_book_id', 'platform_id')
     attempts = sgqlc.types.Field(order_by, graphql_name='attempts')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -1989,7 +2001,7 @@ class book_mappings_variance_order_by(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'bool_and', 'bool_or', 'corr', 'count', 'covar_samp', 'max', 'min', 'stddev_samp', 'sum', 'var_samp')
     avg = sgqlc.types.Field('book_series_aggregate_bool_exp_avg', graphql_name='avg')
     bool_and = sgqlc.types.Field('book_series_aggregate_bool_exp_bool_and', graphql_name='bool_and')
@@ -2005,7 +2017,7 @@ class book_series_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_avg(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_avg_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2014,7 +2026,7 @@ class book_series_aggregate_bool_exp_avg(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2023,7 +2035,7 @@ class book_series_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2032,7 +2044,7 @@ class book_series_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_corr(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null('book_series_aggregate_bool_exp_corr_arguments'), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2041,14 +2053,14 @@ class book_series_aggregate_bool_exp_corr(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_corr_arguments(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('x', 'y')
     x = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_corr_arguments_columns), graphql_name='X')
     y = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_corr_arguments_columns), graphql_name='Y')
 
 
 class book_series_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(book_series_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2057,7 +2069,7 @@ class book_series_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_covar_samp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null('book_series_aggregate_bool_exp_covar_samp_arguments'), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2066,14 +2078,14 @@ class book_series_aggregate_bool_exp_covar_samp(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_covar_samp_arguments(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('x', 'y')
     x = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_covar_samp_arguments_columns), graphql_name='X')
     y = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_covar_samp_arguments_columns), graphql_name='Y')
 
 
 class book_series_aggregate_bool_exp_max(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_max_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2082,7 +2094,7 @@ class book_series_aggregate_bool_exp_max(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_min(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_min_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2091,7 +2103,7 @@ class book_series_aggregate_bool_exp_min(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_stddev_samp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_stddev_samp_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2100,7 +2112,7 @@ class book_series_aggregate_bool_exp_stddev_samp(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_sum(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_sum_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2109,7 +2121,7 @@ class book_series_aggregate_bool_exp_sum(sgqlc.types.Input):
 
 
 class book_series_aggregate_bool_exp_var_samp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(book_series_select_column_book_series_aggregate_bool_exp_var_samp_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2118,7 +2130,7 @@ class book_series_aggregate_bool_exp_var_samp(sgqlc.types.Input):
 
 
 class book_series_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('book_series_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -2134,7 +2146,7 @@ class book_series_aggregate_order_by(sgqlc.types.Input):
 
 
 class book_series_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2143,7 +2155,7 @@ class book_series_avg_order_by(sgqlc.types.Input):
 
 
 class book_series_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'compilation', 'created_at', 'details', 'featured', 'id', 'position', 'series', 'series_id', 'updated_at')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('book_series_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('book_series_bool_exp', graphql_name='_not')
@@ -2162,7 +2174,7 @@ class book_series_bool_exp(sgqlc.types.Input):
 
 
 class book_series_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'details', 'id', 'position', 'series_id', 'updated_at')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -2174,7 +2186,7 @@ class book_series_max_order_by(sgqlc.types.Input):
 
 
 class book_series_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'details', 'id', 'position', 'series_id', 'updated_at')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -2186,7 +2198,7 @@ class book_series_min_order_by(sgqlc.types.Input):
 
 
 class book_series_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'compilation', 'created_at', 'details', 'featured', 'id', 'position', 'series', 'series_id', 'updated_at')
     book = sgqlc.types.Field('books_order_by', graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -2202,7 +2214,7 @@ class book_series_order_by(sgqlc.types.Input):
 
 
 class book_series_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2211,7 +2223,7 @@ class book_series_stddev_order_by(sgqlc.types.Input):
 
 
 class book_series_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2220,7 +2232,7 @@ class book_series_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class book_series_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2229,14 +2241,14 @@ class book_series_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class book_series_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('book_series_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class book_series_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'compilation', 'created_at', 'details', 'featured', 'id', 'position', 'series_id', 'updated_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     compilation = sgqlc.types.Field(Boolean, graphql_name='compilation')
@@ -2250,7 +2262,7 @@ class book_series_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class book_series_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2259,7 +2271,7 @@ class book_series_sum_order_by(sgqlc.types.Input):
 
 
 class book_series_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2268,7 +2280,7 @@ class book_series_var_pop_order_by(sgqlc.types.Input):
 
 
 class book_series_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2277,7 +2289,7 @@ class book_series_var_samp_order_by(sgqlc.types.Input):
 
 
 class book_series_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2286,7 +2298,7 @@ class book_series_variance_order_by(sgqlc.types.Input):
 
 
 class book_statuses_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'books', 'books_aggregate', 'id', 'name')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('book_statuses_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('book_statuses_bool_exp', graphql_name='_not')
@@ -2298,7 +2310,7 @@ class book_statuses_bool_exp(sgqlc.types.Input):
 
 
 class book_statuses_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_aggregate', 'id', 'name')
     books_aggregate = sgqlc.types.Field('books_aggregate_order_by', graphql_name='books_aggregate')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -2306,21 +2318,21 @@ class book_statuses_order_by(sgqlc.types.Input):
 
 
 class book_statuses_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('book_statuses_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class book_statuses_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'name')
     id = sgqlc.types.Field(smallint, graphql_name='id')
     name = sgqlc.types.Field(String, graphql_name='name')
 
 
 class bookles_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'created_at', 'date', 'id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('bookles_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('bookles_bool_exp', graphql_name='_not')
@@ -2333,7 +2345,7 @@ class bookles_bool_exp(sgqlc.types.Input):
 
 
 class bookles_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'date', 'id')
     book = sgqlc.types.Field('books_order_by', graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -2343,14 +2355,14 @@ class bookles_order_by(sgqlc.types.Input):
 
 
 class bookles_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('bookles_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class bookles_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date', 'id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -2359,7 +2371,7 @@ class bookles_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class books_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('bool_and', 'bool_or', 'count')
     bool_and = sgqlc.types.Field('books_aggregate_bool_exp_bool_and', graphql_name='bool_and')
     bool_or = sgqlc.types.Field('books_aggregate_bool_exp_bool_or', graphql_name='bool_or')
@@ -2367,7 +2379,7 @@ class books_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class books_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(books_select_column_books_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2376,7 +2388,7 @@ class books_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class books_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(books_select_column_books_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2385,7 +2397,7 @@ class books_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class books_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(books_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -2394,7 +2406,7 @@ class books_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class books_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('books_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -2410,7 +2422,7 @@ class books_aggregate_order_by(sgqlc.types.Input):
 
 
 class books_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2444,7 +2456,7 @@ class books_avg_order_by(sgqlc.types.Input):
 
 
 class books_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'activities_count', 'alternative_titles', 'audio_seconds', 'book_category_id', 'book_characters', 'book_mappings', 'book_series', 'book_series_aggregate', 'book_status', 'book_status_id', 'cached_contributors', 'cached_featured_series', 'cached_header_image', 'cached_image', 'cached_tags', 'canonical', 'canonical_id', 'collection_import_results', 'compilation', 'contributions', 'contributions_aggregate', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition', 'default_audio_edition_id', 'default_cover_edition', 'default_cover_edition_id', 'default_ebook_edition', 'default_ebook_edition_id', 'default_physical_edition', 'default_physical_edition_id', 'description', 'editions', 'editions_count', 'featured_book_series', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image', 'image_id', 'images', 'import_platform_id', 'is_partial_book', 'journals_count', 'links', 'list_books', 'list_books_aggregate', 'lists_count', 'literary_type_id', 'locked', 'pages', 'parent_book', 'parent_book_id', 'prompt_answers', 'prompt_answers_aggregate', 'prompt_summaries', 'prompts_count', 'rating', 'ratings_count', 'ratings_distribution', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'taggable_counts', 'taggings', 'taggings_aggregate', 'title', 'updated_at', 'user_books', 'user_books_aggregate', 'users_count', 'users_read_count')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('books_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('books_bool_exp', graphql_name='_not')
@@ -2529,7 +2541,7 @@ class books_bool_exp(sgqlc.types.Input):
 
 
 class books_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'description', 'editions_count', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2572,7 +2584,7 @@ class books_max_order_by(sgqlc.types.Input):
 
 
 class books_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'description', 'editions_count', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2615,7 +2627,7 @@ class books_min_order_by(sgqlc.types.Input):
 
 
 class books_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'alternative_titles', 'audio_seconds', 'book_category_id', 'book_characters_aggregate', 'book_mappings_aggregate', 'book_series_aggregate', 'book_status', 'book_status_id', 'cached_contributors', 'cached_featured_series', 'cached_header_image', 'cached_image', 'cached_tags', 'canonical', 'canonical_id', 'collection_import_results_aggregate', 'compilation', 'contributions_aggregate', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition', 'default_audio_edition_id', 'default_cover_edition', 'default_cover_edition_id', 'default_ebook_edition', 'default_ebook_edition_id', 'default_physical_edition', 'default_physical_edition_id', 'description', 'editions_aggregate', 'editions_count', 'featured_book_series', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image', 'image_id', 'images_aggregate', 'import_platform_id', 'is_partial_book', 'journals_count', 'links', 'list_books_aggregate', 'lists_count', 'literary_type_id', 'locked', 'pages', 'parent_book', 'parent_book_id', 'prompt_answers_aggregate', 'prompt_summaries_aggregate', 'prompts_count', 'rating', 'ratings_count', 'ratings_distribution', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'taggable_counts_aggregate', 'taggings_aggregate', 'title', 'updated_at', 'user_books_aggregate', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     alternative_titles = sgqlc.types.Field(order_by, graphql_name='alternative_titles')
@@ -2691,7 +2703,7 @@ class books_order_by(sgqlc.types.Input):
 
 
 class books_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2725,7 +2737,7 @@ class books_stddev_order_by(sgqlc.types.Input):
 
 
 class books_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2759,7 +2771,7 @@ class books_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class books_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2793,14 +2805,14 @@ class books_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class books_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('books_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class books_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'alternative_titles', 'audio_seconds', 'book_category_id', 'book_status_id', 'cached_contributors', 'cached_featured_series', 'cached_header_image', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'description', 'editions_count', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image_id', 'import_platform_id', 'is_partial_book', 'journals_count', 'links', 'lists_count', 'literary_type_id', 'locked', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'ratings_distribution', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Int, graphql_name='activities_count')
     alternative_titles = sgqlc.types.Field(json, graphql_name='alternative_titles')
@@ -2854,7 +2866,7 @@ class books_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class books_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2888,7 +2900,7 @@ class books_sum_order_by(sgqlc.types.Input):
 
 
 class books_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2922,7 +2934,7 @@ class books_var_pop_order_by(sgqlc.types.Input):
 
 
 class books_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2956,7 +2968,7 @@ class books_var_samp_order_by(sgqlc.types.Input):
 
 
 class books_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(order_by, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -2990,7 +3002,7 @@ class books_variance_order_by(sgqlc.types.Input):
 
 
 class characters_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'biography', 'book_characters', 'books_count', 'cached_tags', 'canonical', 'canonical_books_count', 'canonical_id', 'contributions', 'contributions_aggregate', 'created_at', 'gender_id', 'has_disability', 'id', 'image_id', 'is_lgbtq', 'is_poc', 'locked', 'name', 'object_type', 'openlibrary_url', 'slug', 'state', 'updated_at', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('characters_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('characters_bool_exp', graphql_name='_not')
@@ -3022,7 +3034,7 @@ class characters_bool_exp(sgqlc.types.Input):
 
 
 class characters_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('biography', 'book_characters_aggregate', 'books_count', 'cached_tags', 'canonical', 'canonical_books_count', 'canonical_id', 'contributions_aggregate', 'created_at', 'gender_id', 'has_disability', 'id', 'image_id', 'is_lgbtq', 'is_poc', 'locked', 'name', 'object_type', 'openlibrary_url', 'slug', 'state', 'updated_at', 'user_id')
     biography = sgqlc.types.Field(order_by, graphql_name='biography')
     book_characters_aggregate = sgqlc.types.Field(book_characters_aggregate_order_by, graphql_name='book_characters_aggregate')
@@ -3050,14 +3062,14 @@ class characters_order_by(sgqlc.types.Input):
 
 
 class characters_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('characters_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class characters_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('biography', 'books_count', 'cached_tags', 'canonical_books_count', 'canonical_id', 'created_at', 'gender_id', 'has_disability', 'id', 'image_id', 'is_lgbtq', 'is_poc', 'locked', 'name', 'object_type', 'openlibrary_url', 'slug', 'state', 'updated_at', 'user_id')
     biography = sgqlc.types.Field(String, graphql_name='biography')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
@@ -3082,7 +3094,7 @@ class characters_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class citext_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_ilike', '_in', '_iregex', '_is_null', '_like', '_lt', '_lte', '_neq', '_nilike', '_nin', '_niregex', '_nlike', '_nregex', '_nsimilar', '_regex', '_similar')
     _eq = sgqlc.types.Field(citext, graphql_name='_eq')
     _gt = sgqlc.types.Field(citext, graphql_name='_gt')
@@ -3106,7 +3118,7 @@ class citext_comparison_exp(sgqlc.types.Input):
 
 
 class collection_import_results_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('collection_import_results_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -3122,7 +3134,7 @@ class collection_import_results_aggregate_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3131,7 +3143,7 @@ class collection_import_results_avg_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'author', 'book', 'book_id', 'collection_import', 'collection_import_id', 'contents', 'error', 'external_id', 'id', 'report', 'state', 'title')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('collection_import_results_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('collection_import_results_bool_exp', graphql_name='_not')
@@ -3151,13 +3163,13 @@ class collection_import_results_bool_exp(sgqlc.types.Input):
 
 
 class collection_import_results_inc_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('report',)
     report = sgqlc.types.Field(Int, graphql_name='report')
 
 
 class collection_import_results_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book_id', 'collection_import_id', 'error', 'external_id', 'id', 'report', 'state', 'title')
     author = sgqlc.types.Field(order_by, graphql_name='author')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -3171,7 +3183,7 @@ class collection_import_results_max_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book_id', 'collection_import_id', 'error', 'external_id', 'id', 'report', 'state', 'title')
     author = sgqlc.types.Field(order_by, graphql_name='author')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -3185,7 +3197,7 @@ class collection_import_results_min_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book', 'book_id', 'collection_import', 'collection_import_id', 'contents', 'error', 'external_id', 'id', 'report', 'state', 'title')
     author = sgqlc.types.Field(order_by, graphql_name='author')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
@@ -3202,20 +3214,20 @@ class collection_import_results_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_pk_columns_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
 
 
 class collection_import_results_set_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('report', 'state')
     report = sgqlc.types.Field(Int, graphql_name='report')
     state = sgqlc.types.Field(String, graphql_name='state')
 
 
 class collection_import_results_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3224,7 +3236,7 @@ class collection_import_results_stddev_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3233,7 +3245,7 @@ class collection_import_results_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3242,14 +3254,14 @@ class collection_import_results_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('collection_import_results_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class collection_import_results_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book_id', 'collection_import_id', 'contents', 'error', 'external_id', 'id', 'report', 'state', 'title')
     author = sgqlc.types.Field(String, graphql_name='author')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -3264,7 +3276,7 @@ class collection_import_results_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class collection_import_results_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3273,7 +3285,7 @@ class collection_import_results_sum_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_updates(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_inc', '_set', 'where')
     _inc = sgqlc.types.Field(collection_import_results_inc_input, graphql_name='_inc')
     _set = sgqlc.types.Field(collection_import_results_set_input, graphql_name='_set')
@@ -3281,7 +3293,7 @@ class collection_import_results_updates(sgqlc.types.Input):
 
 
 class collection_import_results_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3290,7 +3302,7 @@ class collection_import_results_var_pop_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3299,7 +3311,7 @@ class collection_import_results_var_samp_order_by(sgqlc.types.Input):
 
 
 class collection_import_results_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'collection_import_id', 'id', 'report')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     collection_import_id = sgqlc.types.Field(order_by, graphql_name='collection_import_id')
@@ -3308,7 +3320,7 @@ class collection_import_results_variance_order_by(sgqlc.types.Input):
 
 
 class collection_imports_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('collection_imports_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -3324,7 +3336,7 @@ class collection_imports_aggregate_order_by(sgqlc.types.Input):
 
 
 class collection_imports_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3338,7 +3350,7 @@ class collection_imports_avg_order_by(sgqlc.types.Input):
 
 
 class collection_imports_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'collection_import_results', 'completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'override_date_read', 'override_ratings', 'override_shelves', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('collection_imports_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('collection_imports_bool_exp', graphql_name='_not')
@@ -3368,7 +3380,7 @@ class collection_imports_bool_exp(sgqlc.types.Input):
 
 
 class collection_imports_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user_id')
     completed_at = sgqlc.types.Field(order_by, graphql_name='completed_at')
     contents_key = sgqlc.types.Field(order_by, graphql_name='contents_key')
@@ -3390,7 +3402,7 @@ class collection_imports_max_order_by(sgqlc.types.Input):
 
 
 class collection_imports_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user_id')
     completed_at = sgqlc.types.Field(order_by, graphql_name='completed_at')
     contents_key = sgqlc.types.Field(order_by, graphql_name='contents_key')
@@ -3412,7 +3424,7 @@ class collection_imports_min_order_by(sgqlc.types.Input):
 
 
 class collection_imports_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('collection_import_results_aggregate', 'completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'override_date_read', 'override_ratings', 'override_shelves', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user', 'user_id')
     collection_import_results_aggregate = sgqlc.types.Field(collection_import_results_aggregate_order_by, graphql_name='collection_import_results_aggregate')
     completed_at = sgqlc.types.Field(order_by, graphql_name='completed_at')
@@ -3439,7 +3451,7 @@ class collection_imports_order_by(sgqlc.types.Input):
 
 
 class collection_imports_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3453,7 +3465,7 @@ class collection_imports_stddev_order_by(sgqlc.types.Input):
 
 
 class collection_imports_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3467,7 +3479,7 @@ class collection_imports_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class collection_imports_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3481,14 +3493,14 @@ class collection_imports_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class collection_imports_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('collection_imports_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class collection_imports_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'override_date_read', 'override_ratings', 'override_shelves', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user_id')
     completed_at = sgqlc.types.Field(timestamptz, graphql_name='completed_at')
     contents_key = sgqlc.types.Field(String, graphql_name='contents_key')
@@ -3513,7 +3525,7 @@ class collection_imports_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class collection_imports_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3527,7 +3539,7 @@ class collection_imports_sum_order_by(sgqlc.types.Input):
 
 
 class collection_imports_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3541,7 +3553,7 @@ class collection_imports_var_pop_order_by(sgqlc.types.Input):
 
 
 class collection_imports_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3555,7 +3567,7 @@ class collection_imports_var_samp_order_by(sgqlc.types.Input):
 
 
 class collection_imports_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('failure_count', 'id', 'platform_id', 'processed_count', 'reimport_count', 'success_count', 'tag_resolution', 'total_count', 'user_id')
     failure_count = sgqlc.types.Field(order_by, graphql_name='failure_count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -3569,13 +3581,13 @@ class collection_imports_variance_order_by(sgqlc.types.Input):
 
 
 class contributions_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count',)
     count = sgqlc.types.Field('contributions_aggregate_bool_exp_count', graphql_name='count')
 
 
 class contributions_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(contributions_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -3584,7 +3596,7 @@ class contributions_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class contributions_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('contributions_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -3600,7 +3612,7 @@ class contributions_aggregate_order_by(sgqlc.types.Input):
 
 
 class contributions_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3608,7 +3620,7 @@ class contributions_avg_order_by(sgqlc.types.Input):
 
 
 class contributions_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'author', 'author_id', 'book', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('contributions_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('contributions_bool_exp', graphql_name='_not')
@@ -3625,7 +3637,7 @@ class contributions_bool_exp(sgqlc.types.Input):
 
 
 class contributions_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3637,7 +3649,7 @@ class contributions_max_order_by(sgqlc.types.Input):
 
 
 class contributions_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3649,7 +3661,7 @@ class contributions_min_order_by(sgqlc.types.Input):
 
 
 class contributions_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'author_id', 'book', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author = sgqlc.types.Field(authors_order_by, graphql_name='author')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
@@ -3663,7 +3675,7 @@ class contributions_order_by(sgqlc.types.Input):
 
 
 class contributions_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3671,7 +3683,7 @@ class contributions_stddev_order_by(sgqlc.types.Input):
 
 
 class contributions_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3679,7 +3691,7 @@ class contributions_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class contributions_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3687,14 +3699,14 @@ class contributions_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class contributions_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('contributions_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class contributions_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Int, graphql_name='contributable_id')
@@ -3706,7 +3718,7 @@ class contributions_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class contributions_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3714,7 +3726,7 @@ class contributions_sum_order_by(sgqlc.types.Input):
 
 
 class contributions_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3722,7 +3734,7 @@ class contributions_var_pop_order_by(sgqlc.types.Input):
 
 
 class contributions_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3730,7 +3742,7 @@ class contributions_var_samp_order_by(sgqlc.types.Input):
 
 
 class contributions_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(order_by, graphql_name='contributable_id')
@@ -3738,7 +3750,7 @@ class contributions_variance_order_by(sgqlc.types.Input):
 
 
 class countries_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'code2', 'code3', 'created_at', 'editions', 'id', 'intermediate_region', 'intermediate_region_code', 'iso_3166', 'name', 'phone_code', 'region', 'region_code', 'sub_region', 'sub_region_code', 'updated_at')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('countries_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('countries_bool_exp', graphql_name='_not')
@@ -3761,7 +3773,7 @@ class countries_bool_exp(sgqlc.types.Input):
 
 
 class countries_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('code2', 'code3', 'created_at', 'editions_aggregate', 'id', 'intermediate_region', 'intermediate_region_code', 'iso_3166', 'name', 'phone_code', 'region', 'region_code', 'sub_region', 'sub_region_code', 'updated_at')
     code2 = sgqlc.types.Field(order_by, graphql_name='code2')
     code3 = sgqlc.types.Field(order_by, graphql_name='code3')
@@ -3781,14 +3793,14 @@ class countries_order_by(sgqlc.types.Input):
 
 
 class countries_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('countries_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class countries_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('code2', 'code3', 'created_at', 'id', 'intermediate_region', 'intermediate_region_code', 'iso_3166', 'name', 'phone_code', 'region', 'region_code', 'sub_region', 'sub_region_code', 'updated_at')
     code2 = sgqlc.types.Field(String, graphql_name='code2')
     code3 = sgqlc.types.Field(String, graphql_name='code3')
@@ -3807,7 +3819,7 @@ class countries_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class date_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(date, graphql_name='_eq')
     _gt = sgqlc.types.Field(date, graphql_name='_gt')
@@ -3821,7 +3833,7 @@ class date_comparison_exp(sgqlc.types.Input):
 
 
 class editions_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('editions_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -3837,7 +3849,7 @@ class editions_aggregate_order_by(sgqlc.types.Input):
 
 
 class editions_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -3861,7 +3873,7 @@ class editions_avg_order_by(sgqlc.types.Input):
 
 
 class editions_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'alternative_titles', 'asin', 'audio_seconds', 'book', 'book_id', 'book_mappings', 'cached_contributors', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'contributions', 'contributions_aggregate', 'country', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image', 'image_id', 'images', 'isbn_10', 'isbn_10_valid', 'isbn_13', 'isbn_13_valid', 'isbns_match', 'language', 'language_id', 'list_books', 'list_books_aggregate', 'lists_count', 'locked', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher', 'publisher_id', 'rating', 'reading_format', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('editions_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('editions_bool_exp', graphql_name='_not')
@@ -3925,7 +3937,7 @@ class editions_bool_exp(sgqlc.types.Input):
 
 
 class editions_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('asin', 'audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image_id', 'isbn_10', 'isbn_13', 'language_id', 'lists_count', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher_id', 'rating', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     asin = sgqlc.types.Field(order_by, graphql_name='asin')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -3965,7 +3977,7 @@ class editions_max_order_by(sgqlc.types.Input):
 
 
 class editions_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('asin', 'audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image_id', 'isbn_10', 'isbn_13', 'language_id', 'lists_count', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher_id', 'rating', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     asin = sgqlc.types.Field(order_by, graphql_name='asin')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
@@ -4005,7 +4017,7 @@ class editions_min_order_by(sgqlc.types.Input):
 
 
 class editions_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alternative_titles', 'asin', 'audio_seconds', 'book', 'book_id', 'book_mappings_aggregate', 'cached_contributors', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'contributions_aggregate', 'country', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image', 'image_id', 'images_aggregate', 'isbn_10', 'isbn_10_valid', 'isbn_13', 'isbn_13_valid', 'isbns_match', 'language', 'language_id', 'list_books_aggregate', 'lists_count', 'locked', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher', 'publisher_id', 'rating', 'reading_format', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     alternative_titles = sgqlc.types.Field(order_by, graphql_name='alternative_titles')
     asin = sgqlc.types.Field(order_by, graphql_name='asin')
@@ -4064,7 +4076,7 @@ class editions_order_by(sgqlc.types.Input):
 
 
 class editions_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4088,7 +4100,7 @@ class editions_stddev_order_by(sgqlc.types.Input):
 
 
 class editions_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4112,7 +4124,7 @@ class editions_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class editions_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4136,14 +4148,14 @@ class editions_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class editions_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('editions_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class editions_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alternative_titles', 'asin', 'audio_seconds', 'book_id', 'cached_contributors', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image_id', 'isbn_10', 'isbn_10_valid', 'isbn_13', 'isbn_13_valid', 'isbns_match', 'language_id', 'lists_count', 'locked', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher_id', 'rating', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     alternative_titles = sgqlc.types.Field(json, graphql_name='alternative_titles')
     asin = sgqlc.types.Field(String, graphql_name='asin')
@@ -4192,7 +4204,7 @@ class editions_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class editions_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4216,7 +4228,7 @@ class editions_sum_order_by(sgqlc.types.Input):
 
 
 class editions_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4240,7 +4252,7 @@ class editions_var_pop_order_by(sgqlc.types.Input):
 
 
 class editions_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4264,7 +4276,7 @@ class editions_var_samp_order_by(sgqlc.types.Input):
 
 
 class editions_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('audio_seconds', 'book_id', 'canonical_id', 'country_id', 'created_by_user_id', 'curation_status', 'id', 'image_id', 'language_id', 'lists_count', 'original_book_id', 'pages', 'publisher_id', 'rating', 'reading_format_id', 'release_year', 'score', 'users_count', 'users_read_count')
     audio_seconds = sgqlc.types.Field(order_by, graphql_name='audio_seconds')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4288,7 +4300,7 @@ class editions_variance_order_by(sgqlc.types.Input):
 
 
 class flag_statuses_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'id', 'status', 'user_flags')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('flag_statuses_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('flag_statuses_bool_exp', graphql_name='_not')
@@ -4299,7 +4311,7 @@ class flag_statuses_bool_exp(sgqlc.types.Input):
 
 
 class flag_statuses_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'status', 'user_flags_aggregate')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     status = sgqlc.types.Field(order_by, graphql_name='status')
@@ -4307,21 +4319,21 @@ class flag_statuses_order_by(sgqlc.types.Input):
 
 
 class flag_statuses_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('flag_statuses_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class flag_statuses_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'status')
     id = sgqlc.types.Field(Int, graphql_name='id')
     status = sgqlc.types.Field(String, graphql_name='status')
 
 
 class float8_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(float8, graphql_name='_eq')
     _gt = sgqlc.types.Field(float8, graphql_name='_gt')
@@ -4335,7 +4347,7 @@ class float8_comparison_exp(sgqlc.types.Input):
 
 
 class followed_lists_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('followed_lists_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -4351,7 +4363,7 @@ class followed_lists_aggregate_order_by(sgqlc.types.Input):
 
 
 class followed_lists_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4359,7 +4371,7 @@ class followed_lists_avg_order_by(sgqlc.types.Input):
 
 
 class followed_lists_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'created_at', 'id', 'list', 'list_id', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('followed_lists_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('followed_lists_bool_exp', graphql_name='_not')
@@ -4373,7 +4385,7 @@ class followed_lists_bool_exp(sgqlc.types.Input):
 
 
 class followed_lists_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'list_id', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4382,7 +4394,7 @@ class followed_lists_max_order_by(sgqlc.types.Input):
 
 
 class followed_lists_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'list_id', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4391,7 +4403,7 @@ class followed_lists_min_order_by(sgqlc.types.Input):
 
 
 class followed_lists_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'list', 'list_id', 'user', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4402,7 +4414,7 @@ class followed_lists_order_by(sgqlc.types.Input):
 
 
 class followed_lists_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4410,7 +4422,7 @@ class followed_lists_stddev_order_by(sgqlc.types.Input):
 
 
 class followed_lists_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4418,7 +4430,7 @@ class followed_lists_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class followed_lists_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4426,14 +4438,14 @@ class followed_lists_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class followed_lists_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('followed_lists_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class followed_lists_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'list_id', 'user_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -4442,7 +4454,7 @@ class followed_lists_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class followed_lists_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4450,7 +4462,7 @@ class followed_lists_sum_order_by(sgqlc.types.Input):
 
 
 class followed_lists_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4458,7 +4470,7 @@ class followed_lists_var_pop_order_by(sgqlc.types.Input):
 
 
 class followed_lists_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4466,7 +4478,7 @@ class followed_lists_var_samp_order_by(sgqlc.types.Input):
 
 
 class followed_lists_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     list_id = sgqlc.types.Field(order_by, graphql_name='list_id')
@@ -4474,7 +4486,7 @@ class followed_lists_variance_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('followed_prompts_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -4490,7 +4502,7 @@ class followed_prompts_aggregate_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4499,7 +4511,7 @@ class followed_prompts_avg_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'created_at', 'id', 'order', 'prompt', 'prompt_id', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('followed_prompts_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('followed_prompts_bool_exp', graphql_name='_not')
@@ -4514,13 +4526,13 @@ class followed_prompts_bool_exp(sgqlc.types.Input):
 
 
 class followed_prompts_inc_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('order',)
     order = sgqlc.types.Field(Int, graphql_name='order')
 
 
 class followed_prompts_insert_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('order', 'prompt_id', 'user_id')
     order = sgqlc.types.Field(Int, graphql_name='order')
     prompt_id = sgqlc.types.Field(Int, graphql_name='prompt_id')
@@ -4528,7 +4540,7 @@ class followed_prompts_insert_input(sgqlc.types.Input):
 
 
 class followed_prompts_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'order', 'prompt_id', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4538,7 +4550,7 @@ class followed_prompts_max_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'order', 'prompt_id', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4548,7 +4560,7 @@ class followed_prompts_min_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_on_conflict(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('constraint', 'update_columns', 'where')
     constraint = sgqlc.types.Field(sgqlc.types.non_null(followed_prompts_constraint), graphql_name='constraint')
     update_columns = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(followed_prompts_update_column))), graphql_name='update_columns')
@@ -4556,7 +4568,7 @@ class followed_prompts_on_conflict(sgqlc.types.Input):
 
 
 class followed_prompts_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'order', 'prompt', 'prompt_id', 'user', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4568,19 +4580,19 @@ class followed_prompts_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_pk_columns_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
 
 
 class followed_prompts_set_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('order',)
     order = sgqlc.types.Field(Int, graphql_name='order')
 
 
 class followed_prompts_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4589,7 +4601,7 @@ class followed_prompts_stddev_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4598,7 +4610,7 @@ class followed_prompts_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4607,14 +4619,14 @@ class followed_prompts_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('followed_prompts_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class followed_prompts_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'order', 'prompt_id', 'user_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -4624,7 +4636,7 @@ class followed_prompts_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class followed_prompts_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4633,7 +4645,7 @@ class followed_prompts_sum_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_updates(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_inc', '_set', 'where')
     _inc = sgqlc.types.Field(followed_prompts_inc_input, graphql_name='_inc')
     _set = sgqlc.types.Field(followed_prompts_set_input, graphql_name='_set')
@@ -4641,7 +4653,7 @@ class followed_prompts_updates(sgqlc.types.Input):
 
 
 class followed_prompts_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4650,7 +4662,7 @@ class followed_prompts_var_pop_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4659,7 +4671,7 @@ class followed_prompts_var_samp_order_by(sgqlc.types.Input):
 
 
 class followed_prompts_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'order', 'prompt_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     order = sgqlc.types.Field(order_by, graphql_name='order')
@@ -4668,7 +4680,7 @@ class followed_prompts_variance_order_by(sgqlc.types.Input):
 
 
 class followed_user_books_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'follower_user', 'follower_user_id', 'user', 'user_book', 'user_book_id', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('followed_user_books_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('followed_user_books_bool_exp', graphql_name='_not')
@@ -4684,7 +4696,7 @@ class followed_user_books_bool_exp(sgqlc.types.Input):
 
 
 class followed_user_books_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'follower_user', 'follower_user_id', 'user', 'user_book', 'user_book_id', 'user_id')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4697,14 +4709,14 @@ class followed_user_books_order_by(sgqlc.types.Input):
 
 
 class followed_user_books_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('followed_user_books_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class followed_user_books_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Int, graphql_name='follower_user_id')
@@ -4713,7 +4725,7 @@ class followed_user_books_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class followed_users_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('followed_users_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -4729,7 +4741,7 @@ class followed_users_aggregate_order_by(sgqlc.types.Input):
 
 
 class followed_users_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4737,7 +4749,7 @@ class followed_users_avg_order_by(sgqlc.types.Input):
 
 
 class followed_users_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'created_at', 'followed_user', 'followed_user_id', 'id', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('followed_users_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('followed_users_bool_exp', graphql_name='_not')
@@ -4751,7 +4763,7 @@ class followed_users_bool_exp(sgqlc.types.Input):
 
 
 class followed_users_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followed_user_id', 'id', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
@@ -4760,7 +4772,7 @@ class followed_users_max_order_by(sgqlc.types.Input):
 
 
 class followed_users_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followed_user_id', 'id', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
@@ -4769,7 +4781,7 @@ class followed_users_min_order_by(sgqlc.types.Input):
 
 
 class followed_users_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followed_user', 'followed_user_id', 'id', 'user', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     followed_user = sgqlc.types.Field('users_order_by', graphql_name='followed_user')
@@ -4780,7 +4792,7 @@ class followed_users_order_by(sgqlc.types.Input):
 
 
 class followed_users_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4788,7 +4800,7 @@ class followed_users_stddev_order_by(sgqlc.types.Input):
 
 
 class followed_users_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4796,7 +4808,7 @@ class followed_users_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class followed_users_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4804,14 +4816,14 @@ class followed_users_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class followed_users_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('followed_users_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class followed_users_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followed_user_id', 'id', 'user_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     followed_user_id = sgqlc.types.Field(Int, graphql_name='followed_user_id')
@@ -4820,7 +4832,7 @@ class followed_users_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class followed_users_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4828,7 +4840,7 @@ class followed_users_sum_order_by(sgqlc.types.Input):
 
 
 class followed_users_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4836,7 +4848,7 @@ class followed_users_var_pop_order_by(sgqlc.types.Input):
 
 
 class followed_users_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4844,7 +4856,7 @@ class followed_users_var_samp_order_by(sgqlc.types.Input):
 
 
 class followed_users_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followed_user_id', 'id', 'user_id')
     followed_user_id = sgqlc.types.Field(order_by, graphql_name='followed_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4852,7 +4864,7 @@ class followed_users_variance_order_by(sgqlc.types.Input):
 
 
 class following_user_books_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'followed_user_id', 'following_user', 'user', 'user_book', 'user_book_id', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('following_user_books_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('following_user_books_bool_exp', graphql_name='_not')
@@ -4868,7 +4880,7 @@ class following_user_books_bool_exp(sgqlc.types.Input):
 
 
 class following_user_books_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'followed_user_id', 'following_user', 'user', 'user_book', 'user_book_id', 'user_id')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -4881,14 +4893,14 @@ class following_user_books_order_by(sgqlc.types.Input):
 
 
 class following_user_books_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('following_user_books_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class following_user_books_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Int, graphql_name='followed_user_id')
@@ -4897,13 +4909,13 @@ class following_user_books_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class follows_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count',)
     count = sgqlc.types.Field('follows_aggregate_bool_exp_count', graphql_name='count')
 
 
 class follows_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(follows_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -4912,7 +4924,7 @@ class follows_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class follows_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('follows_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -4928,7 +4940,7 @@ class follows_aggregate_order_by(sgqlc.types.Input):
 
 
 class follows_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -4936,7 +4948,7 @@ class follows_avg_order_by(sgqlc.types.Input):
 
 
 class follows_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'author', 'book', 'character', 'created_at', 'edition', 'followable_id', 'followable_type', 'id', 'list', 'publisher', 'series', 'updated_at', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('follows_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('follows_bool_exp', graphql_name='_not')
@@ -4958,7 +4970,7 @@ class follows_bool_exp(sgqlc.types.Input):
 
 
 class follows_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followable_id', 'followable_type', 'id', 'updated_at', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
@@ -4969,7 +4981,7 @@ class follows_max_order_by(sgqlc.types.Input):
 
 
 class follows_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followable_id', 'followable_type', 'id', 'updated_at', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
@@ -4980,7 +4992,7 @@ class follows_min_order_by(sgqlc.types.Input):
 
 
 class follows_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book', 'character', 'created_at', 'edition', 'followable_id', 'followable_type', 'id', 'list', 'publisher', 'series', 'updated_at', 'user', 'user_id')
     author = sgqlc.types.Field(authors_order_by, graphql_name='author')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
@@ -4999,7 +5011,7 @@ class follows_order_by(sgqlc.types.Input):
 
 
 class follows_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5007,7 +5019,7 @@ class follows_stddev_order_by(sgqlc.types.Input):
 
 
 class follows_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5015,7 +5027,7 @@ class follows_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class follows_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5023,14 +5035,14 @@ class follows_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class follows_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('follows_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class follows_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followable_id', 'followable_type', 'id', 'updated_at', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     followable_id = sgqlc.types.Field(bigint, graphql_name='followable_id')
@@ -5041,7 +5053,7 @@ class follows_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class follows_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5049,7 +5061,7 @@ class follows_sum_order_by(sgqlc.types.Input):
 
 
 class follows_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5057,7 +5069,7 @@ class follows_var_pop_order_by(sgqlc.types.Input):
 
 
 class follows_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5065,7 +5077,7 @@ class follows_var_samp_order_by(sgqlc.types.Input):
 
 
 class follows_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(order_by, graphql_name='followable_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5073,7 +5085,7 @@ class follows_variance_order_by(sgqlc.types.Input):
 
 
 class goals_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('goals_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -5089,7 +5101,7 @@ class goals_aggregate_order_by(sgqlc.types.Input):
 
 
 class goals_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5099,7 +5111,7 @@ class goals_avg_order_by(sgqlc.types.Input):
 
 
 class goals_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'archived', 'completed_at', 'conditions', 'description', 'end_date', 'followers', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('goals_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('goals_bool_exp', graphql_name='_not')
@@ -5122,7 +5134,7 @@ class goals_bool_exp(sgqlc.types.Input):
 
 
 class goals_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('completed_at', 'description', 'end_date', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user_id')
     completed_at = sgqlc.types.Field(order_by, graphql_name='completed_at')
     description = sgqlc.types.Field(order_by, graphql_name='description')
@@ -5138,7 +5150,7 @@ class goals_max_order_by(sgqlc.types.Input):
 
 
 class goals_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('completed_at', 'description', 'end_date', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user_id')
     completed_at = sgqlc.types.Field(order_by, graphql_name='completed_at')
     description = sgqlc.types.Field(order_by, graphql_name='description')
@@ -5154,7 +5166,7 @@ class goals_min_order_by(sgqlc.types.Input):
 
 
 class goals_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('archived', 'completed_at', 'conditions', 'description', 'end_date', 'followers_aggregate', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user', 'user_id')
     archived = sgqlc.types.Field(order_by, graphql_name='archived')
     completed_at = sgqlc.types.Field(order_by, graphql_name='completed_at')
@@ -5174,7 +5186,7 @@ class goals_order_by(sgqlc.types.Input):
 
 
 class goals_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5184,7 +5196,7 @@ class goals_stddev_order_by(sgqlc.types.Input):
 
 
 class goals_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5194,7 +5206,7 @@ class goals_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class goals_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5204,14 +5216,14 @@ class goals_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class goals_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('goals_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class goals_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('archived', 'completed_at', 'conditions', 'description', 'end_date', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user_id')
     archived = sgqlc.types.Field(Boolean, graphql_name='archived')
     completed_at = sgqlc.types.Field(timestamptz, graphql_name='completed_at')
@@ -5229,7 +5241,7 @@ class goals_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class goals_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5239,7 +5251,7 @@ class goals_sum_order_by(sgqlc.types.Input):
 
 
 class goals_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5249,7 +5261,7 @@ class goals_var_pop_order_by(sgqlc.types.Input):
 
 
 class goals_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5259,7 +5271,7 @@ class goals_var_samp_order_by(sgqlc.types.Input):
 
 
 class goals_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('goal', 'id', 'privacy_setting_id', 'progress', 'user_id')
     goal = sgqlc.types.Field(order_by, graphql_name='goal')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5269,7 +5281,7 @@ class goals_variance_order_by(sgqlc.types.Input):
 
 
 class images_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('images_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -5285,7 +5297,7 @@ class images_aggregate_order_by(sgqlc.types.Input):
 
 
 class images_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5295,7 +5307,7 @@ class images_avg_order_by(sgqlc.types.Input):
 
 
 class images_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'color', 'colors', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('images_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('images_bool_exp', graphql_name='_not')
@@ -5312,7 +5324,7 @@ class images_bool_exp(sgqlc.types.Input):
 
 
 class images_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('color', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
     color = sgqlc.types.Field(order_by, graphql_name='color')
     height = sgqlc.types.Field(order_by, graphql_name='height')
@@ -5325,7 +5337,7 @@ class images_max_order_by(sgqlc.types.Input):
 
 
 class images_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('color', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
     color = sgqlc.types.Field(order_by, graphql_name='color')
     height = sgqlc.types.Field(order_by, graphql_name='height')
@@ -5338,7 +5350,7 @@ class images_min_order_by(sgqlc.types.Input):
 
 
 class images_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('color', 'colors', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
     color = sgqlc.types.Field(order_by, graphql_name='color')
     colors = sgqlc.types.Field(order_by, graphql_name='colors')
@@ -5352,7 +5364,7 @@ class images_order_by(sgqlc.types.Input):
 
 
 class images_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5362,7 +5374,7 @@ class images_stddev_order_by(sgqlc.types.Input):
 
 
 class images_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5372,7 +5384,7 @@ class images_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class images_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5382,14 +5394,14 @@ class images_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class images_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('images_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class images_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('color', 'colors', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
     color = sgqlc.types.Field(String, graphql_name='color')
     colors = sgqlc.types.Field(jsonb, graphql_name='colors')
@@ -5403,7 +5415,7 @@ class images_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class images_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5413,7 +5425,7 @@ class images_sum_order_by(sgqlc.types.Input):
 
 
 class images_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5423,7 +5435,7 @@ class images_var_pop_order_by(sgqlc.types.Input):
 
 
 class images_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5433,7 +5445,7 @@ class images_var_samp_order_by(sgqlc.types.Input):
 
 
 class images_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('height', 'id', 'imageable_id', 'ratio', 'width')
     height = sgqlc.types.Field(order_by, graphql_name='height')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5443,7 +5455,7 @@ class images_variance_order_by(sgqlc.types.Input):
 
 
 class json_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(json, graphql_name='_eq')
     _gt = sgqlc.types.Field(json, graphql_name='_gt')
@@ -5457,13 +5469,13 @@ class json_comparison_exp(sgqlc.types.Input):
 
 
 class jsonb_cast_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('string',)
     string = sgqlc.types.Field(String_comparison_exp, graphql_name='String')
 
 
 class jsonb_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_cast', '_contained_in', '_contains', '_eq', '_gt', '_gte', '_has_key', '_has_keys_all', '_has_keys_any', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _cast = sgqlc.types.Field(jsonb_cast_exp, graphql_name='_cast')
     _contained_in = sgqlc.types.Field(jsonb, graphql_name='_contained_in')
@@ -5483,7 +5495,7 @@ class jsonb_comparison_exp(sgqlc.types.Input):
 
 
 class languages_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'code2', 'code3', 'id', 'language')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('languages_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('languages_bool_exp', graphql_name='_not')
@@ -5495,7 +5507,7 @@ class languages_bool_exp(sgqlc.types.Input):
 
 
 class languages_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('code2', 'code3', 'id', 'language')
     code2 = sgqlc.types.Field(order_by, graphql_name='code2')
     code3 = sgqlc.types.Field(order_by, graphql_name='code3')
@@ -5504,14 +5516,14 @@ class languages_order_by(sgqlc.types.Input):
 
 
 class languages_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('languages_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class languages_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('code2', 'code3', 'id', 'language')
     code2 = sgqlc.types.Field(String, graphql_name='code2')
     code3 = sgqlc.types.Field(String, graphql_name='code3')
@@ -5520,7 +5532,7 @@ class languages_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class likes_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('likes_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -5536,7 +5548,7 @@ class likes_aggregate_order_by(sgqlc.types.Input):
 
 
 class likes_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5544,7 +5556,7 @@ class likes_avg_order_by(sgqlc.types.Input):
 
 
 class likes_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'activity', 'created_at', 'followers', 'id', 'likeable_id', 'likeable_type', 'list', 'user', 'user_book', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('likes_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('likes_bool_exp', graphql_name='_not')
@@ -5562,7 +5574,7 @@ class likes_bool_exp(sgqlc.types.Input):
 
 
 class likes_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'likeable_id', 'likeable_type', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5572,7 +5584,7 @@ class likes_max_order_by(sgqlc.types.Input):
 
 
 class likes_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'likeable_id', 'likeable_type', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5582,7 +5594,7 @@ class likes_min_order_by(sgqlc.types.Input):
 
 
 class likes_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activity', 'created_at', 'followers_aggregate', 'id', 'likeable_id', 'likeable_type', 'list', 'user', 'user_book', 'user_id')
     activity = sgqlc.types.Field(activities_order_by, graphql_name='activity')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -5597,7 +5609,7 @@ class likes_order_by(sgqlc.types.Input):
 
 
 class likes_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5605,7 +5617,7 @@ class likes_stddev_order_by(sgqlc.types.Input):
 
 
 class likes_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5613,7 +5625,7 @@ class likes_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class likes_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5621,14 +5633,14 @@ class likes_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class likes_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('likes_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class likes_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'likeable_id', 'likeable_type', 'user_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -5638,7 +5650,7 @@ class likes_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class likes_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5646,7 +5658,7 @@ class likes_sum_order_by(sgqlc.types.Input):
 
 
 class likes_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5654,7 +5666,7 @@ class likes_var_pop_order_by(sgqlc.types.Input):
 
 
 class likes_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5662,7 +5674,7 @@ class likes_var_samp_order_by(sgqlc.types.Input):
 
 
 class likes_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'likeable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     likeable_id = sgqlc.types.Field(order_by, graphql_name='likeable_id')
@@ -5670,7 +5682,7 @@ class likes_variance_order_by(sgqlc.types.Input):
 
 
 class links_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'created_at', 'id', 'linkable_id', 'linkable_type', 'social_type', 'updated_at', 'url', 'user', 'username')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('links_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('links_bool_exp', graphql_name='_not')
@@ -5687,7 +5699,7 @@ class links_bool_exp(sgqlc.types.Input):
 
 
 class links_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'linkable_id', 'linkable_type', 'social_type', 'updated_at', 'url', 'user', 'username')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -5701,14 +5713,14 @@ class links_order_by(sgqlc.types.Input):
 
 
 class links_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('links_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class links_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'linkable_id', 'linkable_type', 'social_type', 'updated_at', 'url', 'username')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -5721,7 +5733,7 @@ class links_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class list_books_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('bool_and', 'bool_or', 'count')
     bool_and = sgqlc.types.Field('list_books_aggregate_bool_exp_bool_and', graphql_name='bool_and')
     bool_or = sgqlc.types.Field('list_books_aggregate_bool_exp_bool_or', graphql_name='bool_or')
@@ -5729,7 +5741,7 @@ class list_books_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class list_books_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(list_books_select_column_list_books_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -5738,7 +5750,7 @@ class list_books_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class list_books_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(list_books_select_column_list_books_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -5747,7 +5759,7 @@ class list_books_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class list_books_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(list_books_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -5756,7 +5768,7 @@ class list_books_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class list_books_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('list_books_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -5772,7 +5784,7 @@ class list_books_aggregate_order_by(sgqlc.types.Input):
 
 
 class list_books_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5784,7 +5796,7 @@ class list_books_avg_order_by(sgqlc.types.Input):
 
 
 class list_books_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'created_at', 'date_added', 'edition', 'edition_id', 'id', 'imported', 'list', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at', 'user_books', 'user_books_aggregate')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('list_books_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('list_books_bool_exp', graphql_name='_not')
@@ -5810,13 +5822,13 @@ class list_books_bool_exp(sgqlc.types.Input):
 
 
 class list_books_inc_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('position',)
     position = sgqlc.types.Field(Int, graphql_name='position')
 
 
 class list_books_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'id', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -5833,7 +5845,7 @@ class list_books_max_order_by(sgqlc.types.Input):
 
 
 class list_books_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'id', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -5850,7 +5862,7 @@ class list_books_min_order_by(sgqlc.types.Input):
 
 
 class list_books_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'date_added', 'edition', 'edition_id', 'id', 'imported', 'list', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at', 'user_books_aggregate')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -5872,20 +5884,20 @@ class list_books_order_by(sgqlc.types.Input):
 
 
 class list_books_pk_columns_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
 
 
 class list_books_set_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('position', 'reason')
     position = sgqlc.types.Field(Int, graphql_name='position')
     reason = sgqlc.types.Field(String, graphql_name='reason')
 
 
 class list_books_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5897,7 +5909,7 @@ class list_books_stddev_order_by(sgqlc.types.Input):
 
 
 class list_books_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5909,7 +5921,7 @@ class list_books_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class list_books_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5921,14 +5933,14 @@ class list_books_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class list_books_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('list_books_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class list_books_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'id', 'imported', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -5946,7 +5958,7 @@ class list_books_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class list_books_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5958,7 +5970,7 @@ class list_books_sum_order_by(sgqlc.types.Input):
 
 
 class list_books_updates(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_inc', '_set', 'where')
     _inc = sgqlc.types.Field(list_books_inc_input, graphql_name='_inc')
     _set = sgqlc.types.Field(list_books_set_input, graphql_name='_set')
@@ -5966,7 +5978,7 @@ class list_books_updates(sgqlc.types.Input):
 
 
 class list_books_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5978,7 +5990,7 @@ class list_books_var_pop_order_by(sgqlc.types.Input):
 
 
 class list_books_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -5990,7 +6002,7 @@ class list_books_var_samp_order_by(sgqlc.types.Input):
 
 
 class list_books_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -6002,7 +6014,7 @@ class list_books_variance_order_by(sgqlc.types.Input):
 
 
 class lists_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('bool_and', 'bool_or', 'count')
     bool_and = sgqlc.types.Field('lists_aggregate_bool_exp_bool_and', graphql_name='bool_and')
     bool_or = sgqlc.types.Field('lists_aggregate_bool_exp_bool_or', graphql_name='bool_or')
@@ -6010,7 +6022,7 @@ class lists_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class lists_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(lists_select_column_lists_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6019,7 +6031,7 @@ class lists_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class lists_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(lists_select_column_lists_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6028,7 +6040,7 @@ class lists_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class lists_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(lists_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6037,7 +6049,7 @@ class lists_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class lists_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('lists_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -6053,7 +6065,7 @@ class lists_aggregate_order_by(sgqlc.types.Input):
 
 
 class lists_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6064,7 +6076,7 @@ class lists_avg_order_by(sgqlc.types.Input):
 
 
 class lists_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'books_count', 'created_at', 'default_view', 'description', 'featured', 'featured_profile', 'followed_lists', 'followers', 'followers_count', 'id', 'imported', 'likes', 'likes_count', 'list_books', 'list_books_aggregate', 'name', 'object_type', 'privacy_setting', 'privacy_setting_id', 'public', 'ranked', 'slug', 'updated_at', 'url', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('lists_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('lists_bool_exp', graphql_name='_not')
@@ -6098,7 +6110,7 @@ class lists_bool_exp(sgqlc.types.Input):
 
 
 class lists_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'followers_count', 'id', 'likes_count', 'name', 'object_type', 'privacy_setting_id', 'slug', 'updated_at', 'url', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -6117,7 +6129,7 @@ class lists_max_order_by(sgqlc.types.Input):
 
 
 class lists_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'followers_count', 'id', 'likes_count', 'name', 'object_type', 'privacy_setting_id', 'slug', 'updated_at', 'url', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -6136,7 +6148,7 @@ class lists_min_order_by(sgqlc.types.Input):
 
 
 class lists_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'featured', 'featured_profile', 'followed_lists_aggregate', 'followers_aggregate', 'followers_count', 'id', 'imported', 'likes_aggregate', 'likes_count', 'list_books_aggregate', 'name', 'object_type', 'privacy_setting', 'privacy_setting_id', 'public', 'ranked', 'slug', 'updated_at', 'url', 'user', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -6166,7 +6178,7 @@ class lists_order_by(sgqlc.types.Input):
 
 
 class lists_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6177,7 +6189,7 @@ class lists_stddev_order_by(sgqlc.types.Input):
 
 
 class lists_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6188,7 +6200,7 @@ class lists_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class lists_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6199,14 +6211,14 @@ class lists_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class lists_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('lists_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class lists_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'featured', 'featured_profile', 'followers_count', 'id', 'imported', 'likes_count', 'name', 'object_type', 'privacy_setting_id', 'public', 'ranked', 'slug', 'updated_at', 'url', 'user_id')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -6230,7 +6242,7 @@ class lists_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class lists_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6241,7 +6253,7 @@ class lists_sum_order_by(sgqlc.types.Input):
 
 
 class lists_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6252,7 +6264,7 @@ class lists_var_pop_order_by(sgqlc.types.Input):
 
 
 class lists_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6263,7 +6275,7 @@ class lists_var_samp_order_by(sgqlc.types.Input):
 
 
 class lists_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
     followers_count = sgqlc.types.Field(order_by, graphql_name='followers_count')
@@ -6274,7 +6286,7 @@ class lists_variance_order_by(sgqlc.types.Input):
 
 
 class notification_channels_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'channel', 'id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('notification_channels_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('notification_channels_bool_exp', graphql_name='_not')
@@ -6284,28 +6296,28 @@ class notification_channels_bool_exp(sgqlc.types.Input):
 
 
 class notification_channels_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel', 'id')
     channel = sgqlc.types.Field(order_by, graphql_name='channel')
     id = sgqlc.types.Field(order_by, graphql_name='id')
 
 
 class notification_channels_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('notification_channels_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class notification_channels_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel', 'id')
     channel = sgqlc.types.Field(String, graphql_name='channel')
     id = sgqlc.types.Field(bigint, graphql_name='id')
 
 
 class notification_deliveries_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('bool_and', 'bool_or', 'count')
     bool_and = sgqlc.types.Field('notification_deliveries_aggregate_bool_exp_bool_and', graphql_name='bool_and')
     bool_or = sgqlc.types.Field('notification_deliveries_aggregate_bool_exp_bool_or', graphql_name='bool_or')
@@ -6313,7 +6325,7 @@ class notification_deliveries_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class notification_deliveries_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(notification_deliveries_select_column_notification_deliveries_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6322,7 +6334,7 @@ class notification_deliveries_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class notification_deliveries_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(notification_deliveries_select_column_notification_deliveries_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6331,7 +6343,7 @@ class notification_deliveries_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class notification_deliveries_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(notification_deliveries_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6340,7 +6352,7 @@ class notification_deliveries_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class notification_deliveries_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('notification_deliveries_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -6356,7 +6368,7 @@ class notification_deliveries_aggregate_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6365,7 +6377,7 @@ class notification_deliveries_avg_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'channel', 'channel_id', 'id', 'notification', 'notification_id', 'read', 'read_at', 'sent_at', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('notification_deliveries_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('notification_deliveries_bool_exp', graphql_name='_not')
@@ -6383,7 +6395,7 @@ class notification_deliveries_bool_exp(sgqlc.types.Input):
 
 
 class notification_deliveries_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'read_at', 'sent_at', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6394,7 +6406,7 @@ class notification_deliveries_max_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'read_at', 'sent_at', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6405,7 +6417,7 @@ class notification_deliveries_min_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel', 'channel_id', 'id', 'notification', 'notification_id', 'read', 'read_at', 'sent_at', 'user', 'user_id')
     channel = sgqlc.types.Field(notification_channels_order_by, graphql_name='channel')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
@@ -6420,20 +6432,20 @@ class notification_deliveries_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_pk_columns_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
 
 
 class notification_deliveries_set_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('read', 'read_at')
     read = sgqlc.types.Field(Boolean, graphql_name='read')
     read_at = sgqlc.types.Field(timestamp, graphql_name='read_at')
 
 
 class notification_deliveries_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6442,7 +6454,7 @@ class notification_deliveries_stddev_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6451,7 +6463,7 @@ class notification_deliveries_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6460,14 +6472,14 @@ class notification_deliveries_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('notification_deliveries_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class notification_deliveries_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'read', 'read_at', 'sent_at', 'user_id')
     channel_id = sgqlc.types.Field(Int, graphql_name='channel_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -6479,7 +6491,7 @@ class notification_deliveries_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class notification_deliveries_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6488,14 +6500,14 @@ class notification_deliveries_sum_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_updates(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_set', 'where')
     _set = sgqlc.types.Field(notification_deliveries_set_input, graphql_name='_set')
     where = sgqlc.types.Field(sgqlc.types.non_null(notification_deliveries_bool_exp), graphql_name='where')
 
 
 class notification_deliveries_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6504,7 +6516,7 @@ class notification_deliveries_var_pop_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6513,7 +6525,7 @@ class notification_deliveries_var_samp_order_by(sgqlc.types.Input):
 
 
 class notification_deliveries_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(order_by, graphql_name='channel_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6522,7 +6534,7 @@ class notification_deliveries_variance_order_by(sgqlc.types.Input):
 
 
 class notification_settings_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('notification_settings_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -6538,7 +6550,7 @@ class notification_settings_aggregate_order_by(sgqlc.types.Input):
 
 
 class notification_settings_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6546,7 +6558,7 @@ class notification_settings_avg_order_by(sgqlc.types.Input):
 
 
 class notification_settings_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'channel_ids', 'id', 'notification_type_id', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('notification_settings_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('notification_settings_bool_exp', graphql_name='_not')
@@ -6559,7 +6571,7 @@ class notification_settings_bool_exp(sgqlc.types.Input):
 
 
 class notification_settings_insert_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_ids', 'notification_type_id', 'user_id')
     channel_ids = sgqlc.types.Field(json, graphql_name='channel_ids')
     notification_type_id = sgqlc.types.Field(Int, graphql_name='notification_type_id')
@@ -6567,7 +6579,7 @@ class notification_settings_insert_input(sgqlc.types.Input):
 
 
 class notification_settings_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6575,7 +6587,7 @@ class notification_settings_max_order_by(sgqlc.types.Input):
 
 
 class notification_settings_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6583,7 +6595,7 @@ class notification_settings_min_order_by(sgqlc.types.Input):
 
 
 class notification_settings_on_conflict(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('constraint', 'update_columns', 'where')
     constraint = sgqlc.types.Field(sgqlc.types.non_null(notification_settings_constraint), graphql_name='constraint')
     update_columns = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(notification_settings_update_column))), graphql_name='update_columns')
@@ -6591,7 +6603,7 @@ class notification_settings_on_conflict(sgqlc.types.Input):
 
 
 class notification_settings_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_ids', 'id', 'notification_type_id', 'user', 'user_id')
     channel_ids = sgqlc.types.Field(order_by, graphql_name='channel_ids')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6601,19 +6613,19 @@ class notification_settings_order_by(sgqlc.types.Input):
 
 
 class notification_settings_pk_columns_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
 
 
 class notification_settings_set_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_ids',)
     channel_ids = sgqlc.types.Field(json, graphql_name='channel_ids')
 
 
 class notification_settings_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6621,7 +6633,7 @@ class notification_settings_stddev_order_by(sgqlc.types.Input):
 
 
 class notification_settings_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6629,7 +6641,7 @@ class notification_settings_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class notification_settings_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6637,14 +6649,14 @@ class notification_settings_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class notification_settings_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('notification_settings_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class notification_settings_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_ids', 'id', 'notification_type_id', 'user_id')
     channel_ids = sgqlc.types.Field(json, graphql_name='channel_ids')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -6653,7 +6665,7 @@ class notification_settings_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class notification_settings_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6661,14 +6673,14 @@ class notification_settings_sum_order_by(sgqlc.types.Input):
 
 
 class notification_settings_updates(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_set', 'where')
     _set = sgqlc.types.Field(notification_settings_set_input, graphql_name='_set')
     where = sgqlc.types.Field(sgqlc.types.non_null(notification_settings_bool_exp), graphql_name='where')
 
 
 class notification_settings_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6676,7 +6688,7 @@ class notification_settings_var_pop_order_by(sgqlc.types.Input):
 
 
 class notification_settings_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6684,7 +6696,7 @@ class notification_settings_var_samp_order_by(sgqlc.types.Input):
 
 
 class notification_settings_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'notification_type_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     notification_type_id = sgqlc.types.Field(order_by, graphql_name='notification_type_id')
@@ -6692,7 +6704,7 @@ class notification_settings_variance_order_by(sgqlc.types.Input):
 
 
 class notification_types_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'active', 'default_channel_ids', 'default_priority', 'description', 'id', 'name', 'notification_settings', 'uid')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('notification_types_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('notification_types_bool_exp', graphql_name='_not')
@@ -6708,7 +6720,7 @@ class notification_types_bool_exp(sgqlc.types.Input):
 
 
 class notification_types_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('active', 'default_channel_ids', 'default_priority', 'description', 'id', 'name', 'notification_settings_aggregate', 'uid')
     active = sgqlc.types.Field(order_by, graphql_name='active')
     default_channel_ids = sgqlc.types.Field(order_by, graphql_name='default_channel_ids')
@@ -6721,14 +6733,14 @@ class notification_types_order_by(sgqlc.types.Input):
 
 
 class notification_types_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('notification_types_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class notification_types_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('active', 'default_channel_ids', 'default_priority', 'description', 'id', 'name', 'uid')
     active = sgqlc.types.Field(Boolean, graphql_name='active')
     default_channel_ids = sgqlc.types.Field(json, graphql_name='default_channel_ids')
@@ -6740,7 +6752,7 @@ class notification_types_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class notifications_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'created_at', 'description', 'id', 'link', 'link_text', 'notification_deliveries', 'notification_deliveries_aggregate', 'notification_type_id', 'notifier_user', 'notifier_user_id', 'priority', 'title', 'uid')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('notifications_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('notifications_bool_exp', graphql_name='_not')
@@ -6761,7 +6773,7 @@ class notifications_bool_exp(sgqlc.types.Input):
 
 
 class notifications_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'description', 'id', 'link', 'link_text', 'notification_deliveries_aggregate', 'notification_type_id', 'notifier_user', 'notifier_user_id', 'priority', 'title', 'uid')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     description = sgqlc.types.Field(order_by, graphql_name='description')
@@ -6778,14 +6790,14 @@ class notifications_order_by(sgqlc.types.Input):
 
 
 class notifications_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('notifications_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class notifications_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'description', 'id', 'link', 'link_text', 'notification_type_id', 'notifier_user_id', 'priority', 'title', 'uid')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     description = sgqlc.types.Field(String, graphql_name='description')
@@ -6800,7 +6812,7 @@ class notifications_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class numeric_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(numeric, graphql_name='_eq')
     _gt = sgqlc.types.Field(numeric, graphql_name='_gt')
@@ -6814,7 +6826,7 @@ class numeric_comparison_exp(sgqlc.types.Input):
 
 
 class platforms_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book_mappings', 'id', 'name', 'url')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('platforms_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('platforms_bool_exp', graphql_name='_not')
@@ -6826,7 +6838,7 @@ class platforms_bool_exp(sgqlc.types.Input):
 
 
 class platforms_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_mappings_aggregate', 'id', 'name', 'url')
     book_mappings_aggregate = sgqlc.types.Field(book_mappings_aggregate_order_by, graphql_name='book_mappings_aggregate')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6835,14 +6847,14 @@ class platforms_order_by(sgqlc.types.Input):
 
 
 class platforms_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('platforms_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class platforms_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'name', 'url')
     id = sgqlc.types.Field(Int, graphql_name='id')
     name = sgqlc.types.Field(String, graphql_name='name')
@@ -6850,7 +6862,7 @@ class platforms_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class privacy_settings_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'activities', 'id', 'lists', 'lists_aggregate', 'prompts', 'setting', 'user_books', 'user_books_aggregate', 'users', 'users_by_activity')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('privacy_settings_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('privacy_settings_bool_exp', graphql_name='_not')
@@ -6868,7 +6880,7 @@ class privacy_settings_bool_exp(sgqlc.types.Input):
 
 
 class privacy_settings_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_aggregate', 'id', 'lists_aggregate', 'prompts_aggregate', 'setting', 'user_books_aggregate', 'users_aggregate', 'users_by_activity_aggregate')
     activities_aggregate = sgqlc.types.Field(activities_aggregate_order_by, graphql_name='activities_aggregate')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6881,27 +6893,27 @@ class privacy_settings_order_by(sgqlc.types.Input):
 
 
 class privacy_settings_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('privacy_settings_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class privacy_settings_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'setting')
     id = sgqlc.types.Field(Int, graphql_name='id')
     setting = sgqlc.types.Field(String, graphql_name='setting')
 
 
 class prompt_answers_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count',)
     count = sgqlc.types.Field('prompt_answers_aggregate_bool_exp_count', graphql_name='count')
 
 
 class prompt_answers_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(prompt_answers_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -6910,7 +6922,7 @@ class prompt_answers_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class prompt_answers_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('prompt_answers_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -6926,7 +6938,7 @@ class prompt_answers_aggregate_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -6936,7 +6948,7 @@ class prompt_answers_avg_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt', 'prompt_book', 'prompt_id', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('prompt_answers_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('prompt_answers_bool_exp', graphql_name='_not')
@@ -6956,7 +6968,7 @@ class prompt_answers_bool_exp(sgqlc.types.Input):
 
 
 class prompt_answers_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -6969,7 +6981,7 @@ class prompt_answers_max_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -6982,7 +6994,7 @@ class prompt_answers_min_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt', 'prompt_book', 'prompt_id', 'user', 'user_id')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -6999,19 +7011,19 @@ class prompt_answers_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_pk_columns_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
 
 
 class prompt_answers_set_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description',)
     description = sgqlc.types.Field(String, graphql_name='description')
 
 
 class prompt_answers_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7021,7 +7033,7 @@ class prompt_answers_stddev_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7031,7 +7043,7 @@ class prompt_answers_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7041,14 +7053,14 @@ class prompt_answers_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('prompt_answers_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class prompt_answers_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -7061,7 +7073,7 @@ class prompt_answers_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class prompt_answers_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7071,14 +7083,14 @@ class prompt_answers_sum_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_updates(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_set', 'where')
     _set = sgqlc.types.Field(prompt_answers_set_input, graphql_name='_set')
     where = sgqlc.types.Field(sgqlc.types.non_null(prompt_answers_bool_exp), graphql_name='where')
 
 
 class prompt_answers_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7088,7 +7100,7 @@ class prompt_answers_var_pop_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7098,7 +7110,7 @@ class prompt_answers_var_samp_order_by(sgqlc.types.Input):
 
 
 class prompt_answers_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7108,7 +7120,7 @@ class prompt_answers_variance_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('prompt_books_summary_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -7124,7 +7136,7 @@ class prompt_books_summary_aggregate_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7132,7 +7144,7 @@ class prompt_books_summary_avg_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'answers_count', 'book', 'book_id', 'prompt', 'prompt_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('prompt_books_summary_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('prompt_books_summary_bool_exp', graphql_name='_not')
@@ -7145,7 +7157,7 @@ class prompt_books_summary_bool_exp(sgqlc.types.Input):
 
 
 class prompt_books_summary_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7153,7 +7165,7 @@ class prompt_books_summary_max_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7161,7 +7173,7 @@ class prompt_books_summary_min_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book', 'book_id', 'prompt', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
@@ -7171,7 +7183,7 @@ class prompt_books_summary_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7179,7 +7191,7 @@ class prompt_books_summary_stddev_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7187,7 +7199,7 @@ class prompt_books_summary_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7195,14 +7207,14 @@ class prompt_books_summary_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('prompt_books_summary_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class prompt_books_summary_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(bigint, graphql_name='answers_count')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -7210,7 +7222,7 @@ class prompt_books_summary_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class prompt_books_summary_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7218,7 +7230,7 @@ class prompt_books_summary_sum_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7226,7 +7238,7 @@ class prompt_books_summary_var_pop_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7234,7 +7246,7 @@ class prompt_books_summary_var_samp_order_by(sgqlc.types.Input):
 
 
 class prompt_books_summary_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book_id', 'prompt_id')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7242,7 +7254,7 @@ class prompt_books_summary_variance_order_by(sgqlc.types.Input):
 
 
 class prompts_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('prompts_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -7258,7 +7270,7 @@ class prompts_aggregate_order_by(sgqlc.types.Input):
 
 
 class prompts_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7269,7 +7281,7 @@ class prompts_avg_order_by(sgqlc.types.Input):
 
 
 class prompts_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'answers_count', 'books_count', 'created_at', 'description', 'featured', 'followed_prompts', 'followers', 'id', 'privacy_setting', 'privacy_setting_id', 'prompt_answers', 'prompt_answers_aggregate', 'prompt_books', 'question', 'slug', 'user', 'user_id', 'users_count')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('prompts_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('prompts_bool_exp', graphql_name='_not')
@@ -7295,7 +7307,7 @@ class prompts_bool_exp(sgqlc.types.Input):
 
 
 class prompts_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'created_at', 'description', 'id', 'privacy_setting_id', 'question', 'slug', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7310,7 +7322,7 @@ class prompts_max_order_by(sgqlc.types.Input):
 
 
 class prompts_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'created_at', 'description', 'id', 'privacy_setting_id', 'question', 'slug', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7325,7 +7337,7 @@ class prompts_min_order_by(sgqlc.types.Input):
 
 
 class prompts_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'created_at', 'description', 'featured', 'followed_prompts_aggregate', 'followers_aggregate', 'id', 'privacy_setting', 'privacy_setting_id', 'prompt_answers_aggregate', 'prompt_books_aggregate', 'question', 'slug', 'user', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7347,7 +7359,7 @@ class prompts_order_by(sgqlc.types.Input):
 
 
 class prompts_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7358,7 +7370,7 @@ class prompts_stddev_order_by(sgqlc.types.Input):
 
 
 class prompts_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7369,7 +7381,7 @@ class prompts_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class prompts_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7380,14 +7392,14 @@ class prompts_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class prompts_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('prompts_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class prompts_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'created_at', 'description', 'featured', 'id', 'privacy_setting_id', 'question', 'slug', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(Int, graphql_name='answers_count')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
@@ -7403,7 +7415,7 @@ class prompts_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class prompts_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7414,7 +7426,7 @@ class prompts_sum_order_by(sgqlc.types.Input):
 
 
 class prompts_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7425,7 +7437,7 @@ class prompts_var_pop_order_by(sgqlc.types.Input):
 
 
 class prompts_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7436,7 +7448,7 @@ class prompts_var_samp_order_by(sgqlc.types.Input):
 
 
 class prompts_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'id', 'privacy_setting_id', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(order_by, graphql_name='answers_count')
     books_count = sgqlc.types.Field(order_by, graphql_name='books_count')
@@ -7447,7 +7459,7 @@ class prompts_variance_order_by(sgqlc.types.Input):
 
 
 class publishers_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'canonical_id', 'created_at', 'editions', 'editions_count', 'id', 'locked', 'name', 'object_type', 'parent_id', 'parent_publisher', 'slug', 'state', 'updated_at', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('publishers_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('publishers_bool_exp', graphql_name='_not')
@@ -7469,7 +7481,7 @@ class publishers_bool_exp(sgqlc.types.Input):
 
 
 class publishers_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('canonical_id', 'created_at', 'editions_aggregate', 'editions_count', 'id', 'locked', 'name', 'object_type', 'parent_id', 'parent_publisher', 'slug', 'state', 'updated_at', 'user_id')
     canonical_id = sgqlc.types.Field(order_by, graphql_name='canonical_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -7488,14 +7500,14 @@ class publishers_order_by(sgqlc.types.Input):
 
 
 class publishers_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('publishers_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class publishers_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('canonical_id', 'created_at', 'editions_count', 'id', 'locked', 'name', 'object_type', 'parent_id', 'slug', 'state', 'updated_at', 'user_id')
     canonical_id = sgqlc.types.Field(Int, graphql_name='canonical_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -7512,7 +7524,7 @@ class publishers_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class reading_formats_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'format', 'id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('reading_formats_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('reading_formats_bool_exp', graphql_name='_not')
@@ -7522,28 +7534,28 @@ class reading_formats_bool_exp(sgqlc.types.Input):
 
 
 class reading_formats_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('format', 'id')
     format = sgqlc.types.Field(order_by, graphql_name='format')
     id = sgqlc.types.Field(order_by, graphql_name='id')
 
 
 class reading_formats_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('reading_formats_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class reading_formats_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('format', 'id')
     format = sgqlc.types.Field(String, graphql_name='format')
     id = sgqlc.types.Field(Int, graphql_name='id')
 
 
 class reading_journals_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('reading_journals_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -7559,7 +7571,7 @@ class reading_journals_aggregate_order_by(sgqlc.types.Input):
 
 
 class reading_journals_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7570,7 +7582,7 @@ class reading_journals_avg_order_by(sgqlc.types.Input):
 
 
 class reading_journals_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'action_at', 'book', 'book_id', 'created_at', 'edition', 'edition_id', 'entry', 'event', 'followers', 'id', 'likes', 'likes_count', 'metadata', 'object_type', 'privacy_setting_id', 'taggings', 'taggings_aggregate', 'updated_at', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('reading_journals_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('reading_journals_bool_exp', graphql_name='_not')
@@ -7598,7 +7610,7 @@ class reading_journals_bool_exp(sgqlc.types.Input):
 
 
 class reading_journals_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'book_id', 'created_at', 'edition_id', 'entry', 'event', 'id', 'likes_count', 'object_type', 'privacy_setting_id', 'updated_at', 'user_id')
     action_at = sgqlc.types.Field(order_by, graphql_name='action_at')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7615,7 +7627,7 @@ class reading_journals_max_order_by(sgqlc.types.Input):
 
 
 class reading_journals_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'book_id', 'created_at', 'edition_id', 'entry', 'event', 'id', 'likes_count', 'object_type', 'privacy_setting_id', 'updated_at', 'user_id')
     action_at = sgqlc.types.Field(order_by, graphql_name='action_at')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7632,7 +7644,7 @@ class reading_journals_min_order_by(sgqlc.types.Input):
 
 
 class reading_journals_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'book', 'book_id', 'created_at', 'edition', 'edition_id', 'entry', 'event', 'followers_aggregate', 'id', 'likes_aggregate', 'likes_count', 'metadata', 'object_type', 'privacy_setting_id', 'taggings_aggregate', 'updated_at', 'user', 'user_id')
     action_at = sgqlc.types.Field(order_by, graphql_name='action_at')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
@@ -7656,7 +7668,7 @@ class reading_journals_order_by(sgqlc.types.Input):
 
 
 class reading_journals_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7667,7 +7679,7 @@ class reading_journals_stddev_order_by(sgqlc.types.Input):
 
 
 class reading_journals_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7678,7 +7690,7 @@ class reading_journals_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class reading_journals_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7689,14 +7701,14 @@ class reading_journals_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class reading_journals_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('reading_journals_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class reading_journals_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'book_id', 'created_at', 'edition_id', 'entry', 'event', 'id', 'likes_count', 'metadata', 'object_type', 'privacy_setting_id', 'updated_at', 'user_id')
     action_at = sgqlc.types.Field(timestamptz, graphql_name='action_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -7714,7 +7726,7 @@ class reading_journals_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class reading_journals_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7725,7 +7737,7 @@ class reading_journals_sum_order_by(sgqlc.types.Input):
 
 
 class reading_journals_summary_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'followers', 'journals_count', 'last_updated_at', 'reading_journals', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('reading_journals_summary_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('reading_journals_summary_bool_exp', graphql_name='_not')
@@ -7741,7 +7753,7 @@ class reading_journals_summary_bool_exp(sgqlc.types.Input):
 
 
 class reading_journals_summary_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'followers_aggregate', 'journals_count', 'last_updated_at', 'reading_journals_aggregate', 'user', 'user_id')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -7754,14 +7766,14 @@ class reading_journals_summary_order_by(sgqlc.types.Input):
 
 
 class reading_journals_summary_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('reading_journals_summary_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class reading_journals_summary_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'journals_count', 'last_updated_at', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     journals_count = sgqlc.types.Field(bigint, graphql_name='journals_count')
@@ -7770,7 +7782,7 @@ class reading_journals_summary_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class reading_journals_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7781,7 +7793,7 @@ class reading_journals_var_pop_order_by(sgqlc.types.Input):
 
 
 class reading_journals_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7792,7 +7804,7 @@ class reading_journals_var_samp_order_by(sgqlc.types.Input):
 
 
 class reading_journals_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -7803,7 +7815,7 @@ class reading_journals_variance_order_by(sgqlc.types.Input):
 
 
 class series_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'author', 'author_id', 'book_series', 'book_series_aggregate', 'books_count', 'canonical', 'canonical_id', 'creator', 'description', 'id', 'identifiers', 'is_completed', 'locked', 'name', 'object_type', 'primary_books_count', 'slug', 'state', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('series_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('series_bool_exp', graphql_name='_not')
@@ -7830,7 +7842,7 @@ class series_bool_exp(sgqlc.types.Input):
 
 
 class series_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'author_id', 'book_series_aggregate', 'books_count', 'canonical', 'canonical_id', 'creator', 'description', 'id', 'identifiers', 'is_completed', 'locked', 'name', 'object_type', 'primary_books_count', 'slug', 'state', 'user_id')
     author = sgqlc.types.Field(authors_order_by, graphql_name='author')
     author_id = sgqlc.types.Field(order_by, graphql_name='author_id')
@@ -7853,14 +7865,14 @@ class series_order_by(sgqlc.types.Input):
 
 
 class series_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('series_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class series_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'books_count', 'canonical_id', 'description', 'id', 'identifiers', 'is_completed', 'locked', 'name', 'object_type', 'primary_books_count', 'slug', 'state', 'user_id')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
@@ -7879,7 +7891,7 @@ class series_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class smallint_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(smallint, graphql_name='_eq')
     _gt = sgqlc.types.Field(smallint, graphql_name='_gt')
@@ -7893,7 +7905,7 @@ class smallint_comparison_exp(sgqlc.types.Input):
 
 
 class tag_categories_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'category', 'created_at', 'id', 'slug', 'tags', 'tags_aggregate')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('tag_categories_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('tag_categories_bool_exp', graphql_name='_not')
@@ -7907,7 +7919,7 @@ class tag_categories_bool_exp(sgqlc.types.Input):
 
 
 class tag_categories_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('category', 'created_at', 'id', 'slug', 'tags_aggregate')
     category = sgqlc.types.Field(order_by, graphql_name='category')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -7917,14 +7929,14 @@ class tag_categories_order_by(sgqlc.types.Input):
 
 
 class tag_categories_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('tag_categories_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class tag_categories_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('category', 'created_at', 'id', 'slug')
     category = sgqlc.types.Field(String, graphql_name='category')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -7933,7 +7945,7 @@ class tag_categories_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class taggable_counts_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('taggable_counts_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -7949,7 +7961,7 @@ class taggable_counts_aggregate_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -7959,7 +7971,7 @@ class taggable_counts_avg_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'count', 'created_at', 'hardcover_tagged', 'id', 'spoiler_ratio', 'tag', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('taggable_counts_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('taggable_counts_bool_exp', graphql_name='_not')
@@ -7978,7 +7990,7 @@ class taggable_counts_bool_exp(sgqlc.types.Input):
 
 
 class taggable_counts_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'created_at', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -7991,7 +8003,7 @@ class taggable_counts_max_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'created_at', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -8004,7 +8016,7 @@ class taggable_counts_min_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'count', 'created_at', 'hardcover_tagged', 'id', 'spoiler_ratio', 'tag', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -8020,7 +8032,7 @@ class taggable_counts_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8030,7 +8042,7 @@ class taggable_counts_stddev_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8040,7 +8052,7 @@ class taggable_counts_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8050,14 +8062,14 @@ class taggable_counts_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('taggable_counts_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class taggable_counts_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'created_at', 'hardcover_tagged', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
     count = sgqlc.types.Field(Int, graphql_name='count')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -8071,7 +8083,7 @@ class taggable_counts_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class taggable_counts_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8081,7 +8093,7 @@ class taggable_counts_sum_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8091,7 +8103,7 @@ class taggable_counts_var_pop_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8101,7 +8113,7 @@ class taggable_counts_var_samp_order_by(sgqlc.types.Input):
 
 
 class taggable_counts_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'spoiler_ratio', 'tag_id', 'taggable_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8111,7 +8123,7 @@ class taggable_counts_variance_order_by(sgqlc.types.Input):
 
 
 class taggings_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('bool_and', 'bool_or', 'count')
     bool_and = sgqlc.types.Field('taggings_aggregate_bool_exp_bool_and', graphql_name='bool_and')
     bool_or = sgqlc.types.Field('taggings_aggregate_bool_exp_bool_or', graphql_name='bool_or')
@@ -8119,7 +8131,7 @@ class taggings_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class taggings_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(taggings_select_column_taggings_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8128,7 +8140,7 @@ class taggings_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class taggings_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(taggings_select_column_taggings_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8137,7 +8149,7 @@ class taggings_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class taggings_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(taggings_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8146,7 +8158,7 @@ class taggings_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class taggings_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('taggings_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -8162,7 +8174,7 @@ class taggings_aggregate_order_by(sgqlc.types.Input):
 
 
 class taggings_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8171,7 +8183,7 @@ class taggings_avg_order_by(sgqlc.types.Input):
 
 
 class taggings_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'created_at', 'id', 'spoiler', 'tag', 'tag_id', 'taggable_id', 'taggable_type', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('taggings_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('taggings_bool_exp', graphql_name='_not')
@@ -8189,7 +8201,7 @@ class taggings_bool_exp(sgqlc.types.Input):
 
 
 class taggings_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'tag_id', 'taggable_id', 'taggable_type', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8200,7 +8212,7 @@ class taggings_max_order_by(sgqlc.types.Input):
 
 
 class taggings_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'tag_id', 'taggable_id', 'taggable_type', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8211,7 +8223,7 @@ class taggings_min_order_by(sgqlc.types.Input):
 
 
 class taggings_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'created_at', 'id', 'spoiler', 'tag', 'tag_id', 'taggable_id', 'taggable_type', 'user', 'user_id')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -8226,7 +8238,7 @@ class taggings_order_by(sgqlc.types.Input):
 
 
 class taggings_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8235,7 +8247,7 @@ class taggings_stddev_order_by(sgqlc.types.Input):
 
 
 class taggings_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8244,7 +8256,7 @@ class taggings_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class taggings_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8253,14 +8265,14 @@ class taggings_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class taggings_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('taggings_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class taggings_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'spoiler', 'tag_id', 'taggable_id', 'taggable_type', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -8272,7 +8284,7 @@ class taggings_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class taggings_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8281,7 +8293,7 @@ class taggings_sum_order_by(sgqlc.types.Input):
 
 
 class taggings_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8290,7 +8302,7 @@ class taggings_var_pop_order_by(sgqlc.types.Input):
 
 
 class taggings_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8299,7 +8311,7 @@ class taggings_var_samp_order_by(sgqlc.types.Input):
 
 
 class taggings_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     tag_id = sgqlc.types.Field(order_by, graphql_name='tag_id')
@@ -8308,13 +8320,13 @@ class taggings_variance_order_by(sgqlc.types.Input):
 
 
 class tags_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count',)
     count = sgqlc.types.Field('tags_aggregate_bool_exp_count', graphql_name='count')
 
 
 class tags_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(tags_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8323,7 +8335,7 @@ class tags_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class tags_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('tags_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -8339,7 +8351,7 @@ class tags_aggregate_order_by(sgqlc.types.Input):
 
 
 class tags_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8347,7 +8359,7 @@ class tags_avg_order_by(sgqlc.types.Input):
 
 
 class tags_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'count', 'id', 'slug', 'tag', 'tag_category', 'tag_category_id', 'taggings', 'taggings_aggregate')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('tags_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('tags_bool_exp', graphql_name='_not')
@@ -8363,7 +8375,7 @@ class tags_bool_exp(sgqlc.types.Input):
 
 
 class tags_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8373,7 +8385,7 @@ class tags_max_order_by(sgqlc.types.Input):
 
 
 class tags_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8383,7 +8395,7 @@ class tags_min_order_by(sgqlc.types.Input):
 
 
 class tags_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category', 'tag_category_id', 'taggings_aggregate')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8395,7 +8407,7 @@ class tags_order_by(sgqlc.types.Input):
 
 
 class tags_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8403,7 +8415,7 @@ class tags_stddev_order_by(sgqlc.types.Input):
 
 
 class tags_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8411,7 +8423,7 @@ class tags_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class tags_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8419,14 +8431,14 @@ class tags_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class tags_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('tags_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class tags_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category_id')
     count = sgqlc.types.Field(Int, graphql_name='count')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -8436,7 +8448,7 @@ class tags_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class tags_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8444,7 +8456,7 @@ class tags_sum_order_by(sgqlc.types.Input):
 
 
 class tags_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8452,7 +8464,7 @@ class tags_var_pop_order_by(sgqlc.types.Input):
 
 
 class tags_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8460,7 +8472,7 @@ class tags_var_samp_order_by(sgqlc.types.Input):
 
 
 class tags_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8468,7 +8480,7 @@ class tags_variance_order_by(sgqlc.types.Input):
 
 
 class timestamp_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(timestamp, graphql_name='_eq')
     _gt = sgqlc.types.Field(timestamp, graphql_name='_gt')
@@ -8482,7 +8494,7 @@ class timestamp_comparison_exp(sgqlc.types.Input):
 
 
 class timestamptz_comparison_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_eq', '_gt', '_gte', '_in', '_is_null', '_lt', '_lte', '_neq', '_nin')
     _eq = sgqlc.types.Field(timestamptz, graphql_name='_eq')
     _gt = sgqlc.types.Field(timestamptz, graphql_name='_gt')
@@ -8496,7 +8508,7 @@ class timestamptz_comparison_exp(sgqlc.types.Input):
 
 
 class update_user_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('account_privacy_setting_id', 'activity_privacy_settings_id', 'bio', 'birthdate', 'cover', 'current_password', 'default_reading_format_id', 'email', 'image', 'link', 'links', 'location', 'name', 'onboarded', 'password', 'password_confirmation', 'pronoun_personal', 'pronoun_possessive', 'timezone', 'username')
     account_privacy_setting_id = sgqlc.types.Field(Int, graphql_name='account_privacy_setting_id')
     activity_privacy_settings_id = sgqlc.types.Field(Int, graphql_name='activity_privacy_settings_id')
@@ -8521,7 +8533,7 @@ class update_user_input(sgqlc.types.Input):
 
 
 class user_blocks_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_blocks_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -8537,7 +8549,7 @@ class user_blocks_aggregate_order_by(sgqlc.types.Input):
 
 
 class user_blocks_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8545,7 +8557,7 @@ class user_blocks_avg_order_by(sgqlc.types.Input):
 
 
 class user_blocks_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'blocked_user', 'blocked_user_id', 'created_at', 'id', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_blocks_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_blocks_bool_exp', graphql_name='_not')
@@ -8559,14 +8571,14 @@ class user_blocks_bool_exp(sgqlc.types.Input):
 
 
 class user_blocks_insert_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'user_id')
     blocked_user_id = sgqlc.types.Field(Int, graphql_name='blocked_user_id')
     user_id = sgqlc.types.Field(Int, graphql_name='user_id')
 
 
 class user_blocks_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'created_at', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -8575,7 +8587,7 @@ class user_blocks_max_order_by(sgqlc.types.Input):
 
 
 class user_blocks_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'created_at', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -8584,7 +8596,7 @@ class user_blocks_min_order_by(sgqlc.types.Input):
 
 
 class user_blocks_on_conflict(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('constraint', 'update_columns', 'where')
     constraint = sgqlc.types.Field(sgqlc.types.non_null(user_blocks_constraint), graphql_name='constraint')
     update_columns = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_blocks_update_column))), graphql_name='update_columns')
@@ -8592,7 +8604,7 @@ class user_blocks_on_conflict(sgqlc.types.Input):
 
 
 class user_blocks_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user', 'blocked_user_id', 'created_at', 'id', 'user', 'user_id')
     blocked_user = sgqlc.types.Field('users_order_by', graphql_name='blocked_user')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
@@ -8603,7 +8615,7 @@ class user_blocks_order_by(sgqlc.types.Input):
 
 
 class user_blocks_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8611,7 +8623,7 @@ class user_blocks_stddev_order_by(sgqlc.types.Input):
 
 
 class user_blocks_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8619,7 +8631,7 @@ class user_blocks_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class user_blocks_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8627,14 +8639,14 @@ class user_blocks_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class user_blocks_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_blocks_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_blocks_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'created_at', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(Int, graphql_name='blocked_user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -8643,7 +8655,7 @@ class user_blocks_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class user_blocks_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8651,7 +8663,7 @@ class user_blocks_sum_order_by(sgqlc.types.Input):
 
 
 class user_blocks_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8659,7 +8671,7 @@ class user_blocks_var_pop_order_by(sgqlc.types.Input):
 
 
 class user_blocks_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8667,7 +8679,7 @@ class user_blocks_var_samp_order_by(sgqlc.types.Input):
 
 
 class user_blocks_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user_id', 'id', 'user_id')
     blocked_user_id = sgqlc.types.Field(order_by, graphql_name='blocked_user_id')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -8675,7 +8687,7 @@ class user_blocks_variance_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'corr', 'count', 'covar_samp', 'max', 'min', 'stddev_samp', 'sum', 'var_samp')
     avg = sgqlc.types.Field('user_book_reads_aggregate_bool_exp_avg', graphql_name='avg')
     corr = sgqlc.types.Field('user_book_reads_aggregate_bool_exp_corr', graphql_name='corr')
@@ -8689,7 +8701,7 @@ class user_book_reads_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_avg(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_avg_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8698,7 +8710,7 @@ class user_book_reads_aggregate_bool_exp_avg(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_corr(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null('user_book_reads_aggregate_bool_exp_corr_arguments'), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8707,14 +8719,14 @@ class user_book_reads_aggregate_bool_exp_corr(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_corr_arguments(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('x', 'y')
     x = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_corr_arguments_columns), graphql_name='X')
     y = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_corr_arguments_columns), graphql_name='Y')
 
 
 class user_book_reads_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(user_book_reads_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8723,7 +8735,7 @@ class user_book_reads_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_covar_samp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null('user_book_reads_aggregate_bool_exp_covar_samp_arguments'), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8732,14 +8744,14 @@ class user_book_reads_aggregate_bool_exp_covar_samp(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_covar_samp_arguments(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('x', 'y')
     x = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_covar_samp_arguments_columns), graphql_name='X')
     y = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_covar_samp_arguments_columns), graphql_name='Y')
 
 
 class user_book_reads_aggregate_bool_exp_max(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_max_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8748,7 +8760,7 @@ class user_book_reads_aggregate_bool_exp_max(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_min(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_min_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8757,7 +8769,7 @@ class user_book_reads_aggregate_bool_exp_min(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_stddev_samp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_stddev_samp_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8766,7 +8778,7 @@ class user_book_reads_aggregate_bool_exp_stddev_samp(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_sum(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_sum_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8775,7 +8787,7 @@ class user_book_reads_aggregate_bool_exp_sum(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_bool_exp_var_samp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_book_reads_select_column_user_book_reads_aggregate_bool_exp_var_samp_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -8784,7 +8796,7 @@ class user_book_reads_aggregate_bool_exp_var_samp(sgqlc.types.Input):
 
 
 class user_book_reads_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_book_reads_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -8800,7 +8812,7 @@ class user_book_reads_aggregate_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8812,7 +8824,7 @@ class user_book_reads_avg_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'edition', 'edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book', 'user_book_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_book_reads_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_book_reads_bool_exp', graphql_name='_not')
@@ -8832,7 +8844,7 @@ class user_book_reads_bool_exp(sgqlc.types.Input):
 
 
 class user_book_reads_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at = sgqlc.types.Field(order_by, graphql_name='finished_at')
@@ -8847,7 +8859,7 @@ class user_book_reads_max_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at = sgqlc.types.Field(order_by, graphql_name='finished_at')
@@ -8862,7 +8874,7 @@ class user_book_reads_min_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition', 'edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book', 'user_book_id')
     edition = sgqlc.types.Field(editions_order_by, graphql_name='edition')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -8879,7 +8891,7 @@ class user_book_reads_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8891,7 +8903,7 @@ class user_book_reads_stddev_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8903,7 +8915,7 @@ class user_book_reads_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8915,14 +8927,14 @@ class user_book_reads_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_book_reads_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_book_reads_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
     finished_at = sgqlc.types.Field(date, graphql_name='finished_at')
@@ -8937,7 +8949,7 @@ class user_book_reads_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class user_book_reads_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8949,7 +8961,7 @@ class user_book_reads_sum_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8961,7 +8973,7 @@ class user_book_reads_var_pop_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8973,7 +8985,7 @@ class user_book_reads_var_samp_order_by(sgqlc.types.Input):
 
 
 class user_book_reads_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(order_by, graphql_name='finished_at_precision')
@@ -8985,7 +8997,7 @@ class user_book_reads_variance_order_by(sgqlc.types.Input):
 
 
 class user_book_statuses_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'description', 'id', 'slug', 'status', 'user_books', 'user_books_aggregate')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_book_statuses_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_book_statuses_bool_exp', graphql_name='_not')
@@ -8999,7 +9011,7 @@ class user_book_statuses_bool_exp(sgqlc.types.Input):
 
 
 class user_book_statuses_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'id', 'slug', 'status', 'user_books_aggregate')
     description = sgqlc.types.Field(order_by, graphql_name='description')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -9009,14 +9021,14 @@ class user_book_statuses_order_by(sgqlc.types.Input):
 
 
 class user_book_statuses_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_book_statuses_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_book_statuses_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'id', 'slug', 'status')
     description = sgqlc.types.Field(String, graphql_name='description')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -9025,7 +9037,7 @@ class user_book_statuses_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class user_books_aggregate_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('bool_and', 'bool_or', 'count')
     bool_and = sgqlc.types.Field('user_books_aggregate_bool_exp_bool_and', graphql_name='bool_and')
     bool_or = sgqlc.types.Field('user_books_aggregate_bool_exp_bool_or', graphql_name='bool_or')
@@ -9033,7 +9045,7 @@ class user_books_aggregate_bool_exp(sgqlc.types.Input):
 
 
 class user_books_aggregate_bool_exp_bool_and(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_books_select_column_user_books_aggregate_bool_exp_bool_and_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -9042,7 +9054,7 @@ class user_books_aggregate_bool_exp_bool_and(sgqlc.types.Input):
 
 
 class user_books_aggregate_bool_exp_bool_or(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.non_null(user_books_select_column_user_books_aggregate_bool_exp_bool_or_arguments_columns), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -9051,7 +9063,7 @@ class user_books_aggregate_bool_exp_bool_or(sgqlc.types.Input):
 
 
 class user_books_aggregate_bool_exp_count(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('arguments', 'distinct', 'filter', 'predicate')
     arguments = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null(user_books_select_column)), graphql_name='arguments')
     distinct = sgqlc.types.Field(Boolean, graphql_name='distinct')
@@ -9060,7 +9072,7 @@ class user_books_aggregate_bool_exp_count(sgqlc.types.Input):
 
 
 class user_books_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_books_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -9076,7 +9088,7 @@ class user_books_aggregate_order_by(sgqlc.types.Input):
 
 
 class user_books_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9096,7 +9108,7 @@ class user_books_avg_order_by(sgqlc.types.Input):
 
 
 class user_books_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'book', 'book_id', 'created_at', 'date_added', 'edition', 'edition_id', 'first_read_date', 'first_started_reading_date', 'followers', 'has_review', 'id', 'imported', 'last_read_date', 'likes', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned', 'owned_copies', 'privacy_setting', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'reading_journal_summary', 'reading_journals', 'recommended_by', 'recommended_for', 'referrer', 'referrer_user_id', 'review', 'review_has_spoilers', 'review_length', 'review_migrated', 'review_raw', 'review_slate', 'reviewed_at', 'sponsored_review', 'starred', 'status_id', 'updated_at', 'url', 'user', 'user_book_reads', 'user_book_reads_aggregate', 'user_book_status', 'user_books', 'user_books_aggregate', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_books_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_books_bool_exp', graphql_name='_not')
@@ -9157,7 +9169,7 @@ class user_books_bool_exp(sgqlc.types.Input):
 
 
 class user_books_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'first_read_date', 'first_started_reading_date', 'id', 'last_read_date', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review', 'review_length', 'review_raw', 'reviewed_at', 'status_id', 'updated_at', 'url', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -9193,7 +9205,7 @@ class user_books_max_order_by(sgqlc.types.Input):
 
 
 class user_books_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'first_read_date', 'first_started_reading_date', 'id', 'last_read_date', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review', 'review_length', 'review_raw', 'reviewed_at', 'status_id', 'updated_at', 'url', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
@@ -9229,7 +9241,7 @@ class user_books_min_order_by(sgqlc.types.Input):
 
 
 class user_books_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'date_added', 'edition', 'edition_id', 'first_read_date', 'first_started_reading_date', 'followers_aggregate', 'has_review', 'id', 'imported', 'last_read_date', 'likes_aggregate', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned', 'owned_copies', 'privacy_setting', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'reading_journal_summary', 'reading_journals_aggregate', 'recommended_by', 'recommended_for', 'referrer', 'referrer_user_id', 'review', 'review_has_spoilers', 'review_length', 'review_migrated', 'review_raw', 'review_slate', 'reviewed_at', 'sponsored_review', 'starred', 'status_id', 'updated_at', 'url', 'user', 'user_book_reads_aggregate', 'user_book_status', 'user_books_aggregate', 'user_id')
     book = sgqlc.types.Field(books_order_by, graphql_name='book')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
@@ -9285,7 +9297,7 @@ class user_books_order_by(sgqlc.types.Input):
 
 
 class user_books_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9305,7 +9317,7 @@ class user_books_stddev_order_by(sgqlc.types.Input):
 
 
 class user_books_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9325,7 +9337,7 @@ class user_books_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class user_books_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9345,14 +9357,14 @@ class user_books_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class user_books_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_books_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_books_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'first_read_date', 'first_started_reading_date', 'has_review', 'id', 'imported', 'last_read_date', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned', 'owned_copies', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review', 'review_has_spoilers', 'review_length', 'review_migrated', 'review_raw', 'review_slate', 'reviewed_at', 'sponsored_review', 'starred', 'status_id', 'updated_at', 'url', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -9396,7 +9408,7 @@ class user_books_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class user_books_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9416,7 +9428,7 @@ class user_books_sum_order_by(sgqlc.types.Input):
 
 
 class user_books_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9436,7 +9448,7 @@ class user_books_var_pop_order_by(sgqlc.types.Input):
 
 
 class user_books_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9456,7 +9468,7 @@ class user_books_var_samp_order_by(sgqlc.types.Input):
 
 
 class user_books_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(order_by, graphql_name='book_id')
     edition_id = sgqlc.types.Field(order_by, graphql_name='edition_id')
@@ -9476,7 +9488,7 @@ class user_books_variance_order_by(sgqlc.types.Input):
 
 
 class user_flags_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_flags_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -9492,7 +9504,7 @@ class user_flags_aggregate_order_by(sgqlc.types.Input):
 
 
 class user_flags_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9502,7 +9514,7 @@ class user_flags_avg_order_by(sgqlc.types.Input):
 
 
 class user_flags_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status', 'flag_status_id', 'id', 'reported_user_id', 'user_id', 'user_reported', 'user_submitted')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_flags_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_flags_bool_exp', graphql_name='_not')
@@ -9522,7 +9534,7 @@ class user_flags_bool_exp(sgqlc.types.Input):
 
 
 class user_flags_insert_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'action_type', 'category', 'details', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(Int, graphql_name='action_id')
     action_type = sgqlc.types.Field(String, graphql_name='action_type')
@@ -9533,7 +9545,7 @@ class user_flags_insert_input(sgqlc.types.Input):
 
 
 class user_flags_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     action_type = sgqlc.types.Field(order_by, graphql_name='action_type')
@@ -9547,7 +9559,7 @@ class user_flags_max_order_by(sgqlc.types.Input):
 
 
 class user_flags_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     action_type = sgqlc.types.Field(order_by, graphql_name='action_type')
@@ -9561,7 +9573,7 @@ class user_flags_min_order_by(sgqlc.types.Input):
 
 
 class user_flags_on_conflict(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('constraint', 'update_columns', 'where')
     constraint = sgqlc.types.Field(sgqlc.types.non_null(user_flags_constraint), graphql_name='constraint')
     update_columns = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_flags_update_column))), graphql_name='update_columns')
@@ -9569,7 +9581,7 @@ class user_flags_on_conflict(sgqlc.types.Input):
 
 
 class user_flags_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status', 'flag_status_id', 'id', 'reported_user_id', 'user_id', 'user_reported', 'user_submitted')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     action_type = sgqlc.types.Field(order_by, graphql_name='action_type')
@@ -9586,7 +9598,7 @@ class user_flags_order_by(sgqlc.types.Input):
 
 
 class user_flags_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9596,7 +9608,7 @@ class user_flags_stddev_order_by(sgqlc.types.Input):
 
 
 class user_flags_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9606,7 +9618,7 @@ class user_flags_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class user_flags_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9616,14 +9628,14 @@ class user_flags_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class user_flags_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_flags_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_flags_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(Int, graphql_name='action_id')
     action_type = sgqlc.types.Field(String, graphql_name='action_type')
@@ -9637,7 +9649,7 @@ class user_flags_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class user_flags_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9647,7 +9659,7 @@ class user_flags_sum_order_by(sgqlc.types.Input):
 
 
 class user_flags_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9657,7 +9669,7 @@ class user_flags_var_pop_order_by(sgqlc.types.Input):
 
 
 class user_flags_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9667,7 +9679,7 @@ class user_flags_var_samp_order_by(sgqlc.types.Input):
 
 
 class user_flags_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'flag_status_id', 'id', 'reported_user_id', 'user_id')
     action_id = sgqlc.types.Field(order_by, graphql_name='action_id')
     flag_status_id = sgqlc.types.Field(order_by, graphql_name='flag_status_id')
@@ -9677,7 +9689,7 @@ class user_flags_variance_order_by(sgqlc.types.Input):
 
 
 class user_referrals_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'created_at', 'id', 'referrer', 'referrer_id', 'state', 'updated_at', 'user', 'user_id')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_referrals_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_referrals_bool_exp', graphql_name='_not')
@@ -9693,7 +9705,7 @@ class user_referrals_bool_exp(sgqlc.types.Input):
 
 
 class user_referrals_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'referrer', 'referrer_id', 'state', 'updated_at', 'user', 'user_id')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
     id = sgqlc.types.Field(order_by, graphql_name='id')
@@ -9706,14 +9718,14 @@ class user_referrals_order_by(sgqlc.types.Input):
 
 
 class user_referrals_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_referrals_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_referrals_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'referrer_id', 'state', 'updated_at', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -9724,7 +9736,7 @@ class user_referrals_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class user_statuses_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'id', 'status', 'users')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('user_statuses_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('user_statuses_bool_exp', graphql_name='_not')
@@ -9735,7 +9747,7 @@ class user_statuses_bool_exp(sgqlc.types.Input):
 
 
 class user_statuses_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'status', 'users_aggregate')
     id = sgqlc.types.Field(order_by, graphql_name='id')
     status = sgqlc.types.Field(order_by, graphql_name='status')
@@ -9743,21 +9755,21 @@ class user_statuses_order_by(sgqlc.types.Input):
 
 
 class user_statuses_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('user_statuses_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class user_statuses_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'status')
     id = sgqlc.types.Field(Int, graphql_name='id')
     status = sgqlc.types.Field(String, graphql_name='status')
 
 
 class users_aggregate_by_created_at_date_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'count', 'created_at')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('users_aggregate_by_created_at_date_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('users_aggregate_by_created_at_date_bool_exp', graphql_name='_not')
@@ -9767,28 +9779,28 @@ class users_aggregate_by_created_at_date_bool_exp(sgqlc.types.Input):
 
 
 class users_aggregate_by_created_at_date_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'created_at')
     count = sgqlc.types.Field(order_by, graphql_name='count')
     created_at = sgqlc.types.Field(order_by, graphql_name='created_at')
 
 
 class users_aggregate_by_created_at_date_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('users_aggregate_by_created_at_date_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class users_aggregate_by_created_at_date_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'created_at')
     count = sgqlc.types.Field(bigint, graphql_name='count')
     created_at = sgqlc.types.Field(date, graphql_name='created_at')
 
 
 class users_aggregate_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('users_avg_order_by', graphql_name='avg')
     count = sgqlc.types.Field(order_by, graphql_name='count')
@@ -9804,7 +9816,7 @@ class users_aggregate_order_by(sgqlc.types.Input):
 
 
 class users_avg_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -9822,7 +9834,7 @@ class users_avg_order_by(sgqlc.types.Input):
 
 
 class users_bool_exp(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('_and', '_not', '_or', 'access_level', 'account_privacy_setting_id', 'activities', 'activity_privacy_settings_id', 'admin', 'bio', 'birthdate', 'blocked_users', 'books_count', 'cached_cover', 'cached_genres', 'cached_image', 'collection_imports', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_by_users', 'followed_lists', 'followed_prompts', 'followed_users', 'followed_users_count', 'followers_count', 'follows', 'follows_aggregate', 'goals', 'id', 'image', 'image_id', 'last_activity_at', 'last_sign_in_at', 'librarian_roles', 'link', 'links', 'lists', 'lists_aggregate', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'notification_deliveries', 'notification_deliveries_aggregate', 'object_type', 'onboarded', 'payment_system_id', 'pro', 'prompt_answers', 'prompt_answers_aggregate', 'prompts', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'referrered_users', 'referrered_users_aggregate', 'remember_created_at', 'reported_user_flags', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'taggings', 'taggings_aggregate', 'timezone', 'unconfirmed_email', 'updated_at', 'user_books', 'user_books_aggregate', 'user_flags', 'username')
     _and = sgqlc.types.Field(sgqlc.types.list_of(sgqlc.types.non_null('users_bool_exp')), graphql_name='_and')
     _not = sgqlc.types.Field('users_bool_exp', graphql_name='_not')
@@ -9904,7 +9916,7 @@ class users_bool_exp(sgqlc.types.Input):
 
 
 class users_max_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'bio', 'birthdate', 'books_count', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_users_count', 'followers_count', 'id', 'image_id', 'last_activity_at', 'last_sign_in_at', 'link', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'object_type', 'payment_system_id', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'remember_created_at', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'timezone', 'unconfirmed_email', 'updated_at', 'username')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -9949,7 +9961,7 @@ class users_max_order_by(sgqlc.types.Input):
 
 
 class users_min_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'bio', 'birthdate', 'books_count', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_users_count', 'followers_count', 'id', 'image_id', 'last_activity_at', 'last_sign_in_at', 'link', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'object_type', 'payment_system_id', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'remember_created_at', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'timezone', 'unconfirmed_email', 'updated_at', 'username')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -9994,7 +10006,7 @@ class users_min_order_by(sgqlc.types.Input):
 
 
 class users_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activities_aggregate', 'activity_privacy_settings_id', 'admin', 'bio', 'birthdate', 'blocked_users_aggregate', 'books_count', 'cached_cover', 'cached_genres', 'cached_image', 'collection_imports_aggregate', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_by_users_aggregate', 'followed_lists_aggregate', 'followed_prompts_aggregate', 'followed_users_aggregate', 'followed_users_count', 'followers_count', 'follows_aggregate', 'goals_aggregate', 'id', 'image', 'image_id', 'last_activity_at', 'last_sign_in_at', 'librarian_roles', 'link', 'links', 'lists_aggregate', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'notification_deliveries_aggregate', 'object_type', 'onboarded', 'payment_system_id', 'pro', 'prompt_answers_aggregate', 'prompts_aggregate', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'referrered_users_aggregate', 'remember_created_at', 'reported_user_flags_aggregate', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'taggings_aggregate', 'timezone', 'unconfirmed_email', 'updated_at', 'user_books_aggregate', 'user_flags_aggregate', 'username')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10066,7 +10078,7 @@ class users_order_by(sgqlc.types.Input):
 
 
 class users_stddev_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10084,7 +10096,7 @@ class users_stddev_order_by(sgqlc.types.Input):
 
 
 class users_stddev_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10102,7 +10114,7 @@ class users_stddev_pop_order_by(sgqlc.types.Input):
 
 
 class users_stddev_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10120,14 +10132,14 @@ class users_stddev_samp_order_by(sgqlc.types.Input):
 
 
 class users_stream_cursor_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('initial_value', 'ordering')
     initial_value = sgqlc.types.Field(sgqlc.types.non_null('users_stream_cursor_value_input'), graphql_name='initial_value')
     ordering = sgqlc.types.Field(cursor_ordering, graphql_name='ordering')
 
 
 class users_stream_cursor_value_input(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'admin', 'bio', 'birthdate', 'books_count', 'cached_cover', 'cached_genres', 'cached_image', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_users_count', 'followers_count', 'id', 'image_id', 'last_activity_at', 'last_sign_in_at', 'librarian_roles', 'link', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'object_type', 'onboarded', 'payment_system_id', 'pro', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'remember_created_at', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'timezone', 'unconfirmed_email', 'updated_at', 'username')
     access_level = sgqlc.types.Field(Int, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(Int, graphql_name='account_privacy_setting_id')
@@ -10179,7 +10191,7 @@ class users_stream_cursor_value_input(sgqlc.types.Input):
 
 
 class users_sum_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10197,7 +10209,7 @@ class users_sum_order_by(sgqlc.types.Input):
 
 
 class users_var_pop_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10215,7 +10227,7 @@ class users_var_pop_order_by(sgqlc.types.Input):
 
 
 class users_var_samp_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10233,7 +10245,7 @@ class users_var_samp_order_by(sgqlc.types.Input):
 
 
 class users_variance_order_by(sgqlc.types.Input):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activity_privacy_settings_id', 'books_count', 'default_reading_format_id', 'followed_users_count', 'followers_count', 'id', 'image_id', 'payment_system_id', 'referrer_id', 'sign_in_count', 'status_id')
     access_level = sgqlc.types.Field(order_by, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(order_by, graphql_name='account_privacy_setting_id')
@@ -10255,7 +10267,7 @@ class users_variance_order_by(sgqlc.types.Input):
 # Output Objects and Interfaces
 ########################################################################
 class AuthorIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'errors', 'id')
     author = sgqlc.types.Field('authors', graphql_name='author')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
@@ -10263,7 +10275,7 @@ class AuthorIdType(sgqlc.types.Type):
 
 
 class BasicTagType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('category', 'category_slug', 'count', 'spoiler', 'tag', 'tag_slug')
     category = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='category')
     category_slug = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='categorySlug')
@@ -10274,7 +10286,7 @@ class BasicTagType(sgqlc.types.Type):
 
 
 class BookIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'errors', 'id', 'warnings')
     book = sgqlc.types.Field('books', graphql_name='book')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
@@ -10283,7 +10295,7 @@ class BookIdType(sgqlc.types.Type):
 
 
 class BookMappingIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_mapping', 'errors', 'id')
     book_mapping = sgqlc.types.Field('book_mappings', graphql_name='book_mapping')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
@@ -10291,7 +10303,7 @@ class BookMappingIdType(sgqlc.types.Type):
 
 
 class CharacterIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('character', 'errors', 'id')
     character = sgqlc.types.Field('characters', graphql_name='character')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
@@ -10299,45 +10311,45 @@ class CharacterIdType(sgqlc.types.Type):
 
 
 class CollectionImportIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('collection_import', 'id')
     collection_import = sgqlc.types.Field('collection_imports', graphql_name='collection_import')
     id = sgqlc.types.Field(Int, graphql_name='id')
 
 
 class CollectionImportResultIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('collection_import_result', 'id')
     collection_import_result = sgqlc.types.Field('collection_import_results', graphql_name='collection_import_result')
     id = sgqlc.types.Field(Int, graphql_name='id')
 
 
 class DeleteFollowedPromptType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('success',)
     success = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='success')
 
 
 class DeleteListType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('success',)
     success = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='success')
 
 
 class DeleteReadingJournalOutput(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
 
 
 class DeleteReadingJournalsOutput(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('ids',)
     ids = sgqlc.types.Field(sgqlc.types.list_of(Int), graphql_name='ids')
 
 
 class EditionIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition', 'errors', 'id', 'warnings')
     edition = sgqlc.types.Field('editions', graphql_name='edition')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
@@ -10346,14 +10358,14 @@ class EditionIdType(sgqlc.types.Type):
 
 
 class FollowDeleteType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'success')
     error = sgqlc.types.Field(String, graphql_name='error')
     success = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='success')
 
 
 class FollowType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'follow', 'followable_id', 'followable_type', 'id')
     error = sgqlc.types.Field(String, graphql_name='error')
     follow = sgqlc.types.Field('follows', graphql_name='follow')
@@ -10363,7 +10375,7 @@ class FollowType(sgqlc.types.Type):
 
 
 class FollowedListType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'followed_list', 'id')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     followed_list = sgqlc.types.Field('followed_lists', graphql_name='followed_list')
@@ -10371,7 +10383,7 @@ class FollowedListType(sgqlc.types.Type):
 
 
 class FollowedPromptType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'followed_prompt', 'id')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     followed_prompt = sgqlc.types.Field('followed_prompts', graphql_name='followed_prompt')
@@ -10379,7 +10391,7 @@ class FollowedPromptType(sgqlc.types.Type):
 
 
 class FollowedUserType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'followed_user', 'followed_user_id', 'followed_users', 'id', 'user', 'user_id')
     error = sgqlc.types.Field(String, graphql_name='error')
     followed_user = sgqlc.types.Field('users', graphql_name='followed_user')
@@ -10391,7 +10403,7 @@ class FollowedUserType(sgqlc.types.Type):
 
 
 class GoalIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'goal', 'id')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     goal = sgqlc.types.Field('goals', graphql_name='goal')
@@ -10399,14 +10411,14 @@ class GoalIdType(sgqlc.types.Type):
 
 
 class ImageIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'image')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
     image = sgqlc.types.Field('images', graphql_name='image')
 
 
 class InsertBlockOutput(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'id', 'user_block')
     error = sgqlc.types.Field(String, graphql_name='error')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10414,13 +10426,13 @@ class InsertBlockOutput(sgqlc.types.Type):
 
 
 class LikeDeleteType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('likes_count',)
     likes_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='likes_count')
 
 
 class LikeType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'like', 'likes_count')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
     like = sgqlc.types.Field('likes', graphql_name='like')
@@ -10428,7 +10440,7 @@ class LikeType(sgqlc.types.Type):
 
 
 class ListBookDeleteType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list', 'list_id')
     id = sgqlc.types.Field(Int, graphql_name='id')
     list = sgqlc.types.Field('lists', graphql_name='list')
@@ -10436,20 +10448,20 @@ class ListBookDeleteType(sgqlc.types.Type):
 
 
 class ListBookIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'list_book')
     id = sgqlc.types.Field(Int, graphql_name='id')
     list_book = sgqlc.types.Field('list_books', graphql_name='list_book')
 
 
 class ListDeleteType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('success',)
     success = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='success')
 
 
 class ListIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'id', 'list')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10457,7 +10469,7 @@ class ListIdType(sgqlc.types.Type):
 
 
 class NewBookIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'edition', 'edition_id', 'errors', 'id')
     book = sgqlc.types.Field('books', graphql_name='book')
     edition = sgqlc.types.Field('editions', graphql_name='edition')
@@ -10467,13 +10479,13 @@ class NewBookIdType(sgqlc.types.Type):
 
 
 class NewsletterStatusType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('subscribed',)
     subscribed = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='subscribed')
 
 
 class OptionalEditionIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition', 'errors', 'id')
     edition = sgqlc.types.Field('editions', graphql_name='edition')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
@@ -10481,7 +10493,7 @@ class OptionalEditionIdType(sgqlc.types.Type):
 
 
 class PromptAnswerIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'prompt_answer', 'prompt_book', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10492,7 +10504,7 @@ class PromptAnswerIdType(sgqlc.types.Type):
 
 
 class PromptIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'id', 'prompt')
     error = sgqlc.types.Field(String, graphql_name='error')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10500,7 +10512,7 @@ class PromptIdType(sgqlc.types.Type):
 
 
 class PublisherIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'id', 'publisher')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10508,7 +10520,7 @@ class PublisherIdType(sgqlc.types.Type):
 
 
 class ReadingJournalOutput(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'id', 'reading_journal')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10516,7 +10528,7 @@ class ReadingJournalOutput(sgqlc.types.Type):
 
 
 class ReferralType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'count')
     book = sgqlc.types.Field('books', graphql_name='book')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
@@ -10524,7 +10536,7 @@ class ReferralType(sgqlc.types.Type):
 
 
 class ReportOutput(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('complete', 'created', 'errors', 'review_message')
     complete = sgqlc.types.Field(Boolean, graphql_name='complete')
     created = sgqlc.types.Field(Boolean, graphql_name='created')
@@ -10533,7 +10545,7 @@ class ReportOutput(sgqlc.types.Type):
 
 
 class SearchOutput(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'ids', 'page', 'per_page', 'query', 'query_type', 'results')
     error = sgqlc.types.Field(String, graphql_name='error')
     ids = sgqlc.types.Field(sgqlc.types.list_of(Int), graphql_name='ids')
@@ -10545,7 +10557,7 @@ class SearchOutput(sgqlc.types.Type):
 
 
 class SeriesIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'id', 'series')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10553,7 +10565,7 @@ class SeriesIdType(sgqlc.types.Type):
 
 
 class SubscriptionsType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('billing_portal_url', 'membership', 'membership_ends_at', 'monthly_session_id', 'monthly_session_url', 'payment_system', 'yearly_session_id', 'yearly_session_url')
     billing_portal_url = sgqlc.types.Field(String, graphql_name='billing_portal_url')
     membership = sgqlc.types.Field(String, graphql_name='membership')
@@ -10566,26 +10578,26 @@ class SubscriptionsType(sgqlc.types.Type):
 
 
 class SuccessType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('success',)
     success = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='success')
 
 
 class TagsType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('tags',)
     tags = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(BasicTagType)), graphql_name='tags')
 
 
 class TrendingBookType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'ids')
     error = sgqlc.types.Field(String, graphql_name='error')
     ids = sgqlc.types.Field(sgqlc.types.list_of(Int), graphql_name='ids')
 
 
 class UserBookDeleteType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'user_book', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10594,7 +10606,7 @@ class UserBookDeleteType(sgqlc.types.Type):
 
 
 class UserBookIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'id', 'user_book')
     error = sgqlc.types.Field(String, graphql_name='error')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10602,7 +10614,7 @@ class UserBookIdType(sgqlc.types.Type):
 
 
 class UserBookReadIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'id', 'user_book_read')
     error = sgqlc.types.Field(String, graphql_name='error')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10610,7 +10622,7 @@ class UserBookReadIdType(sgqlc.types.Type):
 
 
 class UserBooksReadUpsertType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('error', 'user_book', 'user_book_id')
     error = sgqlc.types.Field(String, graphql_name='error')
     user_book = sgqlc.types.Field('user_books', graphql_name='user_book')
@@ -10618,7 +10630,7 @@ class UserBooksReadUpsertType(sgqlc.types.Type):
 
 
 class UserIdType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('errors', 'id', 'user')
     errors = sgqlc.types.Field(sgqlc.types.list_of(String), graphql_name='errors')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -10626,14 +10638,14 @@ class UserIdType(sgqlc.types.Type):
 
 
 class ValidateReceiptType(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('result', 'supporter')
     result = sgqlc.types.Field(sgqlc.types.non_null(jsonb), graphql_name='result')
     supporter = sgqlc.types.Field(Boolean, graphql_name='supporter')
 
 
 class activities(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'data', 'event', 'followers', 'id', 'likes', 'likes_count', 'object_type', 'original_book_id', 'privacy_setting', 'privacy_setting_id', 'uid', 'user', 'user_id')
     book = sgqlc.types.Field('books', graphql_name='book')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -10671,14 +10683,14 @@ class activities(sgqlc.types.Type):
 
 
 class activities_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(activities))), graphql_name='returning')
 
 
 class authors(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alias', 'alias_id', 'alternate_names', 'bio', 'books_count', 'born_date', 'born_year', 'cached_image', 'canonical', 'canonical_id', 'contributions', 'contributions_aggregate', 'creator', 'death_date', 'death_year', 'gender_id', 'id', 'identifiers', 'image', 'image_id', 'is_bipoc', 'is_lgbtq', 'links', 'location', 'locked', 'name', 'name_personal', 'object_type', 'slug', 'state', 'title', 'user_id', 'users_count')
     alias = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('authors'))), graphql_name='alias', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(authors_select_column)), graphql_name='distinct_on', default=None)),
@@ -10749,14 +10761,14 @@ class authors(sgqlc.types.Type):
 
 
 class book_categories(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'name')
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
     name = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='name')
 
 
 class book_characters(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'character', 'character_id', 'id', 'only_mentioned', 'position', 'spoiler')
     book = sgqlc.types.Field('books', graphql_name='book')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='book_id')
@@ -10769,7 +10781,7 @@ class book_characters(sgqlc.types.Type):
 
 
 class book_collections(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'child_book_id', 'id', 'position')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
     child_book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='child_book_id')
@@ -10778,7 +10790,7 @@ class book_collections(sgqlc.types.Type):
 
 
 class book_mappings(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('attempts', 'book', 'book_id', 'created_at', 'edition', 'edition_id', 'external_data_id', 'external_id', 'id', 'loaded', 'loaded_at', 'normalized_at', 'original_book_id', 'platform', 'platform_id', 'state', 'updated_at', 'verified', 'verified_at')
     attempts = sgqlc.types.Field(Int, graphql_name='attempts')
     book = sgqlc.types.Field(sgqlc.types.non_null('books'), graphql_name='book')
@@ -10802,7 +10814,7 @@ class book_mappings(sgqlc.types.Type):
 
 
 class book_series(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'compilation', 'created_at', 'details', 'featured', 'id', 'position', 'series', 'series_id', 'updated_at')
     book = sgqlc.types.Field('books', graphql_name='book')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
@@ -10818,14 +10830,14 @@ class book_series(sgqlc.types.Type):
 
 
 class book_series_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('book_series_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(book_series))), graphql_name='nodes')
 
 
 class book_series_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('book_series_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -10845,7 +10857,7 @@ class book_series_aggregate_fields(sgqlc.types.Type):
 
 
 class book_series_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10854,7 +10866,7 @@ class book_series_avg_fields(sgqlc.types.Type):
 
 
 class book_series_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'details', 'id', 'position', 'series_id', 'updated_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -10866,7 +10878,7 @@ class book_series_max_fields(sgqlc.types.Type):
 
 
 class book_series_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'details', 'id', 'position', 'series_id', 'updated_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -10878,7 +10890,7 @@ class book_series_min_fields(sgqlc.types.Type):
 
 
 class book_series_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10887,7 +10899,7 @@ class book_series_stddev_fields(sgqlc.types.Type):
 
 
 class book_series_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10896,7 +10908,7 @@ class book_series_stddev_pop_fields(sgqlc.types.Type):
 
 
 class book_series_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10905,7 +10917,7 @@ class book_series_stddev_samp_fields(sgqlc.types.Type):
 
 
 class book_series_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -10914,7 +10926,7 @@ class book_series_sum_fields(sgqlc.types.Type):
 
 
 class book_series_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10923,7 +10935,7 @@ class book_series_var_pop_fields(sgqlc.types.Type):
 
 
 class book_series_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10932,7 +10944,7 @@ class book_series_var_samp_fields(sgqlc.types.Type):
 
 
 class book_series_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'position', 'series_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -10941,7 +10953,7 @@ class book_series_variance_fields(sgqlc.types.Type):
 
 
 class book_statuses(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books', 'books_aggregate', 'id', 'name')
     books = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('books'))), graphql_name='books', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(books_select_column)), graphql_name='distinct_on', default=None)),
@@ -10964,7 +10976,7 @@ class book_statuses(sgqlc.types.Type):
 
 
 class bookles(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'date', 'id')
     book = sgqlc.types.Field('books', graphql_name='book')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -10974,7 +10986,7 @@ class bookles(sgqlc.types.Type):
 
 
 class books(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'alternative_titles', 'audio_seconds', 'book_category_id', 'book_characters', 'book_mappings', 'book_series', 'book_series_aggregate', 'book_status', 'book_status_id', 'cached_contributors', 'cached_featured_series', 'cached_header_image', 'cached_image', 'cached_tags', 'canonical', 'canonical_id', 'collection_import_results', 'compilation', 'contributions', 'contributions_aggregate', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition', 'default_audio_edition_id', 'default_cover_edition', 'default_cover_edition_id', 'default_ebook_edition', 'default_ebook_edition_id', 'default_physical_edition', 'default_physical_edition_id', 'description', 'editions', 'editions_count', 'featured_book_series', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image', 'image_id', 'images', 'import_platform_id', 'is_partial_book', 'journals_count', 'links', 'list_books', 'list_books_aggregate', 'lists_count', 'literary_type_id', 'locked', 'pages', 'parent_book', 'parent_book_id', 'prompt_answers', 'prompt_answers_aggregate', 'prompt_summaries', 'prompts_count', 'rating', 'ratings_count', 'ratings_distribution', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'taggable_counts', 'taggings', 'taggings_aggregate', 'title', 'updated_at', 'user_books', 'user_books_aggregate', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='activities_count')
     alternative_titles = sgqlc.types.Field(sgqlc.types.non_null(json), graphql_name='alternative_titles', args=sgqlc.types.ArgDict((
@@ -11213,14 +11225,14 @@ class books(sgqlc.types.Type):
 
 
 class books_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('books_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(books))), graphql_name='nodes')
 
 
 class books_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('books_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -11240,7 +11252,7 @@ class books_aggregate_fields(sgqlc.types.Type):
 
 
 class books_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11274,7 +11286,7 @@ class books_avg_fields(sgqlc.types.Type):
 
 
 class books_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'description', 'editions_count', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Int, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Int, graphql_name='audio_seconds')
@@ -11317,7 +11329,7 @@ class books_max_fields(sgqlc.types.Type):
 
 
 class books_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_at', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'description', 'editions_count', 'featured_book_series_id', 'header_image_id', 'headline', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_date', 'release_year', 'reviews_count', 'slug', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Int, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Int, graphql_name='audio_seconds')
@@ -11360,7 +11372,7 @@ class books_min_fields(sgqlc.types.Type):
 
 
 class books_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11394,7 +11406,7 @@ class books_stddev_fields(sgqlc.types.Type):
 
 
 class books_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11428,7 +11440,7 @@ class books_stddev_pop_fields(sgqlc.types.Type):
 
 
 class books_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11462,7 +11474,7 @@ class books_stddev_samp_fields(sgqlc.types.Type):
 
 
 class books_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Int, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Int, graphql_name='audio_seconds')
@@ -11496,7 +11508,7 @@ class books_sum_fields(sgqlc.types.Type):
 
 
 class books_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11530,7 +11542,7 @@ class books_var_pop_fields(sgqlc.types.Type):
 
 
 class books_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11564,7 +11576,7 @@ class books_var_samp_fields(sgqlc.types.Type):
 
 
 class books_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities_count', 'audio_seconds', 'book_category_id', 'book_status_id', 'canonical_id', 'created_by_user_id', 'curation_status', 'default_audio_edition_id', 'default_cover_edition_id', 'default_ebook_edition_id', 'default_physical_edition_id', 'editions_count', 'featured_book_series_id', 'header_image_id', 'id', 'image_id', 'import_platform_id', 'journals_count', 'lists_count', 'literary_type_id', 'pages', 'parent_book_id', 'prompts_count', 'rating', 'ratings_count', 'release_year', 'reviews_count', 'users_count', 'users_read_count')
     activities_count = sgqlc.types.Field(Float, graphql_name='activities_count')
     audio_seconds = sgqlc.types.Field(Float, graphql_name='audio_seconds')
@@ -11598,7 +11610,7 @@ class books_variance_fields(sgqlc.types.Type):
 
 
 class characters(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('biography', 'book_characters', 'books_count', 'cached_tags', 'canonical', 'canonical_books_count', 'canonical_id', 'contributions', 'contributions_aggregate', 'created_at', 'gender_id', 'has_disability', 'id', 'image_id', 'is_lgbtq', 'is_poc', 'locked', 'name', 'object_type', 'openlibrary_url', 'slug', 'state', 'updated_at', 'user_id')
     biography = sgqlc.types.Field(String, graphql_name='biography')
     book_characters = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('book_characters'))), graphql_name='book_characters', args=sgqlc.types.ArgDict((
@@ -11651,7 +11663,7 @@ class characters(sgqlc.types.Type):
 
 
 class collection_import_results(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book', 'book_id', 'collection_import', 'collection_import_id', 'contents', 'error', 'external_id', 'id', 'report', 'state', 'title')
     author = sgqlc.types.Field(String, graphql_name='author')
     book = sgqlc.types.Field(books, graphql_name='book')
@@ -11671,14 +11683,14 @@ class collection_import_results(sgqlc.types.Type):
 
 
 class collection_import_results_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(collection_import_results))), graphql_name='returning')
 
 
 class collection_imports(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('collection_import_results', 'completed_at', 'contents_key', 'created_at', 'current_book', 'error_message', 'failure_count', 'id', 'override_date_read', 'override_ratings', 'override_shelves', 'platform_id', 'processed_count', 'reimport_count', 'started_at', 'state', 'success_count', 'tag_resolution', 'total_count', 'updated_at', 'user', 'user_id')
     collection_import_results = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('collection_import_results'))), graphql_name='collection_import_results', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(collection_import_results_select_column)), graphql_name='distinct_on', default=None)),
@@ -11712,7 +11724,7 @@ class collection_imports(sgqlc.types.Type):
 
 
 class contributions(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'author_id', 'book', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author = sgqlc.types.Field(authors, graphql_name='author')
     author_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='author_id')
@@ -11726,14 +11738,14 @@ class contributions(sgqlc.types.Type):
 
 
 class contributions_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('contributions_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(contributions))), graphql_name='nodes')
 
 
 class contributions_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('contributions_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -11753,7 +11765,7 @@ class contributions_aggregate_fields(sgqlc.types.Type):
 
 
 class contributions_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11761,7 +11773,7 @@ class contributions_avg_fields(sgqlc.types.Type):
 
 
 class contributions_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Int, graphql_name='contributable_id')
@@ -11773,7 +11785,7 @@ class contributions_max_fields(sgqlc.types.Type):
 
 
 class contributions_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'contributable_type', 'contribution', 'created_at', 'id', 'updated_at')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Int, graphql_name='contributable_id')
@@ -11785,7 +11797,7 @@ class contributions_min_fields(sgqlc.types.Type):
 
 
 class contributions_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11793,7 +11805,7 @@ class contributions_stddev_fields(sgqlc.types.Type):
 
 
 class contributions_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11801,7 +11813,7 @@ class contributions_stddev_pop_fields(sgqlc.types.Type):
 
 
 class contributions_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11809,7 +11821,7 @@ class contributions_stddev_samp_fields(sgqlc.types.Type):
 
 
 class contributions_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Int, graphql_name='contributable_id')
@@ -11817,7 +11829,7 @@ class contributions_sum_fields(sgqlc.types.Type):
 
 
 class contributions_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11825,7 +11837,7 @@ class contributions_var_pop_fields(sgqlc.types.Type):
 
 
 class contributions_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11833,7 +11845,7 @@ class contributions_var_samp_fields(sgqlc.types.Type):
 
 
 class contributions_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author_id', 'contributable_id', 'id')
     author_id = sgqlc.types.Field(Float, graphql_name='author_id')
     contributable_id = sgqlc.types.Field(Float, graphql_name='contributable_id')
@@ -11841,7 +11853,7 @@ class contributions_variance_fields(sgqlc.types.Type):
 
 
 class countries(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('code2', 'code3', 'created_at', 'editions', 'id', 'intermediate_region', 'intermediate_region_code', 'iso_3166', 'name', 'phone_code', 'region', 'region_code', 'sub_region', 'sub_region_code', 'updated_at')
     code2 = sgqlc.types.Field(String, graphql_name='code2')
     code3 = sgqlc.types.Field(String, graphql_name='code3')
@@ -11868,7 +11880,7 @@ class countries(sgqlc.types.Type):
 
 
 class editions(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('alternative_titles', 'asin', 'audio_seconds', 'book', 'book_id', 'book_mappings', 'cached_contributors', 'cached_image', 'cached_tags', 'canonical_id', 'compilation', 'contributions', 'contributions_aggregate', 'country', 'country_id', 'created_at', 'created_by_user_id', 'curation_status', 'edition_format', 'edition_information', 'id', 'image', 'image_id', 'images', 'isbn_10', 'isbn_10_valid', 'isbn_13', 'isbn_13_valid', 'isbns_match', 'language', 'language_id', 'list_books', 'list_books_aggregate', 'lists_count', 'locked', 'normalized_at', 'object_type', 'original_book_id', 'pages', 'physical_format', 'physical_information', 'publisher', 'publisher_id', 'rating', 'reading_format', 'reading_format_id', 'release_date', 'release_year', 'score', 'source', 'state', 'subtitle', 'title', 'updated_at', 'users_count', 'users_read_count')
     alternative_titles = sgqlc.types.Field(sgqlc.types.non_null(json), graphql_name='alternative_titles', args=sgqlc.types.ArgDict((
         ('path', sgqlc.types.Arg(String, graphql_name='path', default=None)),
@@ -11983,7 +11995,7 @@ class editions(sgqlc.types.Type):
 
 
 class flag_statuses(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'status', 'user_flags')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
     status = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='status')
@@ -11998,7 +12010,7 @@ class flag_statuses(sgqlc.types.Type):
 
 
 class followed_lists(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'list', 'list_id', 'user', 'user_id')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(timestamptz), graphql_name='created_at')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
@@ -12009,7 +12021,7 @@ class followed_lists(sgqlc.types.Type):
 
 
 class followed_prompts(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'order', 'prompt', 'prompt_id', 'user', 'user_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
@@ -12021,14 +12033,14 @@ class followed_prompts(sgqlc.types.Type):
 
 
 class followed_prompts_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(followed_prompts))), graphql_name='returning')
 
 
 class followed_user_books(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'follower_user', 'follower_user_id', 'user', 'user_book', 'user_book_id', 'user_id')
     book = sgqlc.types.Field(books, graphql_name='book')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -12041,14 +12053,14 @@ class followed_user_books(sgqlc.types.Type):
 
 
 class followed_user_books_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('followed_user_books_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(followed_user_books))), graphql_name='nodes')
 
 
 class followed_user_books_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('followed_user_books_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -12068,7 +12080,7 @@ class followed_user_books_aggregate_fields(sgqlc.types.Type):
 
 
 class followed_user_books_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12077,7 +12089,7 @@ class followed_user_books_avg_fields(sgqlc.types.Type):
 
 
 class followed_user_books_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Int, graphql_name='follower_user_id')
@@ -12086,7 +12098,7 @@ class followed_user_books_max_fields(sgqlc.types.Type):
 
 
 class followed_user_books_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Int, graphql_name='follower_user_id')
@@ -12095,7 +12107,7 @@ class followed_user_books_min_fields(sgqlc.types.Type):
 
 
 class followed_user_books_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12104,7 +12116,7 @@ class followed_user_books_stddev_fields(sgqlc.types.Type):
 
 
 class followed_user_books_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12113,7 +12125,7 @@ class followed_user_books_stddev_pop_fields(sgqlc.types.Type):
 
 
 class followed_user_books_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12122,7 +12134,7 @@ class followed_user_books_stddev_samp_fields(sgqlc.types.Type):
 
 
 class followed_user_books_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Int, graphql_name='follower_user_id')
@@ -12131,7 +12143,7 @@ class followed_user_books_sum_fields(sgqlc.types.Type):
 
 
 class followed_user_books_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12140,7 +12152,7 @@ class followed_user_books_var_pop_fields(sgqlc.types.Type):
 
 
 class followed_user_books_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12149,7 +12161,7 @@ class followed_user_books_var_samp_fields(sgqlc.types.Type):
 
 
 class followed_user_books_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'follower_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     follower_user_id = sgqlc.types.Field(Float, graphql_name='follower_user_id')
@@ -12158,7 +12170,7 @@ class followed_user_books_variance_fields(sgqlc.types.Type):
 
 
 class followed_users(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followed_user', 'followed_user_id', 'id', 'user', 'user_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
     followed_user = sgqlc.types.Field(sgqlc.types.non_null('users'), graphql_name='followed_user')
@@ -12169,14 +12181,14 @@ class followed_users(sgqlc.types.Type):
 
 
 class followed_users_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(followed_users))), graphql_name='returning')
 
 
 class following_user_books(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'followed_user_id', 'following_user', 'user', 'user_book', 'user_book_id', 'user_id')
     book = sgqlc.types.Field(books, graphql_name='book')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -12189,14 +12201,14 @@ class following_user_books(sgqlc.types.Type):
 
 
 class following_user_books_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('following_user_books_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(following_user_books))), graphql_name='nodes')
 
 
 class following_user_books_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('following_user_books_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -12216,7 +12228,7 @@ class following_user_books_aggregate_fields(sgqlc.types.Type):
 
 
 class following_user_books_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12225,7 +12237,7 @@ class following_user_books_avg_fields(sgqlc.types.Type):
 
 
 class following_user_books_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Int, graphql_name='followed_user_id')
@@ -12234,7 +12246,7 @@ class following_user_books_max_fields(sgqlc.types.Type):
 
 
 class following_user_books_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Int, graphql_name='followed_user_id')
@@ -12243,7 +12255,7 @@ class following_user_books_min_fields(sgqlc.types.Type):
 
 
 class following_user_books_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12252,7 +12264,7 @@ class following_user_books_stddev_fields(sgqlc.types.Type):
 
 
 class following_user_books_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12261,7 +12273,7 @@ class following_user_books_stddev_pop_fields(sgqlc.types.Type):
 
 
 class following_user_books_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12270,7 +12282,7 @@ class following_user_books_stddev_samp_fields(sgqlc.types.Type):
 
 
 class following_user_books_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Int, graphql_name='followed_user_id')
@@ -12279,7 +12291,7 @@ class following_user_books_sum_fields(sgqlc.types.Type):
 
 
 class following_user_books_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12288,7 +12300,7 @@ class following_user_books_var_pop_fields(sgqlc.types.Type):
 
 
 class following_user_books_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12297,7 +12309,7 @@ class following_user_books_var_samp_fields(sgqlc.types.Type):
 
 
 class following_user_books_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'followed_user_id', 'user_book_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     followed_user_id = sgqlc.types.Field(Float, graphql_name='followed_user_id')
@@ -12306,7 +12318,7 @@ class following_user_books_variance_fields(sgqlc.types.Type):
 
 
 class follows(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'book', 'character', 'created_at', 'edition', 'followable_id', 'followable_type', 'id', 'list', 'publisher', 'series', 'updated_at', 'user', 'user_id')
     author = sgqlc.types.Field(authors, graphql_name='author')
     book = sgqlc.types.Field(books, graphql_name='book')
@@ -12325,14 +12337,14 @@ class follows(sgqlc.types.Type):
 
 
 class follows_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('follows_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(follows))), graphql_name='nodes')
 
 
 class follows_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('follows_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -12352,7 +12364,7 @@ class follows_aggregate_fields(sgqlc.types.Type):
 
 
 class follows_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12360,7 +12372,7 @@ class follows_avg_fields(sgqlc.types.Type):
 
 
 class follows_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followable_id', 'followable_type', 'id', 'updated_at', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     followable_id = sgqlc.types.Field(bigint, graphql_name='followable_id')
@@ -12371,7 +12383,7 @@ class follows_max_fields(sgqlc.types.Type):
 
 
 class follows_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'followable_id', 'followable_type', 'id', 'updated_at', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     followable_id = sgqlc.types.Field(bigint, graphql_name='followable_id')
@@ -12382,7 +12394,7 @@ class follows_min_fields(sgqlc.types.Type):
 
 
 class follows_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12390,7 +12402,7 @@ class follows_stddev_fields(sgqlc.types.Type):
 
 
 class follows_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12398,7 +12410,7 @@ class follows_stddev_pop_fields(sgqlc.types.Type):
 
 
 class follows_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12406,7 +12418,7 @@ class follows_stddev_samp_fields(sgqlc.types.Type):
 
 
 class follows_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(bigint, graphql_name='followable_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -12414,7 +12426,7 @@ class follows_sum_fields(sgqlc.types.Type):
 
 
 class follows_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12422,7 +12434,7 @@ class follows_var_pop_fields(sgqlc.types.Type):
 
 
 class follows_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12430,7 +12442,7 @@ class follows_var_samp_fields(sgqlc.types.Type):
 
 
 class follows_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('followable_id', 'id', 'user_id')
     followable_id = sgqlc.types.Field(Float, graphql_name='followable_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -12438,7 +12450,7 @@ class follows_variance_fields(sgqlc.types.Type):
 
 
 class goals(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('archived', 'completed_at', 'conditions', 'description', 'end_date', 'followers', 'goal', 'id', 'metric', 'privacy_setting_id', 'progress', 'start_date', 'state', 'user', 'user_id')
     archived = sgqlc.types.Field(sgqlc.types.non_null(Boolean), graphql_name='archived')
     completed_at = sgqlc.types.Field(timestamptz, graphql_name='completed_at')
@@ -12468,7 +12480,7 @@ class goals(sgqlc.types.Type):
 
 
 class images(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('color', 'colors', 'height', 'id', 'imageable_id', 'imageable_type', 'ratio', 'url', 'width')
     color = sgqlc.types.Field(String, graphql_name='color')
     colors = sgqlc.types.Field(jsonb, graphql_name='colors', args=sgqlc.types.ArgDict((
@@ -12485,7 +12497,7 @@ class images(sgqlc.types.Type):
 
 
 class languages(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('code2', 'code3', 'id', 'language')
     code2 = sgqlc.types.Field(String, graphql_name='code2')
     code3 = sgqlc.types.Field(String, graphql_name='code3')
@@ -12494,7 +12506,7 @@ class languages(sgqlc.types.Type):
 
 
 class likes(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activity', 'created_at', 'followers', 'id', 'likeable_id', 'likeable_type', 'list', 'user', 'user_book', 'user_id')
     activity = sgqlc.types.Field(activities, graphql_name='activity')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -12516,7 +12528,7 @@ class likes(sgqlc.types.Type):
 
 
 class links(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'linkable_id', 'linkable_type', 'social_type', 'updated_at', 'url', 'user', 'username')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(timestamp), graphql_name='created_at')
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
@@ -12530,7 +12542,7 @@ class links(sgqlc.types.Type):
 
 
 class list_books(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'date_added', 'edition', 'edition_id', 'id', 'imported', 'list', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at', 'user_books', 'user_books_aggregate')
     book = sgqlc.types.Field(sgqlc.types.non_null(books), graphql_name='book')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
@@ -12567,14 +12579,14 @@ class list_books(sgqlc.types.Type):
 
 
 class list_books_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('list_books_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(list_books))), graphql_name='nodes')
 
 
 class list_books_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('list_books_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -12594,7 +12606,7 @@ class list_books_aggregate_fields(sgqlc.types.Type):
 
 
 class list_books_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12606,7 +12618,7 @@ class list_books_avg_fields(sgqlc.types.Type):
 
 
 class list_books_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'id', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -12623,7 +12635,7 @@ class list_books_max_fields(sgqlc.types.Type):
 
 
 class list_books_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'id', 'list_id', 'merged_at', 'original_book_id', 'original_edition_id', 'position', 'reason', 'updated_at')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -12640,14 +12652,14 @@ class list_books_min_fields(sgqlc.types.Type):
 
 
 class list_books_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(list_books))), graphql_name='returning')
 
 
 class list_books_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12659,7 +12671,7 @@ class list_books_stddev_fields(sgqlc.types.Type):
 
 
 class list_books_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12671,7 +12683,7 @@ class list_books_stddev_pop_fields(sgqlc.types.Type):
 
 
 class list_books_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12683,7 +12695,7 @@ class list_books_stddev_samp_fields(sgqlc.types.Type):
 
 
 class list_books_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -12695,7 +12707,7 @@ class list_books_sum_fields(sgqlc.types.Type):
 
 
 class list_books_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12707,7 +12719,7 @@ class list_books_var_pop_fields(sgqlc.types.Type):
 
 
 class list_books_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12719,7 +12731,7 @@ class list_books_var_samp_fields(sgqlc.types.Type):
 
 
 class list_books_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'list_id', 'original_book_id', 'original_edition_id', 'position')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -12731,7 +12743,7 @@ class list_books_variance_fields(sgqlc.types.Type):
 
 
 class lists(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'featured', 'featured_profile', 'followed_lists', 'followers', 'followers_count', 'id', 'imported', 'likes', 'likes_count', 'list_books', 'list_books_aggregate', 'name', 'object_type', 'privacy_setting', 'privacy_setting_id', 'public', 'ranked', 'slug', 'updated_at', 'url', 'user', 'user_id')
     books_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='books_count')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -12797,14 +12809,14 @@ class lists(sgqlc.types.Type):
 
 
 class lists_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('lists_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(lists))), graphql_name='nodes')
 
 
 class lists_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('lists_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -12824,7 +12836,7 @@ class lists_aggregate_fields(sgqlc.types.Type):
 
 
 class lists_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12835,7 +12847,7 @@ class lists_avg_fields(sgqlc.types.Type):
 
 
 class lists_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'followers_count', 'id', 'likes_count', 'name', 'object_type', 'privacy_setting_id', 'slug', 'updated_at', 'url', 'user_id')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -12854,7 +12866,7 @@ class lists_max_fields(sgqlc.types.Type):
 
 
 class lists_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'created_at', 'default_view', 'description', 'followers_count', 'id', 'likes_count', 'name', 'object_type', 'privacy_setting_id', 'slug', 'updated_at', 'url', 'user_id')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -12873,7 +12885,7 @@ class lists_min_fields(sgqlc.types.Type):
 
 
 class lists_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12884,7 +12896,7 @@ class lists_stddev_fields(sgqlc.types.Type):
 
 
 class lists_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12895,7 +12907,7 @@ class lists_stddev_pop_fields(sgqlc.types.Type):
 
 
 class lists_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12906,7 +12918,7 @@ class lists_stddev_samp_fields(sgqlc.types.Type):
 
 
 class lists_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Int, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Int, graphql_name='followers_count')
@@ -12917,7 +12929,7 @@ class lists_sum_fields(sgqlc.types.Type):
 
 
 class lists_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12928,7 +12940,7 @@ class lists_var_pop_fields(sgqlc.types.Type):
 
 
 class lists_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12939,7 +12951,7 @@ class lists_var_samp_fields(sgqlc.types.Type):
 
 
 class lists_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('books_count', 'followers_count', 'id', 'likes_count', 'privacy_setting_id', 'user_id')
     books_count = sgqlc.types.Field(Float, graphql_name='books_count')
     followers_count = sgqlc.types.Field(Float, graphql_name='followers_count')
@@ -12950,7 +12962,7 @@ class lists_variance_fields(sgqlc.types.Type):
 
 
 class mutation_root(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_mapping_normalize', 'book_normalize', 'collection_import_result_reimport', 'collection_import_retry', 'delete_activities', 'delete_activities_by_pk', 'delete_book_mapping', 'delete_follow', 'delete_followed_list', 'delete_followed_prompt', 'delete_followed_prompts', 'delete_followed_prompts_by_pk', 'delete_followed_user', 'delete_followed_users', 'delete_followed_users_by_pk', 'delete_goal', 'delete_like', 'delete_list', 'delete_list_book', 'delete_prompt_answer', 'delete_prompts', 'delete_prompts_by_pk', 'delete_reading_journal', 'delete_reading_journals_for_book', 'delete_user_blocks', 'delete_user_blocks_by_pk', 'delete_user_book', 'delete_user_book_read', 'edition_normalize', 'edition_owned', 'email_user_delete_confirmation', 'insert_author', 'insert_block', 'insert_book', 'insert_book_mapping', 'insert_character', 'insert_collection_import', 'insert_edition', 'insert_follow', 'insert_followed_prompts', 'insert_followed_prompts_one', 'insert_followed_user', 'insert_goal', 'insert_image', 'insert_list', 'insert_list_book', 'insert_notification_settings', 'insert_notification_settings_one', 'insert_prompt', 'insert_prompt_answer', 'insert_publisher', 'insert_reading_journal', 'insert_report', 'insert_serie', 'insert_user', 'insert_user_blocks', 'insert_user_blocks_one', 'insert_user_book', 'insert_user_book_read', 'insert_user_flags', 'insert_user_flags_one', 'receipt_validate', 'update_author', 'update_book', 'update_character', 'update_collection_import_results', 'update_collection_import_results_by_pk', 'update_collection_import_results_many', 'update_edition', 'update_followed_prompts', 'update_followed_prompts_by_pk', 'update_followed_prompts_many', 'update_goal', 'update_goal_progress', 'update_list', 'update_list_books', 'update_list_books_by_pk', 'update_list_books_many', 'update_newsletter', 'update_notification_deliveries', 'update_notification_deliveries_by_pk', 'update_notification_deliveries_many', 'update_notification_settings', 'update_notification_settings_by_pk', 'update_notification_settings_many', 'update_prompt', 'update_prompt_answers', 'update_prompt_answers_by_pk', 'update_prompt_answers_many', 'update_publisher', 'update_reading_journal', 'update_serie', 'update_user', 'update_user_book', 'update_user_book_read', 'update_user_privacy_setting', 'upsert_book', 'upsert_followed_list', 'upsert_followed_prompt', 'upsert_like', 'upsert_tags', 'upsert_user_book_reads', 'user_login')
     book_mapping_normalize = sgqlc.types.Field(BookMappingIdType, graphql_name='book_mapping_normalize', args=sgqlc.types.ArgDict((
         ('deep', sgqlc.types.Arg(sgqlc.types.non_null(Boolean), graphql_name='deep', default=None)),
@@ -13415,14 +13427,14 @@ class mutation_root(sgqlc.types.Type):
 
 
 class notification_channels(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel', 'id')
     channel = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='channel')
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
 
 
 class notification_deliveries(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel', 'channel_id', 'id', 'notification', 'notification_id', 'read', 'read_at', 'sent_at', 'user', 'user_id')
     channel = sgqlc.types.Field(notification_channels, graphql_name='channel')
     channel_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='channel_id')
@@ -13437,14 +13449,14 @@ class notification_deliveries(sgqlc.types.Type):
 
 
 class notification_deliveries_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('notification_deliveries_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(notification_deliveries))), graphql_name='nodes')
 
 
 class notification_deliveries_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('notification_deliveries_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -13464,7 +13476,7 @@ class notification_deliveries_aggregate_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13473,7 +13485,7 @@ class notification_deliveries_avg_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'read_at', 'sent_at', 'user_id')
     channel_id = sgqlc.types.Field(Int, graphql_name='channel_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -13484,7 +13496,7 @@ class notification_deliveries_max_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'read_at', 'sent_at', 'user_id')
     channel_id = sgqlc.types.Field(Int, graphql_name='channel_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -13495,14 +13507,14 @@ class notification_deliveries_min_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(notification_deliveries))), graphql_name='returning')
 
 
 class notification_deliveries_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13511,7 +13523,7 @@ class notification_deliveries_stddev_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13520,7 +13532,7 @@ class notification_deliveries_stddev_pop_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13529,7 +13541,7 @@ class notification_deliveries_stddev_samp_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Int, graphql_name='channel_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -13538,7 +13550,7 @@ class notification_deliveries_sum_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13547,7 +13559,7 @@ class notification_deliveries_var_pop_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13556,7 +13568,7 @@ class notification_deliveries_var_samp_fields(sgqlc.types.Type):
 
 
 class notification_deliveries_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_id', 'id', 'notification_id', 'user_id')
     channel_id = sgqlc.types.Field(Float, graphql_name='channel_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13565,7 +13577,7 @@ class notification_deliveries_variance_fields(sgqlc.types.Type):
 
 
 class notification_settings(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('channel_ids', 'id', 'notification_type_id', 'user', 'user_id')
     channel_ids = sgqlc.types.Field(sgqlc.types.non_null(json), graphql_name='channel_ids', args=sgqlc.types.ArgDict((
         ('path', sgqlc.types.Arg(String, graphql_name='path', default=None)),
@@ -13578,14 +13590,14 @@ class notification_settings(sgqlc.types.Type):
 
 
 class notification_settings_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(notification_settings))), graphql_name='returning')
 
 
 class notification_types(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('active', 'default_channel_ids', 'default_priority', 'description', 'id', 'name', 'notification_settings', 'uid')
     active = sgqlc.types.Field(Boolean, graphql_name='active')
     default_channel_ids = sgqlc.types.Field(sgqlc.types.non_null(json), graphql_name='default_channel_ids', args=sgqlc.types.ArgDict((
@@ -13608,7 +13620,7 @@ class notification_types(sgqlc.types.Type):
 
 
 class notifications(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'description', 'id', 'link', 'link_text', 'notification_deliveries', 'notification_deliveries_aggregate', 'notification_type_id', 'notifier_user', 'notifier_user_id', 'priority', 'title', 'uid')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(timestamptz), graphql_name='created_at')
     description = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='description')
@@ -13640,7 +13652,7 @@ class notifications(sgqlc.types.Type):
 
 
 class platforms(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_mappings', 'id', 'name', 'url')
     book_mappings = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('book_mappings'))), graphql_name='book_mappings', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(book_mappings_select_column)), graphql_name='distinct_on', default=None)),
@@ -13656,7 +13668,7 @@ class platforms(sgqlc.types.Type):
 
 
 class privacy_settings(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities', 'id', 'lists', 'lists_aggregate', 'prompts', 'setting', 'user_books', 'user_books_aggregate', 'users', 'users_by_activity')
     activities = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('activities'))), graphql_name='activities', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(activities_select_column)), graphql_name='distinct_on', default=None)),
@@ -13727,7 +13739,7 @@ class privacy_settings(sgqlc.types.Type):
 
 
 class prompt_answers(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt', 'prompt_book', 'prompt_id', 'user', 'user_id')
     book = sgqlc.types.Field(sgqlc.types.non_null(books), graphql_name='book')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
@@ -13744,14 +13756,14 @@ class prompt_answers(sgqlc.types.Type):
 
 
 class prompt_answers_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('prompt_answers_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(prompt_answers))), graphql_name='nodes')
 
 
 class prompt_answers_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('prompt_answers_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -13771,7 +13783,7 @@ class prompt_answers_aggregate_fields(sgqlc.types.Type):
 
 
 class prompt_answers_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13781,7 +13793,7 @@ class prompt_answers_avg_fields(sgqlc.types.Type):
 
 
 class prompt_answers_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -13794,7 +13806,7 @@ class prompt_answers_max_fields(sgqlc.types.Type):
 
 
 class prompt_answers_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'description', 'id', 'merged_at', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -13807,14 +13819,14 @@ class prompt_answers_min_fields(sgqlc.types.Type):
 
 
 class prompt_answers_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(prompt_answers))), graphql_name='returning')
 
 
 class prompt_answers_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13824,7 +13836,7 @@ class prompt_answers_stddev_fields(sgqlc.types.Type):
 
 
 class prompt_answers_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13834,7 +13846,7 @@ class prompt_answers_stddev_pop_fields(sgqlc.types.Type):
 
 
 class prompt_answers_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13844,7 +13856,7 @@ class prompt_answers_stddev_samp_fields(sgqlc.types.Type):
 
 
 class prompt_answers_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -13854,7 +13866,7 @@ class prompt_answers_sum_fields(sgqlc.types.Type):
 
 
 class prompt_answers_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13864,7 +13876,7 @@ class prompt_answers_var_pop_fields(sgqlc.types.Type):
 
 
 class prompt_answers_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13874,7 +13886,7 @@ class prompt_answers_var_samp_fields(sgqlc.types.Type):
 
 
 class prompt_answers_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'id', 'original_book_id', 'prompt_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -13884,7 +13896,7 @@ class prompt_answers_variance_fields(sgqlc.types.Type):
 
 
 class prompt_books_summary(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'book', 'book_id', 'prompt', 'prompt_id')
     answers_count = sgqlc.types.Field(bigint, graphql_name='answers_count')
     book = sgqlc.types.Field(books, graphql_name='book')
@@ -13894,7 +13906,7 @@ class prompt_books_summary(sgqlc.types.Type):
 
 
 class prompts(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('answers_count', 'books_count', 'created_at', 'description', 'featured', 'followed_prompts', 'followers', 'id', 'privacy_setting', 'privacy_setting_id', 'prompt_answers', 'prompt_answers_aggregate', 'prompt_books', 'question', 'slug', 'user', 'user_id', 'users_count')
     answers_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='answers_count')
     books_count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='books_count')
@@ -13952,14 +13964,14 @@ class prompts(sgqlc.types.Type):
 
 
 class prompts_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(prompts))), graphql_name='returning')
 
 
 class publishers(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('canonical_id', 'created_at', 'editions', 'editions_count', 'id', 'locked', 'name', 'object_type', 'parent_id', 'parent_publisher', 'slug', 'state', 'updated_at', 'user_id')
     canonical_id = sgqlc.types.Field(Int, graphql_name='canonical_id')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(timestamp), graphql_name='created_at')
@@ -13985,7 +13997,7 @@ class publishers(sgqlc.types.Type):
 
 
 class query_root(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities', 'activities_by_pk', 'authors', 'authors_by_pk', 'book_categories', 'book_categories_by_pk', 'book_characters', 'book_characters_by_pk', 'book_collections', 'book_collections_by_pk', 'book_mappings', 'book_mappings_by_pk', 'book_series', 'book_series_aggregate', 'book_series_by_pk', 'book_statuses', 'book_statuses_by_pk', 'bookles', 'bookles_by_pk', 'books', 'books_aggregate', 'books_by_pk', 'books_trending', 'characters', 'characters_by_pk', 'collection_import_results', 'collection_import_results_by_pk', 'collection_imports', 'collection_imports_by_pk', 'contributions', 'contributions_aggregate', 'contributions_by_pk', 'countries', 'countries_by_pk', 'editions', 'editions_by_pk', 'flag_statuses', 'flag_statuses_by_pk', 'followed_lists', 'followed_lists_by_pk', 'followed_prompts', 'followed_prompts_by_pk', 'followed_user_books', 'followed_user_books_aggregate', 'followed_users', 'followed_users_by_pk', 'following_user_books', 'following_user_books_aggregate', 'follows', 'follows_aggregate', 'follows_by_pk', 'goals', 'goals_by_pk', 'images', 'images_by_pk', 'languages', 'languages_by_pk', 'likes', 'likes_by_pk', 'links', 'links_by_pk', 'list_books', 'list_books_aggregate', 'list_books_by_pk', 'lists', 'lists_aggregate', 'lists_by_pk', 'me', 'newsletter', 'notification_channels', 'notification_channels_by_pk', 'notification_deliveries', 'notification_deliveries_aggregate', 'notification_deliveries_by_pk', 'notification_settings', 'notification_settings_by_pk', 'notification_types', 'notification_types_by_pk', 'notifications', 'notifications_by_pk', 'platforms', 'platforms_by_pk', 'privacy_settings', 'privacy_settings_by_pk', 'prompt_answers', 'prompt_answers_aggregate', 'prompt_answers_by_pk', 'prompt_books_summary', 'prompts', 'prompts_by_pk', 'publishers', 'publishers_by_pk', 'reading_formats', 'reading_formats_by_pk', 'reading_journals', 'reading_journals_by_pk', 'reading_journals_summary', 'referrals_for_user', 'search', 'series', 'series_by_pk', 'subscriptions', 'tag_categories', 'tag_categories_by_pk', 'taggable_counts', 'taggable_counts_by_pk', 'taggings', 'taggings_aggregate', 'taggings_by_pk', 'tags', 'tags_aggregate', 'tags_by_pk', 'user_blocks', 'user_blocks_by_pk', 'user_book_reads', 'user_book_reads_aggregate', 'user_book_reads_by_pk', 'user_book_statuses', 'user_book_statuses_aggregate', 'user_book_statuses_by_pk', 'user_books', 'user_books_aggregate', 'user_books_by_pk', 'user_flags', 'user_flags_by_pk', 'user_referrals', 'user_referrals_by_pk', 'user_statuses', 'user_statuses_by_pk', 'users', 'users_aggregate_by_created_at_date', 'users_by_pk')
     activities = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('activities'))), graphql_name='activities', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(activities_select_column)), graphql_name='distinct_on', default=None)),
@@ -14124,10 +14136,11 @@ class query_root(sgqlc.types.Type):
 ))
     )
     books_trending = sgqlc.types.Field(TrendingBookType, graphql_name='books_trending', args=sgqlc.types.ArgDict((
-        ('from_', sgqlc.types.Arg(sgqlc.types.non_null(date), graphql_name='from', default=None)),
-        ('limit', sgqlc.types.Arg(sgqlc.types.non_null(Int), graphql_name='limit', default=None)),
-        ('offset', sgqlc.types.Arg(sgqlc.types.non_null(Int), graphql_name='offset', default=None)),
-        ('to', sgqlc.types.Arg(sgqlc.types.non_null(date), graphql_name='to', default=None)),
+        ('duration', sgqlc.types.Arg(TrendingDuration, graphql_name='duration', default=None)),
+        ('from_', sgqlc.types.Arg(date, graphql_name='from', default=None)),
+        ('limit', sgqlc.types.Arg(Int, graphql_name='limit', default=None)),
+        ('offset', sgqlc.types.Arg(Int, graphql_name='offset', default=None)),
+        ('to', sgqlc.types.Arg(date, graphql_name='to', default=None)),
 ))
     )
     characters = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('characters'))), graphql_name='characters', args=sgqlc.types.ArgDict((
@@ -14825,14 +14838,14 @@ class query_root(sgqlc.types.Type):
 
 
 class reading_formats(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('format', 'id')
     format = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='format')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
 
 
 class reading_journals(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_at', 'book', 'book_id', 'created_at', 'edition', 'edition_id', 'entry', 'event', 'followers', 'id', 'likes', 'likes_count', 'metadata', 'object_type', 'privacy_setting_id', 'taggings', 'taggings_aggregate', 'updated_at', 'user', 'user_id')
     action_at = sgqlc.types.Field(sgqlc.types.non_null(timestamptz), graphql_name='action_at')
     book = sgqlc.types.Field(books, graphql_name='book')
@@ -14888,7 +14901,7 @@ class reading_journals(sgqlc.types.Type):
 
 
 class reading_journals_summary(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'followers', 'journals_count', 'last_updated_at', 'reading_journals', 'user', 'user_id')
     book = sgqlc.types.Field(books, graphql_name='book')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
@@ -14915,7 +14928,7 @@ class reading_journals_summary(sgqlc.types.Type):
 
 
 class series(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('author', 'author_id', 'book_series', 'book_series_aggregate', 'books_count', 'canonical', 'canonical_id', 'creator', 'description', 'id', 'identifiers', 'is_completed', 'locked', 'name', 'object_type', 'primary_books_count', 'slug', 'state', 'user_id')
     author = sgqlc.types.Field(authors, graphql_name='author')
     author_id = sgqlc.types.Field(Int, graphql_name='author_id')
@@ -14956,7 +14969,7 @@ class series(sgqlc.types.Type):
 
 
 class subscription_root(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('activities', 'activities_by_pk', 'activities_stream', 'authors', 'authors_by_pk', 'authors_stream', 'book_categories', 'book_categories_by_pk', 'book_categories_stream', 'book_characters', 'book_characters_by_pk', 'book_characters_stream', 'book_collections', 'book_collections_by_pk', 'book_collections_stream', 'book_mappings', 'book_mappings_by_pk', 'book_mappings_stream', 'book_series', 'book_series_aggregate', 'book_series_by_pk', 'book_series_stream', 'book_statuses', 'book_statuses_by_pk', 'book_statuses_stream', 'bookles', 'bookles_by_pk', 'bookles_stream', 'books', 'books_aggregate', 'books_by_pk', 'books_stream', 'characters', 'characters_by_pk', 'characters_stream', 'collection_import_results', 'collection_import_results_by_pk', 'collection_import_results_stream', 'collection_imports', 'collection_imports_by_pk', 'collection_imports_stream', 'contributions', 'contributions_aggregate', 'contributions_by_pk', 'contributions_stream', 'countries', 'countries_by_pk', 'countries_stream', 'editions', 'editions_by_pk', 'editions_stream', 'flag_statuses', 'flag_statuses_by_pk', 'flag_statuses_stream', 'followed_lists', 'followed_lists_by_pk', 'followed_lists_stream', 'followed_prompts', 'followed_prompts_by_pk', 'followed_prompts_stream', 'followed_user_books', 'followed_user_books_aggregate', 'followed_user_books_stream', 'followed_users', 'followed_users_by_pk', 'followed_users_stream', 'following_user_books', 'following_user_books_aggregate', 'following_user_books_stream', 'follows', 'follows_aggregate', 'follows_by_pk', 'follows_stream', 'goals', 'goals_by_pk', 'goals_stream', 'images', 'images_by_pk', 'images_stream', 'languages', 'languages_by_pk', 'languages_stream', 'likes', 'likes_by_pk', 'likes_stream', 'links', 'links_by_pk', 'links_stream', 'list_books', 'list_books_aggregate', 'list_books_by_pk', 'list_books_stream', 'lists', 'lists_aggregate', 'lists_by_pk', 'lists_stream', 'me', 'notification_channels', 'notification_channels_by_pk', 'notification_channels_stream', 'notification_deliveries', 'notification_deliveries_aggregate', 'notification_deliveries_by_pk', 'notification_deliveries_stream', 'notification_settings', 'notification_settings_by_pk', 'notification_settings_stream', 'notification_types', 'notification_types_by_pk', 'notification_types_stream', 'notifications', 'notifications_by_pk', 'notifications_stream', 'platforms', 'platforms_by_pk', 'platforms_stream', 'privacy_settings', 'privacy_settings_by_pk', 'privacy_settings_stream', 'prompt_answers', 'prompt_answers_aggregate', 'prompt_answers_by_pk', 'prompt_answers_stream', 'prompt_books_summary', 'prompt_books_summary_stream', 'prompts', 'prompts_by_pk', 'prompts_stream', 'publishers', 'publishers_by_pk', 'publishers_stream', 'reading_formats', 'reading_formats_by_pk', 'reading_formats_stream', 'reading_journals', 'reading_journals_by_pk', 'reading_journals_stream', 'reading_journals_summary', 'reading_journals_summary_stream', 'series', 'series_by_pk', 'series_stream', 'tag_categories', 'tag_categories_by_pk', 'tag_categories_stream', 'taggable_counts', 'taggable_counts_by_pk', 'taggable_counts_stream', 'taggings', 'taggings_aggregate', 'taggings_by_pk', 'taggings_stream', 'tags', 'tags_aggregate', 'tags_by_pk', 'tags_stream', 'user_blocks', 'user_blocks_by_pk', 'user_blocks_stream', 'user_book_reads', 'user_book_reads_aggregate', 'user_book_reads_by_pk', 'user_book_reads_stream', 'user_book_statuses', 'user_book_statuses_aggregate', 'user_book_statuses_by_pk', 'user_book_statuses_stream', 'user_books', 'user_books_aggregate', 'user_books_by_pk', 'user_books_stream', 'user_flags', 'user_flags_by_pk', 'user_flags_stream', 'user_referrals', 'user_referrals_by_pk', 'user_referrals_stream', 'user_statuses', 'user_statuses_by_pk', 'user_statuses_stream', 'users', 'users_aggregate_by_created_at_date', 'users_aggregate_by_created_at_date_stream', 'users_by_pk', 'users_stream')
     activities = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null('activities'))), graphql_name='activities', args=sgqlc.types.ArgDict((
         ('distinct_on', sgqlc.types.Arg(sgqlc.types.list_of(sgqlc.types.non_null(activities_select_column)), graphql_name='distinct_on', default=None)),
@@ -16113,7 +16126,7 @@ class subscription_root(sgqlc.types.Type):
 
 
 class tag_categories(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('category', 'created_at', 'id', 'slug', 'tags', 'tags_aggregate')
     category = sgqlc.types.Field(String, graphql_name='category')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -16138,7 +16151,7 @@ class tag_categories(sgqlc.types.Type):
 
 
 class taggable_counts(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'count', 'created_at', 'hardcover_tagged', 'id', 'spoiler_ratio', 'tag', 'tag_id', 'taggable_id', 'taggable_type', 'updated_at')
     book = sgqlc.types.Field(books, graphql_name='book')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count')
@@ -16154,7 +16167,7 @@ class taggable_counts(sgqlc.types.Type):
 
 
 class taggings(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'created_at', 'id', 'spoiler', 'tag', 'tag_id', 'taggable_id', 'taggable_type', 'user', 'user_id')
     book = sgqlc.types.Field(books, graphql_name='book')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
@@ -16169,14 +16182,14 @@ class taggings(sgqlc.types.Type):
 
 
 class taggings_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('taggings_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(taggings))), graphql_name='nodes')
 
 
 class taggings_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('taggings_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -16196,7 +16209,7 @@ class taggings_aggregate_fields(sgqlc.types.Type):
 
 
 class taggings_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16205,7 +16218,7 @@ class taggings_avg_fields(sgqlc.types.Type):
 
 
 class taggings_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'tag_id', 'taggable_id', 'taggable_type', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -16216,7 +16229,7 @@ class taggings_max_fields(sgqlc.types.Type):
 
 
 class taggings_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'tag_id', 'taggable_id', 'taggable_type', 'user_id')
     created_at = sgqlc.types.Field(timestamp, graphql_name='created_at')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -16227,7 +16240,7 @@ class taggings_min_fields(sgqlc.types.Type):
 
 
 class taggings_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16236,7 +16249,7 @@ class taggings_stddev_fields(sgqlc.types.Type):
 
 
 class taggings_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16245,7 +16258,7 @@ class taggings_stddev_pop_fields(sgqlc.types.Type):
 
 
 class taggings_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16254,7 +16267,7 @@ class taggings_stddev_samp_fields(sgqlc.types.Type):
 
 
 class taggings_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(bigint, graphql_name='id')
     tag_id = sgqlc.types.Field(Int, graphql_name='tag_id')
@@ -16263,7 +16276,7 @@ class taggings_sum_fields(sgqlc.types.Type):
 
 
 class taggings_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16272,7 +16285,7 @@ class taggings_var_pop_fields(sgqlc.types.Type):
 
 
 class taggings_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16281,7 +16294,7 @@ class taggings_var_samp_fields(sgqlc.types.Type):
 
 
 class taggings_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'tag_id', 'taggable_id', 'user_id')
     id = sgqlc.types.Field(Float, graphql_name='id')
     tag_id = sgqlc.types.Field(Float, graphql_name='tag_id')
@@ -16290,7 +16303,7 @@ class taggings_variance_fields(sgqlc.types.Type):
 
 
 class tags(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category', 'tag_category_id', 'taggings', 'taggings_aggregate')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count')
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
@@ -16317,14 +16330,14 @@ class tags(sgqlc.types.Type):
 
 
 class tags_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('tags_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(tags))), graphql_name='nodes')
 
 
 class tags_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('tags_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -16344,7 +16357,7 @@ class tags_aggregate_fields(sgqlc.types.Type):
 
 
 class tags_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16352,7 +16365,7 @@ class tags_avg_fields(sgqlc.types.Type):
 
 
 class tags_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category_id')
     count = sgqlc.types.Field(Int, graphql_name='count')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -16362,7 +16375,7 @@ class tags_max_fields(sgqlc.types.Type):
 
 
 class tags_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'slug', 'tag', 'tag_category_id')
     count = sgqlc.types.Field(Int, graphql_name='count')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -16372,7 +16385,7 @@ class tags_min_fields(sgqlc.types.Type):
 
 
 class tags_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16380,7 +16393,7 @@ class tags_stddev_fields(sgqlc.types.Type):
 
 
 class tags_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16388,7 +16401,7 @@ class tags_stddev_pop_fields(sgqlc.types.Type):
 
 
 class tags_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16396,7 +16409,7 @@ class tags_stddev_samp_fields(sgqlc.types.Type):
 
 
 class tags_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Int, graphql_name='count')
     id = sgqlc.types.Field(bigint, graphql_name='id')
@@ -16404,7 +16417,7 @@ class tags_sum_fields(sgqlc.types.Type):
 
 
 class tags_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16412,7 +16425,7 @@ class tags_var_pop_fields(sgqlc.types.Type):
 
 
 class tags_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16420,7 +16433,7 @@ class tags_var_samp_fields(sgqlc.types.Type):
 
 
 class tags_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'id', 'tag_category_id')
     count = sgqlc.types.Field(Float, graphql_name='count')
     id = sgqlc.types.Field(Float, graphql_name='id')
@@ -16428,7 +16441,7 @@ class tags_variance_fields(sgqlc.types.Type):
 
 
 class user_blocks(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('blocked_user', 'blocked_user_id', 'created_at', 'id', 'user', 'user_id')
     blocked_user = sgqlc.types.Field('users', graphql_name='blocked_user')
     blocked_user_id = sgqlc.types.Field(Int, graphql_name='blocked_user_id')
@@ -16439,14 +16452,14 @@ class user_blocks(sgqlc.types.Type):
 
 
 class user_blocks_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_blocks))), graphql_name='returning')
 
 
 class user_book_reads(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition', 'edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book', 'user_book_id')
     edition = sgqlc.types.Field(editions, graphql_name='edition')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -16463,14 +16476,14 @@ class user_book_reads(sgqlc.types.Type):
 
 
 class user_book_reads_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('user_book_reads_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_book_reads))), graphql_name='nodes')
 
 
 class user_book_reads_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_book_reads_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -16490,7 +16503,7 @@ class user_book_reads_aggregate_fields(sgqlc.types.Type):
 
 
 class user_book_reads_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16502,7 +16515,7 @@ class user_book_reads_avg_fields(sgqlc.types.Type):
 
 
 class user_book_reads_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
     finished_at = sgqlc.types.Field(date, graphql_name='finished_at')
@@ -16517,7 +16530,7 @@ class user_book_reads_max_fields(sgqlc.types.Type):
 
 
 class user_book_reads_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at', 'finished_at_precision', 'id', 'paused_at', 'progress', 'progress_pages', 'progress_seconds', 'started_at', 'user_book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
     finished_at = sgqlc.types.Field(date, graphql_name='finished_at')
@@ -16532,7 +16545,7 @@ class user_book_reads_min_fields(sgqlc.types.Type):
 
 
 class user_book_reads_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16544,7 +16557,7 @@ class user_book_reads_stddev_fields(sgqlc.types.Type):
 
 
 class user_book_reads_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16556,7 +16569,7 @@ class user_book_reads_stddev_pop_fields(sgqlc.types.Type):
 
 
 class user_book_reads_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16568,7 +16581,7 @@ class user_book_reads_stddev_samp_fields(sgqlc.types.Type):
 
 
 class user_book_reads_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Int, graphql_name='finished_at_precision')
@@ -16580,7 +16593,7 @@ class user_book_reads_sum_fields(sgqlc.types.Type):
 
 
 class user_book_reads_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16592,7 +16605,7 @@ class user_book_reads_var_pop_fields(sgqlc.types.Type):
 
 
 class user_book_reads_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16604,7 +16617,7 @@ class user_book_reads_var_samp_fields(sgqlc.types.Type):
 
 
 class user_book_reads_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('edition_id', 'finished_at_precision', 'id', 'progress', 'progress_pages', 'progress_seconds', 'user_book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
     finished_at_precision = sgqlc.types.Field(Float, graphql_name='finished_at_precision')
@@ -16616,7 +16629,7 @@ class user_book_reads_variance_fields(sgqlc.types.Type):
 
 
 class user_book_statuses(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'id', 'slug', 'status', 'user_books', 'user_books_aggregate')
     description = sgqlc.types.Field(String, graphql_name='description')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
@@ -16641,14 +16654,14 @@ class user_book_statuses(sgqlc.types.Type):
 
 
 class user_book_statuses_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('user_book_statuses_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_book_statuses))), graphql_name='nodes')
 
 
 class user_book_statuses_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_book_statuses_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -16668,13 +16681,13 @@ class user_book_statuses_aggregate_fields(sgqlc.types.Type):
 
 
 class user_book_statuses_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_book_statuses_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'id', 'slug', 'status')
     description = sgqlc.types.Field(String, graphql_name='description')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -16683,7 +16696,7 @@ class user_book_statuses_max_fields(sgqlc.types.Type):
 
 
 class user_book_statuses_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('description', 'id', 'slug', 'status')
     description = sgqlc.types.Field(String, graphql_name='description')
     id = sgqlc.types.Field(Int, graphql_name='id')
@@ -16692,49 +16705,49 @@ class user_book_statuses_min_fields(sgqlc.types.Type):
 
 
 class user_book_statuses_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_book_statuses_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_book_statuses_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_book_statuses_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Int, graphql_name='id')
 
 
 class user_book_statuses_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_book_statuses_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_book_statuses_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id',)
     id = sgqlc.types.Field(Float, graphql_name='id')
 
 
 class user_books(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book', 'book_id', 'created_at', 'date_added', 'edition', 'edition_id', 'first_read_date', 'first_started_reading_date', 'followers', 'has_review', 'id', 'imported', 'last_read_date', 'likes', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned', 'owned_copies', 'privacy_setting', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'reading_journal_summary', 'reading_journals', 'recommended_by', 'recommended_for', 'referrer', 'referrer_user_id', 'review', 'review_has_spoilers', 'review_length', 'review_migrated', 'review_raw', 'review_slate', 'reviewed_at', 'sponsored_review', 'starred', 'status_id', 'updated_at', 'url', 'user', 'user_book_reads', 'user_book_reads_aggregate', 'user_book_status', 'user_books', 'user_books_aggregate', 'user_id')
     book = sgqlc.types.Field(sgqlc.types.non_null(books), graphql_name='book')
     book_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='book_id')
@@ -16844,14 +16857,14 @@ class user_books(sgqlc.types.Type):
 
 
 class user_books_aggregate(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('aggregate', 'nodes')
     aggregate = sgqlc.types.Field('user_books_aggregate_fields', graphql_name='aggregate')
     nodes = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_books))), graphql_name='nodes')
 
 
 class user_books_aggregate_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('avg', 'count', 'max', 'min', 'stddev', 'stddev_pop', 'stddev_samp', 'sum', 'var_pop', 'var_samp', 'variance')
     avg = sgqlc.types.Field('user_books_avg_fields', graphql_name='avg')
     count = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='count', args=sgqlc.types.ArgDict((
@@ -16871,7 +16884,7 @@ class user_books_aggregate_fields(sgqlc.types.Type):
 
 
 class user_books_avg_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -16891,7 +16904,7 @@ class user_books_avg_fields(sgqlc.types.Type):
 
 
 class user_books_max_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'first_read_date', 'first_started_reading_date', 'id', 'last_read_date', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review', 'review_length', 'review_raw', 'reviewed_at', 'status_id', 'updated_at', 'url', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -16927,7 +16940,7 @@ class user_books_max_fields(sgqlc.types.Type):
 
 
 class user_books_min_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'created_at', 'date_added', 'edition_id', 'first_read_date', 'first_started_reading_date', 'id', 'last_read_date', 'likes_count', 'media_url', 'merged_at', 'mod_status', 'object_type', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'private_notes', 'rating', 'read_count', 'recommended_by', 'recommended_for', 'referrer_user_id', 'review', 'review_length', 'review_raw', 'reviewed_at', 'status_id', 'updated_at', 'url', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     created_at = sgqlc.types.Field(timestamptz, graphql_name='created_at')
@@ -16963,7 +16976,7 @@ class user_books_min_fields(sgqlc.types.Type):
 
 
 class user_books_stddev_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -16983,7 +16996,7 @@ class user_books_stddev_fields(sgqlc.types.Type):
 
 
 class user_books_stddev_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -17003,7 +17016,7 @@ class user_books_stddev_pop_fields(sgqlc.types.Type):
 
 
 class user_books_stddev_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -17023,7 +17036,7 @@ class user_books_stddev_samp_fields(sgqlc.types.Type):
 
 
 class user_books_sum_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Int, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Int, graphql_name='edition_id')
@@ -17043,7 +17056,7 @@ class user_books_sum_fields(sgqlc.types.Type):
 
 
 class user_books_var_pop_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -17063,7 +17076,7 @@ class user_books_var_pop_fields(sgqlc.types.Type):
 
 
 class user_books_var_samp_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -17083,7 +17096,7 @@ class user_books_var_samp_fields(sgqlc.types.Type):
 
 
 class user_books_variance_fields(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('book_id', 'edition_id', 'id', 'likes_count', 'mod_status', 'original_book_id', 'original_edition_id', 'owned_copies', 'privacy_setting_id', 'rating', 'read_count', 'referrer_user_id', 'review_length', 'status_id', 'user_id')
     book_id = sgqlc.types.Field(Float, graphql_name='book_id')
     edition_id = sgqlc.types.Field(Float, graphql_name='edition_id')
@@ -17103,7 +17116,7 @@ class user_books_variance_fields(sgqlc.types.Type):
 
 
 class user_flags(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('action_id', 'action_type', 'category', 'created_at', 'details', 'flag_status', 'flag_status_id', 'id', 'reported_user_id', 'user_id', 'user_reported', 'user_submitted')
     action_id = sgqlc.types.Field(Int, graphql_name='action_id')
     action_type = sgqlc.types.Field(String, graphql_name='action_type')
@@ -17120,14 +17133,14 @@ class user_flags(sgqlc.types.Type):
 
 
 class user_flags_mutation_response(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('affected_rows', 'returning')
     affected_rows = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='affected_rows')
     returning = sgqlc.types.Field(sgqlc.types.non_null(sgqlc.types.list_of(sgqlc.types.non_null(user_flags))), graphql_name='returning')
 
 
 class user_referrals(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('created_at', 'id', 'referrer', 'referrer_id', 'state', 'updated_at', 'user', 'user_id')
     created_at = sgqlc.types.Field(sgqlc.types.non_null(timestamp), graphql_name='created_at')
     id = sgqlc.types.Field(sgqlc.types.non_null(bigint), graphql_name='id')
@@ -17140,7 +17153,7 @@ class user_referrals(sgqlc.types.Type):
 
 
 class user_statuses(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('id', 'status', 'users')
     id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='id')
     status = sgqlc.types.Field(sgqlc.types.non_null(String), graphql_name='status')
@@ -17155,7 +17168,7 @@ class user_statuses(sgqlc.types.Type):
 
 
 class users(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('access_level', 'account_privacy_setting_id', 'activities', 'activity_privacy_settings_id', 'admin', 'bio', 'birthdate', 'blocked_users', 'books_count', 'cached_cover', 'cached_genres', 'cached_image', 'collection_imports', 'confirmation_sent_at', 'confirmed_at', 'created_at', 'current_sign_in_at', 'default_reading_format_id', 'email', 'email_verified', 'flair', 'followed_by_users', 'followed_lists', 'followed_prompts', 'followed_users', 'followed_users_count', 'followers_count', 'follows', 'follows_aggregate', 'goals', 'id', 'image', 'image_id', 'last_activity_at', 'last_sign_in_at', 'librarian_roles', 'link', 'links', 'lists', 'lists_aggregate', 'location', 'locked_at', 'membership', 'membership_ends_at', 'name', 'notification_deliveries', 'notification_deliveries_aggregate', 'object_type', 'onboarded', 'payment_system_id', 'pro', 'prompt_answers', 'prompt_answers_aggregate', 'prompts', 'pronoun_personal', 'pronoun_possessive', 'referrer_id', 'referrer_url', 'referrered_users', 'referrered_users_aggregate', 'remember_created_at', 'reported_user_flags', 'reset_password_sent_at', 'sign_in_count', 'status_id', 'taggings', 'taggings_aggregate', 'timezone', 'unconfirmed_email', 'updated_at', 'user_books', 'user_books_aggregate', 'user_flags', 'username')
     access_level = sgqlc.types.Field(Int, graphql_name='access_level')
     account_privacy_setting_id = sgqlc.types.Field(sgqlc.types.non_null(Int), graphql_name='account_privacy_setting_id')
@@ -17421,7 +17434,7 @@ class users(sgqlc.types.Type):
 
 
 class users_aggregate_by_created_at_date(sgqlc.types.Type):
-    __schema__ = hardcover_schema
+    __schema__ = schema
     __field_names__ = ('count', 'created_at')
     count = sgqlc.types.Field(bigint, graphql_name='count')
     created_at = sgqlc.types.Field(date, graphql_name='created_at')
@@ -17435,7 +17448,7 @@ class users_aggregate_by_created_at_date(sgqlc.types.Type):
 ########################################################################
 # Schema Entry Points
 ########################################################################
-hardcover_schema.query_type = query_root
-hardcover_schema.mutation_type = mutation_root
-hardcover_schema.subscription_type = subscription_root
+schema.query_type = query_root
+schema.mutation_type = mutation_root
+schema.subscription_type = subscription_root
 

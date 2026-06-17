@@ -1,6 +1,6 @@
 from .activities import Activities
 from .author import Author
-from .books import Book
+from .books import Book, TrendingBooks
 from .book_characters import BookCharacter
 from .editions import Edition
 from .reading_journals import ReadingJournal
@@ -27,5 +27,6 @@ __all__ = [
 	"Publisher",
 	"Search",
   "Series",
-  "PrivacySetting"
+  "PrivacySetting",
+  "TrendingBooks"
 ]

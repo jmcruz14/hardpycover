@@ -68,3 +68,7 @@ class SearchBookDocument(BaseModel):
 	title: str | None = None
 	users_count: int | None = None
 	users_read_count: int | None = None
+
+class TrendingBooks(BaseModel):
+	error: str | None = None
+	ids: list[int] | None = None

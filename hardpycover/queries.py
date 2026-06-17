@@ -17,12 +17,14 @@ from .classes import (
   Edition,
   Series,
   Search,
+  TrendingBooks,
   Publisher,
   PrivacySetting
   )
 from .schema import (
   user_books_select_column,
   user_books_order_by,
+  TrendingDuration,
   reading_journals_order_by,
   order_by as ORDER_BY,
   query_root as Query
@@ -359,6 +361,42 @@ class Queries:
     except ValueError as e:
       logger.error("ValueError: %s" % e)
 
+  def trending_books(
+    self,
+    duration: Literal["all", "month", "one_year", "three_month", "week"] = "all",
+    limit: int = 20,
+  ):
+    if limit > self._query_limit:
+      logger.warning("Query request exceeds limit, setting to limit...")
+      limit = self._query_limit
+
+    if duration not in duration:
+      raise ValueError("Duration %s is not declared in accepted values" % duration)
+
+    arguments = {
+      "duration": TrendingDuration(duration),
+      "limit": limit
+    }
+
+    self._check_rate_limit()
+    op = self._run_op()
+    try:
+      op.books_trending(**arguments)
+      # implement type checking
+      raw = self._client(op)
+      res = op + raw
+
+      tb = res.books_trending
+      TrendingBooks.model_validate(tb.__to_json_value__())
+
+      return res
+    except GraphQLErrors as ex:
+      logger.error("GraphQLError: %s" % ex.errors)
+    except ValidationError as e:
+      logger.error("ValidationError: %s" % e)
+    except ValueError as e:
+      logger.error("ValueError: %s" % e)
+
   def user_books_progress(
     self,
     limit: int = 25
@@ -367,7 +405,8 @@ class Queries:
       logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
-    op = Operation(Query)
+    self._check_rate_limit()
+    op = self._run_op()
     try:
       where = {"where": {"status_id": {"_eq": 2}}}
       me = op.me()
@@ -414,7 +453,8 @@ class Queries:
       logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
-    op = Operation(Query)
+    self._check_rate_limit()
+    op = self._run_op()
     where = {"title": {"_eq": title}, "state": {"_eq": "normalized"}}
     try:
       editions = op.editions(where=where, limit=limit)
