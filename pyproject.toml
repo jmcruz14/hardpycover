@@ -1,6 +1,6 @@
 [project]
 name = "hardpycover"
-version = "0.1.4"
+version = "0.1.5"
 description = "Hardcover API wrapper for Python"
 readme = "README.md"
 license = "MIT"

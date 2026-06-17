@@ -1,4 +1,4 @@
-> [!WARNING] 
+> [!WARNING]
 > This package is currently in Alpha development, so download at your own risk.
 
 <h1 align="left">
@@ -12,6 +12,12 @@
 ![Python Versions](https://img.shields.io/pypi/pyversions/hardpycover?style=flat-square)
 
 <hr />
+
+### Introduction
+
+Hardcover is a Goodreads alternative where the focus is on building a better replacement while providing a publicly-accessible API for all users to explore and use in their various other projects.
+
+In this context, `hardpycover` is born out of an interest to develop a Python API Wrapper in the same vein as TMDB's API. Powered by `sgqlc` and `pydantic`, this wrapper intentionally provides an extra layer of abstraction to ensure that the API use is not just effective, but also efficient and safe-to-use.
 
 ### Installation
 
@@ -27,23 +33,27 @@ uv add hardpycover
 
 ### Usage
 
-> [!NOTE] 
-> Using `hardpycover` requires having an API Key from Hardcover. To avail of an API Key, go to https://hardcover.app/account/api.
+> [!NOTE]
+> Using `hardpycover` requires having an API Key from Hardcover. To avail of an API Key, create a Hardcover account and then go to https://hardcover.app/account/api.
 
 ```python3
 import os
 from hardpycover import Hardcover
 
 # Store your API_KEY in an .env file
-api_key = os.environ["API_KEY"]
+API_KEY=abcdefg12345
+
+# ...
+
+token = os.environ["API_KEY"]
 
 # create hardcover instance
-hc = Hardcover(api_key=api_key)
+hc = Hardcover(token=token)
 ```
 
 **Getting User Information**
 ```python3
-hc.user_profile(['id', 'bio', 'created_at', 'username'])
+hc.query.user_profile(['id', 'bio', 'created_at', 'username'])
 # > {
 # 'id': 2,
 # 'bio' 'Lorem ipsum dolores amit',
