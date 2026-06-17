@@ -16,5 +16,6 @@ class InvalidTokenError(Exception):
         super().__init__("Bearer token invalid/expired.")
 
 class RestrictedAccessError(Exception):
-    def __init__(self):
-        super().__init__("User does not have access to requested resource.")
+class RateLimitExceededError(Exception):
+    def __init__(self, rate_limit: int):
+        super().__init__(f"Rate limit of {rate_limit} requests/minute exceeded.")

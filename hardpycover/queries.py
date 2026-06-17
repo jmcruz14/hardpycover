@@ -1,4 +1,4 @@
-import json
+import logging
 from typing import Dict, Any, Literal, get_type_hints
 from sgqlc.operation import Operation, GraphQLErrors
 from pydantic import ValidationError
@@ -36,14 +36,21 @@ from .stats import (
 # NOTE: explore further orchestration
 # from queries.authors import Authors as AQ (or just stop to prevent overutilization)
 
+logger = logging.getLogger(__name__)
+
 class Queries:
-  def __init__(self, client, return_json, query_limit: int = 50):
+  def __init__(self, client, return_json, query_limit: int = 50, request_counter = None):
     self._client = client
     self._return_json = return_json
     self._query_limit = query_limit
+    self._request_counter = request_counter
 
   def _run_op(self):
     return Operation(Query)
+
+  def _check_rate_limit(self):
+    if self._request_counter:
+        self._request_counter.check_and_increment()
 
   def user_profile(
     self,
@@ -59,6 +66,7 @@ class Queries:
     """
     DEFAULT_USER_FIELDS = Me.model_fields.keys()
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       me = op.me()
@@ -81,11 +89,9 @@ class Queries:
       else:
         return res
     except GraphQLErrors as ex:
-      print("GraphQLError: %s" % ex.errors)
-      return None
+      logger.error("GraphQLError: %s" % ex.errors)
     except Exception as e:
-      print("Error: %s" % e)
-      return None
+      logger.error("Error: %s" % e)
 
   def user_stats(
     self,
@@ -107,6 +113,7 @@ class Queries:
 
     """
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       if not user_id:
@@ -117,6 +124,9 @@ class Queries:
       uba = op.user_books_aggregate(where=where)
       agg = uba.aggregate
       results = select_stat_fields(stats)
+      if not results['aggregate']:
+        raise ValueError("Empty aggregate results")
+
       if len(results['aggregate']) > 0:
         for item in results.get('aggregate'):
           for agg_func, field in item.items():
@@ -135,11 +145,9 @@ class Queries:
       else:
         return res
     except ValidationError as e:
-      print(e)
-      return None
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
-      return None
+      logger.error("ValueError: %s" % e)
 
   def user_reviews(
     self,
@@ -152,9 +160,10 @@ class Queries:
       Fetch user reviews based on user_id
     """
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       where = {"user_id": {"_eq": user_id}, "has_review": {"_eq": True}}
@@ -181,9 +190,9 @@ class Queries:
 
       return res
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   def user_activities(
     self,
@@ -192,13 +201,14 @@ class Queries:
     offset: int = 0
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     # NOTE: not excluding privacy_setting makes the query too long
     fields = (x for x in Activities.model_fields.keys() if x != "privacy_setting")
     privacy_setting_fields = get_type_hints(PrivacySetting).keys()
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       where = {"user_id": {"_eq": user_id}}
@@ -223,10 +233,10 @@ class Queries:
 
       return res
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
       return None
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
       return None
 
   def owned_books(
@@ -247,9 +257,10 @@ class Queries:
         owned_books (list(dict)): list of owned books
     """
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       # user_books = op.user_books(where={'slug': {'_eq': 'owned'}}, limit=limit, distinct_on=[user_books_select_column.book_id], offset=offset)
@@ -274,7 +285,7 @@ class Queries:
       else:
         return res
     except Exception as e:
-      print("Error found %s" % e)
+      logger.error("Error found %s" % e)
 
   def book_characters(
     self,
@@ -282,13 +293,14 @@ class Queries:
     limit: int = 25
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     where = {
       "book_id": {"_eq": book_id}
     }
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       bc = op.book_characters(where=where, limit=limit)
@@ -311,9 +323,9 @@ class Queries:
         return res
 
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   # TODO: create method for list activity, prompt activity, goal activity
   def book_activity(
@@ -323,7 +335,7 @@ class Queries:
     offset: int = 0
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     where = {"book_id": {"_eq": book_id}, "event": {"_eq": "UserBookActivity"}}
@@ -333,6 +345,7 @@ class Queries:
       "offset": offset
     }
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       book_activity = op.activities(**arguments)
@@ -342,16 +355,16 @@ class Queries:
 
       return res
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   def user_books_progress(
     self,
     limit: int = 25
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     op = Operation(Query)
@@ -379,9 +392,9 @@ class Queries:
       else:
         return m
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   def book_editions(
     self,
@@ -398,7 +411,7 @@ class Queries:
         result (dict):
     """
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     op = Operation(Query)
@@ -421,9 +434,9 @@ class Queries:
       else:
         return res
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   def publishers(
     self,
@@ -432,7 +445,7 @@ class Queries:
     offset: int = 0
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     where = {
@@ -448,6 +461,7 @@ class Queries:
     if offset:
       arguments["offset"] = offset
 
+    self._check_rate_limit()
     op = self._run_op()
     publisher_fields = Publisher.model_fields.keys()
     try:
@@ -467,10 +481,10 @@ class Queries:
       else:
         return res
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
       return None
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
       return None
 
   def reading_journals(
@@ -481,7 +495,7 @@ class Queries:
     sort: Literal["asc", "desc"] = "desc",
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     where = {"user_id": {"_eq": user_id}}
@@ -493,6 +507,7 @@ class Queries:
       "order_by": [order_by] # NOTE: order_by argument is expected as a list_of
     }
 
+    self._check_rate_limit()
     op = self._run_op()
     reading_journal_fields = ReadingJournal.model_fields.keys()
     try:
@@ -515,10 +530,10 @@ class Queries:
       else:
         return res
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
       return None
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
       return None
 
   #### SEARCH FIELD POWERED
@@ -539,7 +554,7 @@ class Queries:
       hits (list): List of matching authors.
     """
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     arguments = {
@@ -550,6 +565,7 @@ class Queries:
     if offset:
       arguments["offset"] = offset
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       search = op.search(**arguments)
@@ -571,9 +587,9 @@ class Queries:
       else:
         return hits
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   def books(
     self,
@@ -594,7 +610,7 @@ class Queries:
       books (dict): List of books
     """
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     # NOTE: include possible update for more customizable search params
@@ -606,6 +622,7 @@ class Queries:
     if offset:
       arguments["offset"] = offset
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       search = op.search(**arguments)
@@ -627,10 +644,12 @@ class Queries:
         Book.model_validate(doc['document'])
 
       return hits
+    except GraphQLErrors as ex:
+      logger.error("GraphQLError: %s" % ex.errors)
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
 
   def characters(
     self,
@@ -639,7 +658,7 @@ class Queries:
     offset: int = 0
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     arguments = {
@@ -649,6 +668,7 @@ class Queries:
       "page": 1
     }
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       search = op.search(**arguments)
@@ -670,10 +690,10 @@ class Queries:
       else:
         return re
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
       return None
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
       return None
 
   def lists(
@@ -683,7 +703,7 @@ class Queries:
     offset: int = 0
   ):
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     arguments = {
@@ -693,6 +713,7 @@ class Queries:
     }
 
     # figure out per_page issue
+    self._check_rate_limit()
     op = self._run_op()
     try:
       search = op.search(**arguments)
@@ -715,10 +736,10 @@ class Queries:
         return re
 
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
       return None
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)
       return None
 
   def series(
@@ -738,7 +759,7 @@ class Queries:
       hits (list): List of matching series.
     """
     if limit > self._query_limit:
-      print("Query request exceeds limit, setting to limit...")
+      logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
 
     arguments = {
@@ -749,6 +770,7 @@ class Queries:
     if offset:
       arguments["offset"] = offset
 
+    self._check_rate_limit()
     op = self._run_op()
     try:
       search = op.search(**arguments)
@@ -770,6 +792,6 @@ class Queries:
       else:
         return re
     except ValidationError as e:
-      print(e)
+      logger.error("ValidationError: %s" % e)
     except ValueError as e:
-      print(e)
+      logger.error("ValueError: %s" % e)

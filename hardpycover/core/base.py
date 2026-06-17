@@ -1,5 +1,8 @@
+import time
 from collections.abc import Callable
 from sgqlc.endpoint.requests import RequestsEndpoint
+
+from .exceptions import RateLimitExceededError
 
 # NOTE: sgqlc rewrite requires incorporating types and operations
 # expected time: 1-2 days if sole focus
@@ -26,3 +29,26 @@ class Client:
 
   def post_request(self, *args, **kwargs) -> RequestsEndpoint:
     return self.client(method="POST", *args, **kwargs)
+
+class RequestCounter:
+  def __init__(self, rate_limit: int = 60):
+    self._rate_limit = rate_limit
+    self._count = 0
+    self._window_start = time.time()
+
+  def check_and_increment(self):
+    now = time.time()
+    if now - self._window_start >= 60:
+      self._count = 0
+      self._window_start = now
+    if self._count >= self._rate_limit:
+      raise RateLimitExceededError(self._rate_limit)
+    self._count += 1
+
+  @property
+  def current_count(self) -> int:
+    return self._count
+
+  @property
+  def rate_limit(self) -> int:
+    return self._rate_limit
