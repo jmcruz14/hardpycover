@@ -1,9 +1,9 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Publisher(BaseModel):
-	id: int | None = (None,)
+	publisher_id: int | None = Field(default=None, alias="id")
 	created_at: datetime | None = None
 	updated_at: datetime | None = None
 	slug: str | None = None

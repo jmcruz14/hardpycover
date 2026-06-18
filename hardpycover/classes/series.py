@@ -1,5 +1,5 @@
 from __future__ import annotations # prevents eager loading upon import
-from pydantic import BaseModel, ValidationInfo, field_validator
+from pydantic import BaseModel, ValidationInfo, Field, field_validator
 from typing import Literal
 from typing_extensions import TypedDict
 from datetime import datetime
@@ -21,7 +21,7 @@ class BookSeries(BaseModel):
   created_at: datetime | None = None
   details: str | None = None
   featured: bool | None = None
-  id: int | None = None
+  book_series_id: int | None = Field(default=None, alias="id")
   position: float | None = None
   series_id: int | None = None
   series: Series | None = None # noqa: F821
@@ -41,7 +41,7 @@ class Series(BaseModel):
   books_count: int | None = None
   # canonical?
   canonical_id: int | None = None
-  id: int | None = None
+  series_id: int | None = Field(default=None, alias="id")
   identifiers: Identifiers | None = None
   is_completed: bool | None = None
   locked: bool | None = None

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Image(BaseModel):
@@ -6,7 +6,7 @@ class Image(BaseModel):
 	colors: list[str] | None = None
 	height: int | None = None
 	imageable_id: int | None = None
-	id: int | None = None
+	image_id: int | None = Field(default=None, alias="id")
 	imageable_type: str | None = None
 	ratio: int | None = None
 	url: str | None = None

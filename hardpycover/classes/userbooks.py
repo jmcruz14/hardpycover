@@ -1,13 +1,13 @@
 from typing import Literal, Annotated
 from datetime import datetime, date
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .books import Book
 from .editions import Edition
 
 
 class UserBookReads(BaseModel):
-	id: int | None = None
+	user_book_reads_id: int | None = Field(default=None, alias="id")
 	edition: Edition | None = None
 	edition_id: int | None = None
 	started_at: date | None = None
@@ -27,7 +27,7 @@ class UserBook(BaseModel):
 	edition: Edition | None = None
 	first_read_date: date | None = None
 	first_started_reading_date: date | None = None
-	id: int | None = None
+	user_book_id: int | None = Field(default=None, alias="id")
 	has_review: bool | None = None
 	imported: bool | None = None  #
 	last_read_date: date | None = None
@@ -63,7 +63,7 @@ class UserBook(BaseModel):
 
 
 class UserBookStats(BaseModel):
-	id: Literal[1, 2, 3, 4, 5, 6] | None = None
+	user_book_stats_id: Literal[1, 2, 3, 4, 5, 6] | None = Field(default=None, alias="id")
 	description: str | None = None
 	slug: str | None = None
 	status: str | None = None

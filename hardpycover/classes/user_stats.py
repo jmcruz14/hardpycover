@@ -1,6 +1,6 @@
 from datetime import datetime, date
 from typing import Annotated
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SumAvgStdFields(BaseModel):
@@ -10,7 +10,7 @@ class SumAvgStdFields(BaseModel):
 
 	book_id: int | float | None = None
 	edition_id: int | float | None = None
-	id: int | float | None = None
+	sum_avg_std_fields_id: int | float | None = Field(default=None, alias="id")
 	likes_count: int | float | None = None
 	original_book_id: int | float | None = None
 	original_edition_id: int | float | None = None
@@ -32,7 +32,7 @@ class MaxMinFields(BaseModel):
 	edition_id: int | None = None
 	first_read_date: date | None = None
 	first_started_reading_date: date | None = None
-	id: int | None = None
+	max_min_fields_id: int | None = Field(default=None, alias="id")
 	last_read_date: date | None = None
 	likes_count: int | None = None
 	merged_at: datetime | None = None

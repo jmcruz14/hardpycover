@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 from .utils import PrivacySetting
 
@@ -11,7 +11,7 @@ class Prompt(BaseModel):
   description: str | None = None
   featured: bool | None = None
   # followed_prompts, followers
-  id: int | None = None
+  prompt_id: int | None = Field(default=None, alias="id")
   privacy_setting: PrivacySetting | None = None
   privacy_setting_id: int | None = None
   question: str | None = None

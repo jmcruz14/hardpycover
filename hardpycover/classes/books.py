@@ -1,15 +1,15 @@
 from typing import Literal
 from datetime import datetime, date
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class RatingsDistribution(BaseModel):
 	count: int
 	rating: int
 
-
+# TODO: update the class
 class Book(BaseModel):
-	id: int | None = None
+	book_id: int | None = Field(default=None, alias="id")
 	image_id: int | None = None
 	description: str | None = None
 	default_physical_edition_id: int | None = None
@@ -21,15 +21,15 @@ class Book(BaseModel):
 	book_category_id: int | None = None
 	content_warnings: list[str] | None = None
 	created_by_user_id: int | None = None
+	featured_book_series_id: int | None = None
 	users_read_count: int | None = None
 	users_count: int | None = None
 	user_added: bool | None = None
 	updated_at: datetime | None = None
 	title: str | None = None
 	subtitle: str | None = None
-	state: Literal["error", "pending", "normalized", "duplicate"] | None = (
-		None  # This is a Literal but we need to confirm w/c values
-	)
+	state: Literal["error", "pending", "normalized", "duplicate", "processing",
+		"snapshotting", "duplicate", "normalizing"] | None = None
 	slug: str | None = None
 	ratings_distribution: list[RatingsDistribution] | None = None
 	ratings_count: int | None = None

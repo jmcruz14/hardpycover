@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Annotated, Literal
 from datetime import datetime
 
@@ -11,7 +11,7 @@ class Lists(BaseModel):
   featured: bool | None = None
   featured_profile: bool | None = None
   followers_count: int | None = None
-  id: int | None = None
+  lists_id: int | None = Field(default=None, alias="id")
   imported: bool | None = None
   likes_count: int | None = None
   name: str | None = None

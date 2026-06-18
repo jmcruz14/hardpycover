@@ -1,12 +1,12 @@
 from typing import Literal
 from datetime import datetime, date
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from .utils import CachedImage
 
 
 # NOTE: expand the User class accordingly
 class User(BaseModel):
-	id: int | None = None
+	user_id: int | None = Field(default=None, alias="id")
 	bio: str | None = None
 	cached_image: CachedImage | None = None
 	birthdate: str | None = None
@@ -27,12 +27,12 @@ class User(BaseModel):
 
 
 class UserStatus(BaseModel):
-	id: int | None = None
+	user_status_id: int | None = Field(default=None, alias="id")
 	status: Literal["created", "activated", "banned"] | None = None
 
 
 class Me(BaseModel):
-	id: int | None = None
+	me_id: int | None = Field(default=None, alias="id")
 	access_level: int | None = None
 	account_privacy_setting_id: int | None = None
 	activity_privacy_settings_id: int | None = None

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Literal
 
@@ -15,7 +15,7 @@ class Activities(BaseModel):
   created_at: datetime | None = None
   data: UserBook | Prompt | Goal | Lists | None = None
   event: Literal["UserBookActivity", "GoalActivity", "PromptActivity", "ListActivity"] | None = None
-  id: int | None = None
+  activity_id: int | None = Field(default=None, alias="id")
   # likes:
   likes_count: int | None = None
   object_type: Literal["Activity"] | None = None

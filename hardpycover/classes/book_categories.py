@@ -1,6 +1,5 @@
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
 
 class BookCategory(BaseModel):
-	id: int | None = None
+	book_category_id: int | None = Field(default=None, alias="id")
 	name: str | None = None

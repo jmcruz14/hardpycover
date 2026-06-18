@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime, date
 from typing import Literal
 
@@ -11,7 +11,7 @@ class Goal(BaseModel):
   end_date: date | None = None
   # followers
   goal: int | None = None
-  id: int | None = None
+  goal_id: int | None = Field(default=None, alias="id")
   metric: Literal["book", "hour", "page"] | None = None
   privacy_setting_id: Literal[1,2,3] | None = None
   progress: int | None = None

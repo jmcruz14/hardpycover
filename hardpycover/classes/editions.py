@@ -1,12 +1,13 @@
 from datetime import datetime, date
 from typing import Literal
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .language import Language
 from .publishers import Publisher
 
 
 class Edition(BaseModel):
+	edition_id: int | None = Field(default=None, alias="id")
 	title: str | None = None
 	subtitle: str | None = None
 	state: str | None = None  # normalized, duplicate, ???

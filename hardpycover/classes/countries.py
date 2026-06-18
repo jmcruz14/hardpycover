@@ -1,4 +1,4 @@
-from pydantic import BaseModel, AfterValidator
+from pydantic import BaseModel, AfterValidator, Field
 from datetime import datetime
 from typing import Annotated
 
@@ -26,7 +26,7 @@ class Country(BaseModel):
   code3: Annotated[str, AfterValidator(lowercase_codes)] | None = None
   created_at: datetime | None = None
   editions: list[Edition] | None = None
-  id: int | None = None
+  country_id: int | None = Field(default=None, alias="id")
   intermediate_region: str | None = None
   intermediate_region_code: str | None = None
   iso_3166: Annotated[str, AfterValidator(iso_startswith)] | None = None

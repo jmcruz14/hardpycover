@@ -1,10 +1,10 @@
 from typing import Literal
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Character(BaseModel):
-	id: int | None = None
+	character_id: int | None = Field(default=None, alias="id")
 	name: str | None = None
 	biography: str | None = None
 	books_count: int | None = None

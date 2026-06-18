@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing_extensions import TypedDict
 
 class NotificationChannels(TypedDict):
@@ -23,7 +23,7 @@ class Notification(BaseModel):
   created_at: datetime | None = None
   description: str | None = None
   link: str | None = None
-  id: int | None = None
+  notification_id: int | None = Field(default=None, alias="id")
   link_text: str | None = None
   notifier_user_id: int | None = None
   priority: int | None = None

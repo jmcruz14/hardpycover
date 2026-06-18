@@ -1,5 +1,5 @@
 from datetime import date
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .image import CachedImage
 from .utils import Identifiers, Link
@@ -18,7 +18,7 @@ class Author(BaseModel):
 	death_date: date | None = None
 	death_year: int | None = None
 	gender_id: int | None = None
-	id: int | None = None
+	author_id: int | None = Field(default=None, alias="id")
 	identifiers: Identifiers | None = None
 	image_id: int | None = None
 	is_bipoc: bool | None = None

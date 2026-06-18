@@ -1,5 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class ReadingFormat(BaseModel):
   format: str
-  id: int
+  reading_format_id: int | None = Field(default=None, alias="id")

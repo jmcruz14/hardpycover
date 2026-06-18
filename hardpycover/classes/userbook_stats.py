@@ -1,11 +1,11 @@
 from datetime import date
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SumAvgStdFields(BaseModel):
 	edition_id: int | float | None = None
 	finished_at_precision: int | float | None = None
-	id: int | float | None = None
+	sum_avg_std_fields_id: int | float | None = Field(default=None, alias="id")
 	progress: int | float | None = None
 	progress_pages: int | float | None = None
 	progress_seconds: int | float | None = None
@@ -16,7 +16,7 @@ class MaxMinFields(BaseModel):
 	edition_id: int | float | None = None
 	finished_at: date | None = None
 	finished_at_precision: int | float | None = None
-	id: int | float | None = None
+	max_min_fields_id: int | float | None = Field(default=None, alias="id")
 	# NOTE: paused_at tbd
 	progress: int | float | None = None
 	progress_pages: int | float | None = None

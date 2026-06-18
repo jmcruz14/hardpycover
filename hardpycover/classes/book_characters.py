@@ -1,11 +1,11 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .characters import Character
 from .books import Book
 
 
 class BookCharacter(BaseModel):
-	id: int | None = None
+	book_character_id: int | None = Field(default=None, alias="id")
 	book: Book | None = None
 	book_id: int | None = None
 	character: Character | None = None

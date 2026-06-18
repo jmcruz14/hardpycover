@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .author import Author
 
@@ -10,7 +10,7 @@ class Contributor(BaseModel):
 	contributable_id: int | None = None
 	contribution: str | None = None  # Could be literal
 	created_at: datetime | None = None
-	id: int
+	contributor_id: int | None = Field(default=None, alias="id")
 	updated_at: datetime | None = None
 
 
@@ -21,4 +21,5 @@ class CachedContributor(BaseModel):
 
 # NOTE: list of contribution literals
 # book, afterword, design, ...
-# null, Contributor, Translator, translator
+# null, Contributor, Translator, translator, Illustrator
+# List of contributor roles... see discord discussion on this

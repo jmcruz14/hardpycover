@@ -1,7 +1,7 @@
 from .books import Book
 from .editions import Edition
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Literal
 
 
@@ -14,7 +14,7 @@ class ReadingJournal(BaseModel):
 	edition: Edition | None = None
 	entry: str | None = None
 	event: str | None = None
-	id: int | None = None
+	reading_journal_id: int | None = Field(default=None, alias="id")
 	likes_count: int | None = None
 	# metadata
 	object_type: Literal["ReadingJournal"] | None = None
