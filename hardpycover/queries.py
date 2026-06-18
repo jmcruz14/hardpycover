@@ -17,6 +17,7 @@ from .classes import (
   Edition,
   Series,
   Search,
+  Platform,
   TrendingBooks,
   Publisher,
   PrivacySetting
@@ -25,6 +26,7 @@ from .schema import (
   user_books_select_column,
   user_books_order_by,
   TrendingDuration,
+  platforms_order_by,
   reading_journals_order_by,
   order_by as ORDER_BY,
   query_root as Query
@@ -329,6 +331,30 @@ class Queries:
     except ValueError as e:
       logger.error("ValueError: %s" % e)
 
+  def book_by_id(
+    self,
+    book_id: int
+  ):
+    where = {"id": {"_eq": book_id}}
+    arguments = {
+      "where": {**where},
+      "limit": 1
+    }
+
+    self._check_rate_limit()
+    op = self._run_op()
+    try:
+      book = op.books(**arguments)
+      book.__fields__("id", "title")
+      raw = self._client(op)
+      res = op + raw
+
+      return res
+    except ValidationError as e:
+      logger.error("ValidationError: %s" % e)
+    except ValueError as e:
+      logger.error("ValueError: %s" % e)\
+
   # TODO: create method for list activity, prompt activity, goal activity
   def book_activity(
     self,
@@ -353,9 +379,13 @@ class Queries:
       book_activity = op.activities(**arguments)
       book_activity.__fields__("book_id", "data", "event", "likes_count")
       raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
       res = op + raw
 
       return res
+    except GraphQLErrors as ex:
+      logger.error("GraphQLError: %s" % ex.errors)
     except ValidationError as e:
       logger.error("ValidationError: %s" % e)
     except ValueError as e:
@@ -477,6 +507,50 @@ class Queries:
       logger.error("ValidationError: %s" % e)
     except ValueError as e:
       logger.error("ValueError: %s" % e)
+
+  def platforms(
+    self,
+    platform_id: int | None = None,
+    limit: int | None = 25,
+    offset: int | None = 0
+  ):
+    if limit > self._query_limit:
+      logger.warning("Query request exceeds limit, setting to limit...")
+      limit = self._query_limit
+
+    order_by = platforms_order_by({"id": ORDER_BY("asc")})
+    arguments = {
+      "limit": limit,
+      "order_by": [order_by]
+    }
+    if isinstance(platform_id, int):
+      arguments["where"] = {"id": {"_eq": platform_id}}
+
+    self._check_rate_limit()
+    op = self._run_op()
+    try:
+      op.platforms(**arguments)
+      op.platforms.__fields__("id", "name", "url")
+      raw = self._client(op)
+      if raw.get("errors"):
+        raise GraphQLErrors(errors=raw["errors"], data=raw.get("data"))
+      res = op + raw
+
+      for i in res.platforms:
+        Platform.model_validate(i.__to_json_value__())
+
+      if self._return_json:
+        json = res.__to_json_value__()
+        return json
+      else:
+        return res
+
+    except ValidationError as e:
+      logger.error("ValidationError: %s" % e)
+      return None
+    except ValueError as e:
+      logger.error("ValueError: %s" % e)
+      return None
 
   def publishers(
     self,
