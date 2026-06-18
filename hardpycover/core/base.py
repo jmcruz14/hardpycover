@@ -1,8 +1,10 @@
 import time
+import logging
 from collections.abc import Callable
 from sgqlc.endpoint.requests import RequestsEndpoint
-
 from .exceptions import RateLimitExceededError
+
+logger = logging.getLogger(__name__)
 
 # NOTE: sgqlc rewrite requires incorporating types and operations
 # expected time: 1-2 days if sole focus
@@ -44,6 +46,9 @@ class RequestCounter:
     if self._count >= self._rate_limit:
       raise RateLimitExceededError(self._rate_limit)
     self._count += 1
+
+    if (self._rate_limit / 2) == self._count:
+      logger.warning("At least 50% of rate limit has been exceeded")
 
   @property
   def current_count(self) -> int:
