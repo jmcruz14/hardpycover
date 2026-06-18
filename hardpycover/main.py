@@ -1,4 +1,5 @@
 import logging
+from typing import Literal
 from .core import Client, RequestCounter
 from .queries import Queries
 from .mutations import Mutations
@@ -20,6 +21,7 @@ logging.basicConfig(
   format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
+logger = logging.getLogger(__name__)
 class Hardcover(Client):
   def __init__(self, *args: Client, return_json: bool = True, **kwargs: Client):
     self._query_limit: int = 50  # Hardcoded limit
@@ -29,6 +31,52 @@ class Hardcover(Client):
     self.query: Queries = Queries(self.client, return_json, self._query_limit, _counter)
     self.mutation: Mutations = Mutations(self.client, self._query_limit, _counter)
     # NOTE: explore inclusion of auto_validate config? depth fetching?
+
+  @classmethod
+  def get_resource_link(
+    cls,
+    resource_id: int,
+    model_type: Literal["book", "series", "author", "character",
+      "edition", "publisher", "user"] = "book",
+    sub_path: str | dict | None = None
+  ) -> str:
+    """
+      Returns a stable URL link that reliably links to a specific item.
+
+      The method follows a guide from the `official docs <https://docs.hardcover.app/api/guides/linkingbyid/#supported-models>`__
+      where a stable URL can be used to access a resource.
+
+      Args:
+        id (int): id value of resource
+        model_type (Literal(str)): model type of resource (`book`, `series`, `author`, `character`,
+          `edition`, `publisher`, `user` currently supported)
+        sub_path (str or dict or None): sub-path to append to the link
+
+      Returns:
+        url (str): Hardcover URL
+    """
+    try:
+      HARDCOVER_URL = "https://hardcover.app"
+      stable_url = f"{HARDCOVER_URL}/id/{model_type}/{resource_id}"
+
+      if sub_path and isinstance(sub_path, dict):
+        if len(sub_path) > 1:
+          raise ValueError("Sub-path of dict type must be of a single key-value pair only")
+
+        # NOTE: is this fast?
+        (_model, _value), = sub_path.items()
+        stable_url = f"{stable_url}/{_model}/{_value}"
+
+        # NOTE: no need to check if resource is valid... right?
+
+      if sub_path and isinstance(sub_path, str):
+        stable_url = f"{stable_url}/{sub_path}"
+
+      return stable_url
+    except ValueError as e:
+      logger.error(f"ValueError: {e}")
+    except Exception as e:
+      logger.error(f"Error: {e}")
 
   @property
   def query_limit(self):
