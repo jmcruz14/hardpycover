@@ -2,6 +2,7 @@ import logging
 from sgqlc.types import Variable, Arg, non_null
 from sgqlc.operation import Operation, GraphQLErrors
 from .schema import (
+  update_user_input as UpdateUserInput,
   CreateBookFromPlatformInput,
   mutation_root as Mutation
 )
@@ -72,18 +73,62 @@ class Mutations:
     except ValueError as e:
       logger.error("ValueError: %s" % e)
 
+  def update_password(
+    self,
+    current_password: str,
+    new_password: str,
+    new_password_confirmation: str
+  ):
+    try:
+      self._check_rate_limit()
+      op = Operation(Mutation, variables={'user': Arg(non_null(UpdateUserInput))})
+      mut = op.update_user(user=Variable('user'))
 
-  # def update_user(
-  #   self,
-  #   user_id: int,
-  #   **User
-  # ):
-  #   op = self._run_mutation()
-  #   try:
-  #     op.update_user()
-  #   except GraphQLErrors as ex:
-  #     print("GraphQLError: %s" % ex.errors)
-  #     return None
-  #   except Exception as e:
-  #     print("Error: %s" % e)
-  #     return None
+      # NOTE: Return fields on update
+      # NOTE: must specify fields to ensure query doesn't break
+      mut.__fields__("id", "errors")
+      mut.user.__fields__("email", "username", "updated_at")
+
+      password_input = {
+          "current_password": current_password,
+          "password": new_password,
+          "password_confirmation": new_password_confirmation
+      }
+
+      raw = self._client(op, variables={"user": password_input})
+      res = op + raw
+      return res
+    except GraphQLErrors as ex:
+      logger.error("GraphQLError: %s" % ex.errors)
+    except ValidationError as e:
+      logger.error("ValidationError: %s" % e)
+    except ValueError as e:
+      logger.error("ValueError: %s" % e)
+
+  def update_bio(
+    self,
+    bio: str,
+  ):
+    try:
+      self._check_rate_limit()
+      op = Operation(Mutation, variables={'user': Arg(non_null(UpdateUserInput))})
+      mut = op.update_user(user=Variable('user'))
+
+      # NOTE: Return fields on update
+      # NOTE: must specify fields to ensure query doesn't break
+      mut.__fields__("id", "errors")
+      mut.user.__fields__("email", "username", "updated_at")
+
+      bio_input = {
+          "bio": bio
+      }
+
+      raw = self._client(op, variables={"user": bio_input})
+      res = op + raw
+      return res
+    except GraphQLErrors as ex:
+      logger.error("GraphQLError: %s" % ex.errors)
+    except ValidationError as e:
+      logger.error("ValidationError: %s" % e)
+    except ValueError as e:
+      logger.error("ValueError: %s" % e)
