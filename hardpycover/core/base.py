@@ -10,9 +10,17 @@ logger = logging.getLogger(__name__)
 # expected time: 1-2 days if sole focus
 # TODO: engineering decision: how to write in mutation calls and
 class Client:
+  """
+    Simple general client class for easy execution of requests with attached header and timeout information.
+
+    Args:
+      token (str): String representation instance of a Bearer token
+      url (str): URL string
+
+  """
   def __init__(
     self,
-    token: str,
+    token: str = "",
     url="https://api.hardcover.app/v1/graphql",
   ):
     header = {"authorization": ("Bearer %s" % token)}

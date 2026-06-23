@@ -43,6 +43,9 @@ from .stats import (
 logger = logging.getLogger(__name__)
 
 class Queries:
+  """
+    Query factory for all `query` operations in the GraphQL API.
+  """
   def __init__(self, client, return_json, query_limit: int = 50, request_counter = None):
     self._client = client
     self._return_json = return_json

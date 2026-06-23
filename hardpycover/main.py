@@ -23,6 +23,15 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 class Hardcover(Client):
+  """
+    Orchestration class for consolidating the `Client` instance
+    along with additional guardrails like rate limit, query limit,
+    and the query+mutation factories part of the Hardcover API.
+
+    Args:
+      return_json (bool): flag for serving data as a JSON object or as a sgqlc_query object
+  """
+
   def __init__(self, *args: Client, return_json: bool = True, **kwargs: Client):
     self._query_limit: int = 50  # Hardcoded limit
     self._rate_limit: int = 60 # currently 60/min
