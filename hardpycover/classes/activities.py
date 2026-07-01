@@ -10,6 +10,12 @@ from .lists import Lists
 from .utils import PrivacySetting
 
 class Activities(BaseModel):
+  """
+    Pydantic model representation of the `Activities` table from the API.
+
+    **Note**: Not all fields are represented to ensure the validation process is smoothly executed.
+  """
+
   # book: Book | None = None
   book_id: int | None = None
   created_at: datetime | None = None

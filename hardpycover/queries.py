@@ -517,6 +517,18 @@ class Queries:
     limit: int | None = 25,
     offset: int | None = 0
   ):
+    """
+      Fetch platform information based on `platform_id`.
+
+      Args:
+        platform_id (int): `platform` id
+        limit (int): number of results per query
+        offset (int): skip results per query
+
+      Returns:
+        res (dict): Query output of platforms
+    """
+
     if limit > self._query_limit:
       logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
@@ -561,6 +573,20 @@ class Queries:
     limit: int = 25,
     offset: int = 0
   ):
+    """
+      Fetch publisher based on publisher name.
+
+      Does not employ the search table.
+
+      Args:
+        publisher_name (str): string data of publisher
+        limit (int): number of results per query
+        offset (int): skip results per query
+
+      Returns:
+        res (dict): Query output of publishers
+    """
+
     if limit > self._query_limit:
       logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
@@ -611,6 +637,19 @@ class Queries:
     offset: int = 0,
     sort: Literal["asc", "desc"] = "desc",
   ):
+    """
+      Search reading journal entries based on `user_id`.
+
+      Args:
+        user_id (int): `user` id
+        limit (int): number of results per query
+        offset (int): skip results per query
+        sort (Literal["asc", "desc"]): sort from most recent or oldest entries
+
+      Returns:
+        res (dict): Query output of reading journals
+    """
+
     if limit > self._query_limit:
       logger.warning("Query request exceeds limit, setting to limit...")
       limit = self._query_limit
